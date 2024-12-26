@@ -97,24 +97,16 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	VAL2_KEY_PASS="20151225"
 	# dev0 address 0xaaafB3972B05630fCceE866eC69CdADd9baC2771 | evmos142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh
 	USER1_KEY_ADDRESS="evmos142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh"
-	# USER1_KEY="dev0"
-	# USER1_MNEMONIC="copper push brief egg scan entry inform record adjust fossil boss egg comic alien upon aspect dry avoid interest fury window hint race symptom"
-
+	
 	# # dev1 address 0xF34B930cF45ED5C1B095A9ED7f9F9b63676C31a5 | evmos17d9exr85tm2urvy448khl8umvdnkcvd9e6dhpq
 	USER2_KEY_ADDRESS="evmos17d9exr85tm2urvy448khl8umvdnkcvd9e6dhpq"
-	# USER2_KEY="dev1"
-	# USER2_MNEMONIC="maximum display century economy unlock van census kite error heart snow filter midnight usage egg venture cash kick motor survey drastic edge muffin visual"
-
+	
 	# # dev2 address 0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b | evmos1d0sz68fkv4nq6ghljcjt00s928hp4jgmymmkel
 	USER3_KEY_ADDRESS="evmos1d0sz68fkv4nq6ghljcjt00s928hp4jgmymmkel"
-	# USER3_KEY="dev2"
-	# USER3_MNEMONIC="will wear settle write dance topic tape sea glory hotel oppose rebel client problem era video gossip glide during yard balance cancel file rose"
-
+	
 	# # dev3 address 0xFcC0E188e0214B818AFD4a8aA71EaEF7dcaf8ffd | evmos1lnqwrz8qy99crzhaf292w84w7lw2lrla3yyhmm
 	USER4_KEY_ADDRESS="evmos1lnqwrz8qy99crzhaf292w84w7lw2lrla3yyhmm"
-	# USER4_KEY="dev3"
-	# USER4_MNEMONIC="doll midnight silk carpet brush boring pluck office gown inquiry duck chief aim exit gain never tennis crime fragile ship cloud surface exotic patch"
-
+	
 	# Import keys from mnemonics
 	evmosd keys add "$VAL1_KEY" \
   		--recover \
