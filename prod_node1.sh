@@ -6,7 +6,7 @@ MONIKER="node1"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
 # otherwise your balance will be wiped quickly
 # The keyring test does not require private key to steal tokens from you
-KEYRING="test"
+KEYRING="file"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
 # Set dedicated home directory for the evmosd instance
@@ -91,7 +91,7 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	# myKey address 0x7cb61d4117ae31a12e393a1cfa3bac666481d02e | evmos10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky
 	VAL_KEY="mykey"
 	VAL_MNEMONIC="gesture inject test cycle original hollow east ridge hen combine junk child bacon zero hope comfort vacuum milk pitch cage oppose unhappy lunar seat"
-
+	VAL_KEY_PASS="20151225"
 	# dev0 address 0xaaafB3972B05630fCceE866eC69CdADd9baC2771 | evmos142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh
 	USER1_KEY_ADDRESS="evmos142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh"
 	# USER1_KEY="dev0"
@@ -113,7 +113,21 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	# USER4_MNEMONIC="doll midnight silk carpet brush boring pluck office gown inquiry duck chief aim exit gain never tennis crime fragile ship cloud surface exotic patch"
 
 	# Import keys from mnemonics
-	echo "$VAL_MNEMONIC" | evmosd keys add "$VAL_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
+	# (
+	# 	echo "$VAL_MNEMONIC"
+  	# 	echo "$VAL_KEY_PASS"
+  	# 	echo "$VAL_KEY_PASS"
+	# ) | 
+	evmosd keys add "$VAL_KEY" \
+  		--recover \
+  		--keyring-backend file \
+  		--algo "$KEYALGO" \
+  		--home "$HOMEDIR"<<EOF
+$VAL_MNEMONIC
+$VAL_KEY_PASS
+$VAL_KEY_PASS
+EOF
+	# echo "$VAL_MNEMONIC" | evmosd keys add "$VAL_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
 	# echo "$USER1_MNEMONIC" | evmosd keys add "$USER1_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
 	# echo "$USER2_MNEMONIC" | evmosd keys add "$USER2_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
 	# echo "$USER3_MNEMONIC" | evmosd keys add "$USER3_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
