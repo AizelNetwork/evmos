@@ -88,10 +88,13 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	evmosd config set client chain-id "$CHAINID" --home "$HOMEDIR"
 	evmosd config set client keyring-backend "$KEYRING" --home "$HOMEDIR"
 
-	# myKey address 0x7cb61d4117ae31a12e393a1cfa3bac666481d02e | evmos10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky
-	VAL_KEY="mykey"
-	VAL_MNEMONIC="gesture inject test cycle original hollow east ridge hen combine junk child bacon zero hope comfort vacuum milk pitch cage oppose unhappy lunar seat"
-	VAL_KEY_PASS="20151225"
+	# validator1 address 0x | evmos1yxkkj0ujpt95mj7zfy737ua8tqtgxhqft5ze93
+	VAL1_KEY="validator1"
+	VAL1_MNEMONIC="razor system inherit front boss cigar youth museum vocal enhance fat dolphin gas joy gift peace ramp doctor cargo equip chalk joke arrow fresh"
+	VAL1_KEY_PASS="20151225"
+	VAL2_KEY="validator2"
+	VAL2_MNEMONIC="surround soft tragic ensure accuse tooth soul attack ahead cheese few taxi hope priority globe crater enable still silly glad hire correct brush defense"
+	VAL2_KEY_PASS="20151225"
 	# dev0 address 0xaaafB3972B05630fCceE866eC69CdADd9baC2771 | evmos142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh
 	USER1_KEY_ADDRESS="evmos142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh"
 	# USER1_KEY="dev0"
@@ -113,19 +116,23 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	# USER4_MNEMONIC="doll midnight silk carpet brush boring pluck office gown inquiry duck chief aim exit gain never tennis crime fragile ship cloud surface exotic patch"
 
 	# Import keys from mnemonics
-	# (
-	# 	echo "$VAL_MNEMONIC"
-  	# 	echo "$VAL_KEY_PASS"
-  	# 	echo "$VAL_KEY_PASS"
-	# ) | 
-	evmosd keys add "$VAL_KEY" \
+	evmosd keys add "$VAL1_KEY" \
   		--recover \
   		--keyring-backend file \
   		--algo "$KEYALGO" \
   		--home "$HOMEDIR"<<EOF
-$VAL_MNEMONIC
-$VAL_KEY_PASS
-$VAL_KEY_PASS
+$VAL1_MNEMONIC
+$VAL1_KEY_PASS
+$VAL1_KEY_PASS
+EOF
+	evmosd keys add "$VAL2_KEY" \
+  		--recover \
+  		--keyring-backend file \
+  		--algo "$KEYALGO" \
+  		--home "$HOMEDIR"<<EOF
+$VAL2_MNEMONIC
+$VAL2_KEY_PASS
+$VAL2_KEY_PASS
 EOF
 	# echo "$VAL_MNEMONIC" | evmosd keys add "$VAL_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
 	# echo "$USER1_MNEMONIC" | evmosd keys add "$USER1_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
@@ -207,17 +214,18 @@ EOF
 	sed -i.bak 's/pruning-interval = "0"/pruning-interval = "10"/g' "$APP_TOML"
 
 	# Allocate genesis accounts (cosmos formatted addresses)
-	evmosd add-genesis-account "$(evmosd keys show "$VAL_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	evmosd add-genesis-account "$(evmosd keys show "$VAL1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	evmosd add-genesis-account "$(evmosd keys show "$VAL2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	# evmosd add-genesis-account "$(evmosd keys show "$USER1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	# evmosd add-genesis-account "$(evmosd keys show "$USER2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	# evmosd add-genesis-account "$(evmosd keys show "$USER3_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	# evmosd add-genesis-account "$(evmosd keys show "$USER4_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$USER1_KEY_ADDRESS" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$USER2_KEY_ADDRESS" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$USER3_KEY_ADDRESS" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$USER4_KEY_ADDRESS" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	evmosd add-genesis-account "$USER1_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	evmosd add-genesis-account "$USER2_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	evmosd add-genesis-account "$USER3_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	evmosd add-genesis-account "$USER4_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	# Sign genesis transaction
-	evmosd gentx "$VAL_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"
+	evmosd gentx "$VAL1_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"
 	## In case you want to create multiple validators at genesis
 	## 1. Back to `evmosd keys add` step, init more keys
 	## 2. Back to `evmosd add-genesis-account` step, add balance for those
@@ -226,10 +234,10 @@ EOF
 	## 5. Copy the `gentx-*` folders under `~/.clonedEvmosd/config/gentx/` folders into the original `~/.evmosd/config/gentx`
 
 	# Collect genesis tx
-	evmosd collect-gentxs --home "$HOMEDIR"
+	# evmosd collect-gentxs --home "$HOMEDIR"
 
 	# Run this to ensure everything worked and that the genesis file is setup correctly
-	evmosd validate-genesis --home "$HOMEDIR"
+	# evmosd validate-genesis --home "$HOMEDIR"
 
 	if [[ $1 == "pending" ]]; then
 		echo "pending mode is on, please wait for the first block committed."
@@ -237,10 +245,10 @@ EOF
 fi
 
 # Start the node
-evmosd start \
-	--metrics "$TRACE" \
-	--log_level $LOGLEVEL \
-	--minimum-gas-prices=0.0001$BASE_DENOM \
-	--json-rpc.api eth,txpool,personal,net,debug,web3 \
-	--home "$HOMEDIR" \
-	--chain-id "$CHAINID"
+# evmosd start \
+# 	--metrics "$TRACE" \
+# 	--log_level $LOGLEVEL \
+# 	--minimum-gas-prices=0.0001$BASE_DENOM \
+# 	--json-rpc.api eth,txpool,personal,net,debug,web3 \
+# 	--home "$HOMEDIR" \
+# 	--chain-id "$CHAINID"
