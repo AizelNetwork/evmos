@@ -28,8 +28,18 @@ sudo cp -r $EVMOSHOME/node1 $EVMOSHOME/node2
 name "node1" => "node2"
 port 8545 => 8555
 port 8546 => 8566
+port 26657 => 26667
+port 9090 => 9000
+port 26658 => 26668
+port 26656 => 26666
+port 6060 => 6070
 
 pruning="nothing" => pruning="custom"
+
+# get boot node id by 
+evmosd tendermint show-node-id --home $EVMOSHOME/node1
+# set the persistent_peers in node2/config/config.toml file
+persistent_peers = "<node1_id>@<node1_ip>:26656"
 ```
 
 ### 3.3 Generate node_key and validator_key for node2
@@ -47,7 +57,7 @@ cp $EVMOSHOME/node3/config/priv_validator_key.json  $EVMOSHOME/node2/config/
 ```bash
 ./prod_node2.sh
 ```
-### 3.5 the `gentx-*` folders under  `$EVMOSHOME/node2/config/gentx/` folders into the original `$EVMOSHOME/node1/config/gentx/`
+### 3.5 copy the `gentx-*` folders under  `$EVMOSHOME/node2/config/gentx/` folders into the original `$EVMOSHOME/node1/config/gentx/`
 
 ```bash
 sudo cp -r $EVMOSHOME/node2/config/gentx/*  $EVMOSHOME/node1/config/gentx/
@@ -58,11 +68,6 @@ sudo cp -r $EVMOSHOME/node2/config/gentx/*  $EVMOSHOME/node1/config/gentx/
 
 ```bash
 ./collect-gentxs.sh
-```
-#### 4.2 Vadliate genisis file
-
-```bash
-evmosd validate-genesis --home "$EVMOSHOME/node1"
 ```
 
 #### 4.2 Start the nodes

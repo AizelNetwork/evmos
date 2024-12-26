@@ -13,12 +13,14 @@ evmosd start \
 	--chain-id "$CHAINID" \
 	 > $EVMOSHOME/node1/node1.log 2>&1 &
 
+sleep 2000
+
 # Start the node2
-# evmosd start \
-# 	--metrics "$TRACE" \
-# 	--log_level $LOGLEVEL \
-# 	--minimum-gas-prices=0.0001$BASE_DENOM \
-# 	--json-rpc.api eth,txpool,personal,net,debug,web3 \
-# 	--home "$EVMOSHOME/node2" \
-# 	--chain-id "$CHAINID" \
-# 	 > $EVMOSHOME/node1/node2.log 2>&1 &
+evmosd start \
+	--metrics "$TRACE" \
+	--log_level $LOGLEVEL \
+	--minimum-gas-prices=0.0001$BASE_DENOM \
+	--json-rpc.api eth,txpool,personal,net,debug,web3 \
+	--home "$EVMOSHOME/node2" \
+	--chain-id "$CHAINID" \
+	 > $EVMOSHOME/node2/node2.log 2>&1 &
