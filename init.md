@@ -75,3 +75,11 @@ sudo cp -r $EVMOSHOME/node2/config/gentx/*  $EVMOSHOME/node1/config/gentx/
 ```bash
 ./start-nodes.sh
 ```
+
+## FAQ
+###If you meet this issue when run "make install" : flag provided but not defined: -L/opt/homebrew/opt/openblas/lib, Just need to do :
+
+```bash
+unset LDFLAGS
+unset CFLAGS
+```
