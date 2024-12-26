@@ -12,6 +12,8 @@
 
 #### 2.3 find "cors" and set it to true
 
+#### 2.4 in app.toml, set pruning="nothing", only for node1
+
 ### 3. Do with node2 
 
 ### 3.1 Clone node1 to node2 
@@ -26,12 +28,26 @@ sudo cp -r $EVMOSHOME/node1 $EVMOSHOME/node2
 name "node1" => "node2"
 port 8545 => 8555
 port 8546 => 8566
+
+pruning="nothing" => pruning="custom"
 ```
-### 3.3 Run `gentx` in node2 folders
+
+### 3.3 Generate node_key and validator_key for node2
+
+```bash
+# inital node in other folder
+evmosd init node3 --chain-id=evmos_9002-20151225 --home=$EVMOSHOME/node3
+# copy node_key and validator_key to node2 folder
+cp $EVMOSHOME/node3/config/node_key.json  $EVMOSHOME/node2/config/
+
+cp $EVMOSHOME/node3/config/priv_validator_key.json  $EVMOSHOME/node2/config/
+```
+
+### 3.4 Run `gentx` in node2 folders
 ```bash
 ./prod_node2.sh
 ```
-### 3.4 the `gentx-*` folders under  `$EVMOSHOME/node2/config/gentx/` folders into the original `$EVMOSHOME/node1/config/gentx/`
+### 3.5 the `gentx-*` folders under  `$EVMOSHOME/node2/config/gentx/` folders into the original `$EVMOSHOME/node1/config/gentx/`
 
 ```bash
 sudo cp -r $EVMOSHOME/node2/config/gentx/*  $EVMOSHOME/node1/config/gentx/
