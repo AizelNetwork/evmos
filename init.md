@@ -29,7 +29,7 @@ name "node1" => "node2"
 port 8545 => 8555
 port 8546 => 8566
 port 26657 => 26667
-port 9090 => 9000
+port 9090 => 9010
 port 26658 => 26668
 port 26656 => 26666
 port 6060 => 6070
@@ -47,10 +47,17 @@ persistent_peers = "<node1_id>@<node1_ip>:26656"
 ```bash
 # inital node in other folder
 evmosd init node3 --chain-id=evmos_9002-20151225 --home=$EVMOSHOME/node3
-# copy node_key and validator_key to node2 folder
-cp $EVMOSHOME/node3/config/node_key.json  $EVMOSHOME/node2/config/
 
-cp $EVMOSHOME/node3/config/priv_validator_key.json  $EVMOSHOME/node2/config/
+# delete key files in node2
+sudo rm $EVMOSHOME/node2/config/node_key.json
+sudo rm $EVMOSHOME/node2/config/priv_validator_key.json
+
+# copy node_key and validator_key to node2 folder
+sudo cp $EVMOSHOME/node3/config/node_key.json  $EVMOSHOME/node2/config/
+sudo cp $EVMOSHOME/node3/config/priv_validator_key.json  $EVMOSHOME/node2/config/
+
+# delete node3 folder
+sudo rm -rf $EVMOSHOME/node3
 ```
 
 ### 3.4 Run `gentx` in node2 folders
@@ -70,7 +77,15 @@ sudo cp -r $EVMOSHOME/node2/config/gentx/*  $EVMOSHOME/node1/config/gentx/
 ./collect-gentxs.sh
 ```
 
-#### 4.2 Start the nodes
+#### 4.2 Copy genisis file from node1 to node2
+
+```bash
+sudo rm $EVMOSHOME/node2/config/genesis.json
+
+sudo cp $EVMOSHOME/node1/config/genesis.json $EVMOSHOME/node2/config/
+```
+
+#### 4.3 Start the nodes
 
 ```bash
 ./start-nodes.sh

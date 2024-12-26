@@ -13,7 +13,7 @@ evmosd start \
 	--chain-id "$CHAINID" \
 	 > $EVMOSHOME/node1/node1.log 2>&1 &
 
-sleep 2000
+sleep 2
 
 # Start the node2
 evmosd start \
