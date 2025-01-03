@@ -24,3 +24,6 @@ evmosd start \
 	--home "$EVMOSHOME/node2" \
 	--chain-id "$CHAINID" \
 	 > $EVMOSHOME/node2/node2.log 2>&1 &
+
+# tmp
+# evmosd query ibc client params --chain-id evmos_9002-20151225
