@@ -41,7 +41,7 @@ jobs:
           push: true
           platforms: linux/amd64, linux/arm64
           build-args: DB_BACKEND=goleveldb
-          tags: tharsishq/evmos:latest, tharsishq/evmos:${{ steps.meta.outputs.tag }}
+          tags: tharsishq/aizel:latest, tharsishq/aizel:${{ steps.meta.outputs.tag }}
 
       - name: Build and push pebbledb image
         uses: docker/build-push-action@v6
@@ -50,4 +50,4 @@ jobs:
           push: true
           platforms: linux/amd64, linux/arm64
           build-args: DB_BACKEND=pebbledb
-          tags: tharsishq/evmos:latest-pebble, tharsishq/evmos:${{ steps.meta.outputs.tag }}-pebble
+          tags: tharsishq/aizel:latest-pebble, tharsishq/aizel:${{ steps.meta.outputs.tag }}-pebble

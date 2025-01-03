@@ -8,26 +8,26 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/stretchr/testify/require"
 
+	"github.com/AizelNetwork/evmos/v20/contracts"
+	"github.com/AizelNetwork/evmos/v20/testutil"
+	aizelfactory "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/grpc"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/utils"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
+	"github.com/AizelNetwork/evmos/v20/x/vesting/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	vestingexported "github.com/cosmos/cosmos-sdk/x/auth/vesting/exported"
 	sdkvesting "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	"github.com/evmos/evmos/v20/contracts"
-	"github.com/evmos/evmos/v20/testutil"
-	evmosfactory "github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/grpc"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
-	evmostypes "github.com/evmos/evmos/v20/types"
-	"github.com/evmos/evmos/v20/utils"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
-	"github.com/evmos/evmos/v20/x/vesting/types"
 )
 
 var (
 	vestAmount      = int64(1000)
-	baseDenom       = evmostypes.BaseDenom
+	baseDenom       = aizeltypes.BaseDenom
 	balances        = sdk.NewCoins(sdk.NewInt64Coin(baseDenom, vestAmount))
 	delegationCoins = sdk.NewCoins(sdk.NewInt64Coin(baseDenom, 1e18))
 	quarter         = sdk.NewCoins(sdk.NewInt64Coin(baseDenom, 250))
@@ -294,7 +294,7 @@ func TestMsgCreateClawbackVestingAccount(t *testing.T) {
 		ctx     sdk.Context
 		nw      *network.UnitTestNetwork
 		handler grpc.Handler
-		factory evmosfactory.TxFactory
+		factory aizelfactory.TxFactory
 	)
 	funderAddr, funderPriv := utiltx.NewAccAddressAndKey()
 	vestingAddr, _ := utiltx.NewAccAddressAndKey()
@@ -321,7 +321,7 @@ func TestMsgCreateClawbackVestingAccount(t *testing.T) {
 				contractAddr, err := factory.DeployContract(
 					funderPriv,
 					evmtypes.EvmTxArgs{},
-					evmosfactory.ContractDeploymentData{
+					aizelfactory.ContractDeploymentData{
 						Contract:        contracts.ERC20MinterBurnerDecimalsContract,
 						ConstructorArgs: []interface{}{"TestToken", "TTK", uint8(18)},
 					},
@@ -407,7 +407,7 @@ func TestMsgCreateClawbackVestingAccount(t *testing.T) {
 			// reset
 			nw = network.NewUnitTestNetwork(network.WithPreFundedAccounts(funderAddr))
 			handler = grpc.NewIntegrationHandler(nw)
-			factory = evmosfactory.New(nw, handler)
+			factory = aizelfactory.New(nw, handler)
 			ctx = nw.GetContext()
 
 			vestingAddr := tc.malleate(tc.funder)

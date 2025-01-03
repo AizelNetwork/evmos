@@ -15,11 +15,11 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
 
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/core/types"
 	ethparams "github.com/ethereum/go-ethereum/params"
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
 )
 
 func (suite *AnteTestSuite) TestAnteHandler() {
@@ -515,7 +515,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 				from := suite.GetKeyring().GetAccAddr(0)
 				gas := uint64(200000)
 				amount := sdk.NewCoins(sdk.NewCoin(baseDenom, sdkmath.NewInt(100*int64(gas)))) //#nosec G115
-				txBuilder, err := suite.CreateTestEIP712TxBuilderMsgSend(from, privKey, "evmos_9002-1", gas, amount)
+				txBuilder, err := suite.CreateTestEIP712TxBuilderMsgSend(from, privKey, "aizel_9002-1", gas, amount)
 				suite.Require().NoError(err)
 				return txBuilder.GetTx()
 			}, false, false, false,
@@ -539,7 +539,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 				from := suite.GetKeyring().GetAccAddr(0)
 				gas := uint64(200000)
 				amount := sdk.NewCoins(sdk.NewCoin(baseDenom, sdkmath.NewInt(100*int64(gas)))) //#nosec G115
-				txBuilder, err := suite.CreateTestEIP712TxBuilderMsgSend(from, privKey, "evmos_9000-1", gas, amount)
+				txBuilder, err := suite.CreateTestEIP712TxBuilderMsgSend(from, privKey, "aizel_9000-1", gas, amount)
 				suite.Require().NoError(err)
 				return txBuilder.GetTx()
 			}, false, false, false,
@@ -638,7 +638,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 					addr[:],
 					sdk.NewCoins(
 						sdk.NewCoin(
-							"evmos",
+							"aizel",
 							sdkmath.NewInt(1),
 						),
 					),
@@ -668,7 +668,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 					addr[:],
 					sdk.NewCoins(
 						sdk.NewCoin(
-							"evmos",
+							"aizel",
 							sdkmath.NewInt(1),
 						),
 					),
@@ -723,7 +723,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 					addr[:],
 					sdk.NewCoins(
 						sdk.NewCoin(
-							"evmos",
+							"aizel",
 							sdkmath.NewInt(1),
 						),
 					),
@@ -733,7 +733,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 					privKeys,
 					signing.SignMode_SIGN_MODE_LEGACY_AMINO_JSON,
 					msg,
-					"evmos_9005-1",
+					"aizel_9005-1",
 					2000000,
 					"mixed",
 				)
@@ -753,7 +753,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 					addr[:],
 					sdk.NewCoins(
 						sdk.NewCoin(
-							"evmos",
+							"aizel",
 							sdkmath.NewInt(1),
 						),
 					),
@@ -783,7 +783,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 					addr[:],
 					sdk.NewCoins(
 						sdk.NewCoin(
-							"evmos",
+							"aizel",
 							sdkmath.NewInt(1),
 						),
 					),
@@ -813,7 +813,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 					addr[:],
 					sdk.NewCoins(
 						sdk.NewCoin(
-							"evmos",
+							"aizel",
 							sdkmath.NewInt(1),
 						),
 					),
@@ -847,7 +847,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 					addr[:],
 					sdk.NewCoins(
 						sdk.NewCoin(
-							"evmos",
+							"aizel",
 							sdkmath.NewInt(1),
 						),
 					),
@@ -877,7 +877,7 @@ func (suite *AnteTestSuite) TestAnteHandler() {
 					addr[:],
 					sdk.NewCoins(
 						sdk.NewCoin(
-							"evmos",
+							"aizel",
 							sdkmath.NewInt(1),
 						),
 					),

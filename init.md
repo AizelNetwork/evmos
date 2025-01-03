@@ -37,7 +37,7 @@ port 6060 => 6070
 pruning="nothing" => pruning="custom"
 
 # get boot node id by 
-evmosd tendermint show-node-id --home $EVMOSHOME/node1
+aizeld tendermint show-node-id --home $EVMOSHOME/node1
 # set the persistent_peers in node2/config/config.toml file
 persistent_peers = "<node1_id>@<node1_ip>:26656"
 ```
@@ -46,7 +46,7 @@ persistent_peers = "<node1_id>@<node1_ip>:26656"
 
 ```bash
 # inital node in other folder
-evmosd init node3 --chain-id=evmos_9002-20151225 --home=$EVMOSHOME/node3
+aizeld init node3 --chain-id=aizel_9002-20151225 --home=$EVMOSHOME/node3
 
 # delete key files in node2
 sudo rm $EVMOSHOME/node2/config/node_key.json

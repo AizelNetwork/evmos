@@ -1,7 +1,7 @@
 import pytest
 from web3 import Web3
 
-from .network import setup_evmos, setup_evmos_6dec, setup_evmos_rocksdb
+from .network import setup_aizel, setup_aizel_6dec, setup_aizel_rocksdb
 from .utils import (
     ADDRS,
     KEYS,
@@ -13,15 +13,15 @@ from .utils import (
 
 # start a brand new chain for this test
 @pytest.fixture(scope="module")
-def custom_evmos(tmp_path_factory):
+def custom_aizel(tmp_path_factory):
     path = tmp_path_factory.mktemp("account")
-    yield from setup_evmos(path, 26700, long_timeout_commit=True)
+    yield from setup_aizel(path, 26700, long_timeout_commit=True)
 
 
 @pytest.fixture(scope="module")
-def custom_evmos_6dec(tmp_path_factory):
+def custom_aizel_6dec(tmp_path_factory):
     path = tmp_path_factory.mktemp("account-6dec")
-    yield from setup_evmos_6dec(
+    yield from setup_aizel_6dec(
         path,
         46777,
     )
@@ -30,34 +30,34 @@ def custom_evmos_6dec(tmp_path_factory):
 # ATM rocksdb build is not supported for sdkv0.50
 # This is due to cronos dependencies (versionDB, memIAVL)
 @pytest.fixture(scope="module")
-def custom_evmos_rocksdb(tmp_path_factory):
+def custom_aizel_rocksdb(tmp_path_factory):
     path = tmp_path_factory.mktemp("account-rocksdb")
-    yield from setup_evmos_rocksdb(
+    yield from setup_aizel_rocksdb(
         path,
         26777,
     )
 
 
 @pytest.fixture(
-    scope="module", params=["evmos", "evmos-ws", "evmos-6dec", "evmos-rocksdb", "geth"]
+    scope="module", params=["aizel", "aizel-ws", "aizel-6dec", "aizel-rocksdb", "geth"]
 )
-def cluster(request, custom_evmos, custom_evmos_6dec, custom_evmos_rocksdb, geth):
+def cluster(request, custom_aizel, custom_aizel_6dec, custom_aizel_rocksdb, geth):
     """
-    run on evmos, evmos websocket,
-    evmos built with rocksdb (memIAVL + versionDB)
+    run on aizel, aizel websocket,
+    aizel built with rocksdb (memIAVL + versionDB)
     and geth
     """
     provider = request.param
-    if provider == "evmos":
-        yield custom_evmos
-    elif provider == "evmos-ws":
-        evmos_ws = custom_evmos.copy()
-        evmos_ws.use_websocket()
-        yield evmos_ws
-    elif provider == "evmos-6dec":
-        yield custom_evmos_6dec
-    elif provider == "evmos-rocksdb":
-        yield custom_evmos_rocksdb
+    if provider == "aizel":
+        yield custom_aizel
+    elif provider == "aizel-ws":
+        aizel_ws = custom_aizel.copy()
+        aizel_ws.use_websocket()
+        yield aizel_ws
+    elif provider == "aizel-6dec":
+        yield custom_aizel_6dec
+    elif provider == "aizel-rocksdb":
+        yield custom_aizel_rocksdb
     elif provider == "geth":
         yield geth
     else:

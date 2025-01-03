@@ -19,10 +19,10 @@ from .utils import (
     wait_for_port,
 )
 
-DEFAULT_CHAIN_BINARY = "evmosd"
+DEFAULT_CHAIN_BINARY = "aizeld"
 
 
-class Evmos:
+class Aizel:
     def __init__(self, base_dir, chain_binary=DEFAULT_CHAIN_BINARY):
         self._w3 = None
         self.base_dir = base_dir
@@ -32,7 +32,7 @@ class Evmos:
         self.chain_binary = chain_binary
 
     def copy(self):
-        return Evmos(self.base_dir)
+        return Aizel(self.base_dir)
 
     @property
     def w3_http_endpoint(self):  # pylint: disable=property-with-parameters
@@ -126,24 +126,24 @@ class Geth:
         self.w3 = w3
 
 
-def setup_evmos(path, base_port, long_timeout_commit=False):
+def setup_aizel(path, base_port, long_timeout_commit=False):
     config = "configs/default.jsonnet"
     if long_timeout_commit is True:
         config = "configs/long_timeout_commit.jsonnet"
     cfg = Path(__file__).parent / config
-    yield from setup_custom_evmos(path, base_port, cfg)
+    yield from setup_custom_aizel(path, base_port, cfg)
 
 
-def setup_evmos_6dec(path, base_port, long_timeout_commit=False):
+def setup_aizel_6dec(path, base_port, long_timeout_commit=False):
     """
-    setup_evmos_6dec returns an Evmos chain with
+    setup_aizel_6dec returns an Aizel chain with
     an EVM with 6 decimals and a "0.1" base fee.
     """
     config = evm6dec_config(
         path, "default" if long_timeout_commit is False else "long_timeout_commit"
     )
     cfg = Path(__file__).parent / config
-    yield from setup_custom_evmos(path, base_port, cfg, chain_id=EVMOS_6DEC_CHAIN_ID)
+    yield from setup_custom_aizel(path, base_port, cfg, chain_id=EVMOS_6DEC_CHAIN_ID)
 
 
 # for memiavl need to create the data/snapshots dir
@@ -152,25 +152,25 @@ def create_snapshots_dir(
     path, base_port, config, n_nodes=2
 ):  # pylint: disable=unused-argument
     for idx in range(n_nodes):
-        data_snapshots_dir = path / "evmos_9002-1" / f"node{idx}" / "data" / "snapshots"
+        data_snapshots_dir = path / "aizel_9002-1" / f"node{idx}" / "data" / "snapshots"
         os.makedirs(data_snapshots_dir, exist_ok=True)
 
 
-def setup_evmos_rocksdb(path, base_port, long_timeout_commit=False):
+def setup_aizel_rocksdb(path, base_port, long_timeout_commit=False):
     """
-    setup_evmos_rocksdb returns an Evmos chain compiled with RocksDB
+    setup_aizel_rocksdb returns an Aizel chain compiled with RocksDB
     and configured to use memIAVL + versionDB.
     """
     config = memiavl_config(
         path, "default" if long_timeout_commit is False else "long_timeout_commit"
     )
     cfg = Path(__file__).parent / config
-    yield from setup_custom_evmos(
+    yield from setup_custom_aizel(
         path,
         base_port,
         cfg,
         post_init=create_snapshots_dir,
-        chain_binary="evmosd-rocksdb",
+        chain_binary="aizeld-rocksdb",
     )
 
 
@@ -204,14 +204,14 @@ def setup_geth(path, base_port):
             proc.wait()
 
 
-def setup_custom_evmos(
+def setup_custom_aizel(
     path,
     base_port,
     config,
     post_init=None,
     chain_binary=None,
     wait_port=True,
-    chain_id="evmos_9002-1",
+    chain_id="aizel_9002-1",
 ):
     cmd = [
         "pystarport",
@@ -239,13 +239,13 @@ def setup_custom_evmos(
             # wait for blocks
             # cause with sdkv0.50 the port starts faster
             http_wait_for_block(ports.rpc_port(base_port), 2)
-        yield Evmos(path / chain_id, chain_binary=chain_binary or DEFAULT_CHAIN_BINARY)
+        yield Aizel(path / chain_id, chain_binary=chain_binary or DEFAULT_CHAIN_BINARY)
     finally:
         os.killpg(os.getpgid(proc.pid), signal.SIGTERM)
         proc.wait()
 
 
-def build_patched_evmosd(patch_nix_file):
+def build_patched_aizeld(patch_nix_file):
     """
     build the binary modified for a custom scenario
     e.g. allow to register WEVMOS token
@@ -259,5 +259,5 @@ def build_patched_evmosd(patch_nix_file):
     print(*cmd)
     return (
         Path(subprocess.check_output(cmd, universal_newlines=True, text=True).strip())
-        / "bin/evmosd"
+        / "bin/aizeld"
     )

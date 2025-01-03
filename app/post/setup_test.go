@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package post_test
 
@@ -7,6 +7,11 @@ import (
 	"math/big"
 	"testing"
 
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/grpc"
+	testkeyring "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
+	inflationtypes "github.com/AizelNetwork/evmos/v20/x/inflation/v1/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -14,11 +19,6 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/grpc"
-	testkeyring "github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
-	inflationtypes "github.com/evmos/evmos/v20/x/inflation/v1/types"
 
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/stretchr/testify/suite"
@@ -86,7 +86,7 @@ func (s *PostTestSuite) BuildEthTx() sdk.Tx {
 
 	msgEthereumTx := evmtypes.NewTx(ethTxParams)
 	msgEthereumTx.From = s.from.String()
-	tx, err := msgEthereumTx.BuildTx(s.txBuilder, "evmos")
+	tx, err := msgEthereumTx.BuildTx(s.txBuilder, "aizel")
 	s.Require().NoError(err)
 	return tx
 }

@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 package client
 
 import (
@@ -14,9 +14,9 @@ import (
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
 	"github.com/spf13/cobra"
 
+	"github.com/AizelNetwork/evmos/v20/crypto/ethsecp256k1"
+	"github.com/AizelNetwork/evmos/v20/crypto/hd"
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
-	"github.com/evmos/evmos/v20/crypto/ethsecp256k1"
-	"github.com/evmos/evmos/v20/crypto/hd"
 )
 
 // UnsafeExportEthKeyCommand exports a key with the given name as a private key in hex format.
@@ -66,7 +66,7 @@ func UnsafeExportEthKeyCommand() *cobra.Command {
 				return fmt.Errorf("invalid key algorithm, got %s, expected %s", algo, ethsecp256k1.KeyType)
 			}
 
-			// Converts key to Evmos secp256k1 implementation
+			// Converts key to Aizel secp256k1 implementation
 			ethPrivKey, ok := privKey.(*ethsecp256k1.PrivKey)
 			if !ok {
 				return fmt.Errorf("invalid private key type %T, expected %T", privKey, &ethsecp256k1.PrivKey{})

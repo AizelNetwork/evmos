@@ -7,9 +7,9 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
-	"github.com/evmos/evmos/v20/utils"
-	"github.com/evmos/evmos/v20/x/evm/statedb"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	"github.com/AizelNetwork/evmos/v20/utils"
+	"github.com/AizelNetwork/evmos/v20/x/evm/statedb"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 
 	"github.com/ethereum/go-ethereum/common"
 )

@@ -1,9 +1,10 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package types
 
 import (
+	migrationtypes "github.com/AizelNetwork/evmos/v20/x/vesting/migrations/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -12,7 +13,6 @@ import (
 	"github.com/cosmos/cosmos-sdk/x/auth/vesting/exported"
 	sdkvesting "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
 	govv1beta1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1beta1"
-	migrationtypes "github.com/evmos/evmos/v20/x/vesting/migrations/types"
 )
 
 var (
@@ -26,11 +26,11 @@ var (
 
 const (
 	// Amino names
-	clawback                     = "evmos/MsgClawback"
-	createClawbackVestingAccount = "evmos/MsgCreateClawbackVestingAccount"
-	updateVestingFunder          = "evmos/MsgUpdateVestingFunder"
-	convertVestingAccount        = "evmos/MsgConvertVestingAccount"
-	fundVestingAccount           = "evmos/MsgFundVestingAccount"
+	clawback                     = "aizel/MsgClawback"
+	createClawbackVestingAccount = "aizel/MsgCreateClawbackVestingAccount"
+	updateVestingFunder          = "aizel/MsgUpdateVestingFunder"
+	convertVestingAccount        = "aizel/MsgConvertVestingAccount"
+	fundVestingAccount           = "aizel/MsgFundVestingAccount"
 )
 
 // NOTE: This is required for the GetSignBytes function

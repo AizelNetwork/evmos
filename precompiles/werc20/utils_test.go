@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package werc20_test
 
@@ -9,9 +9,9 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 // callType constants to differentiate between

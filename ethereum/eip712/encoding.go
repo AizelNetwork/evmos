@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 package eip712
 
 import (
@@ -12,8 +12,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	txTypes "github.com/cosmos/cosmos-sdk/types/tx"
 
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
 	apitypes "github.com/ethereum/go-ethereum/signer/core/apitypes"
-	evmostypes "github.com/evmos/evmos/v20/types"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 )
@@ -103,7 +103,7 @@ func decodeAminoSignDoc(signDocBytes []byte) (apitypes.TypedData, error) {
 		return apitypes.TypedData{}, err
 	}
 
-	chainID, err := evmostypes.ParseChainID(aminoDoc.ChainID)
+	chainID, err := aizeltypes.ParseChainID(aminoDoc.ChainID)
 	if err != nil {
 		return apitypes.TypedData{}, errors.New("invalid chain ID passed as argument")
 	}
@@ -167,7 +167,7 @@ func decodeProtobufSignDoc(signDocBytes []byte) (apitypes.TypedData, error) {
 
 	signerInfo := authInfo.SignerInfos[0]
 
-	chainID, err := evmostypes.ParseChainID(signDoc.ChainId)
+	chainID, err := aizeltypes.ParseChainID(signDoc.ChainId)
 	if err != nil {
 		return apitypes.TypedData{}, fmt.Errorf("invalid chain ID passed as argument: %w", err)
 	}

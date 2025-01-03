@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 //
 // The config package provides a convenient way to modify x/evm params and values.
 // Its primary purpose is to be used during application initialization.
@@ -13,8 +13,8 @@ import (
 	"errors"
 	"fmt"
 
+	"github.com/AizelNetwork/evmos/v20/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/evmos/evmos/v20/types"
 )
 
 var (

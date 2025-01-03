@@ -9,20 +9,20 @@ import (
 	"testing"
 
 	sdkmath "cosmossdk.io/math"
+	"github.com/AizelNetwork/evmos/v20/app"
+	"github.com/AizelNetwork/evmos/v20/crypto/ethsecp256k1"
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/crypto/keyring"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/evmos/evmos/v20/app"
-	"github.com/evmos/evmos/v20/crypto/ethsecp256k1"
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
 	"github.com/stretchr/testify/suite"
 
-	"github.com/evmos/evmos/v20/encoding"
-	evmostypes "github.com/evmos/evmos/v20/types"
-	"github.com/evmos/evmos/v20/x/evm/types"
+	"github.com/AizelNetwork/evmos/v20/encoding"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 const invalidAddress = "0x0000"
@@ -55,7 +55,7 @@ func (suite *MsgsTestSuite) SetupTest() {
 	encodingConfig := encoding.MakeConfig()
 	suite.clientCtx = client.Context{}.WithTxConfig(encodingConfig.TxConfig)
 
-	err := app.EvmosAppOptions("evmos_9001-1")
+	err := app.AizelAppOptions("aizel_9001-1")
 	suite.Require().NoError(err)
 }
 
@@ -113,8 +113,8 @@ func (suite *MsgsTestSuite) TestMsgEthereumTx_BuildTx() {
 		},
 	}
 	for _, cfg := range []types.EvmCoinInfo{
-		{Denom: evmostypes.BaseDenom, Decimals: types.SixDecimals},
-		{Denom: evmostypes.BaseDenom, Decimals: types.EighteenDecimals},
+		{Denom: aizeltypes.BaseDenom, Decimals: types.SixDecimals},
+		{Denom: aizeltypes.BaseDenom, Decimals: types.EighteenDecimals},
 	} {
 		for _, tc := range testCases {
 			configurator := types.NewEVMConfigurator()

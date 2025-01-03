@@ -3,9 +3,9 @@ export GOPATH="$HOME"/go
 export PATH="$PATH":"$GOPATH"/bin
 
 # remove existing data
-rm -rf "$HOME"/.evmosd
+rm -rf "$HOME"/.aizeld
 
-# build evmos binary
+# build aizel binary
 make install
 
 cd tests/solidity || exit
@@ -19,4 +19,4 @@ else
 	yarn install
 fi
 
-yarn test --network evmos "$@"
+yarn test --network aizel "$@"

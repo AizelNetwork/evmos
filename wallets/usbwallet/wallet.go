@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package usbwallet
 
@@ -12,11 +12,11 @@ import (
 	"sync"
 	"time"
 
+	"github.com/AizelNetwork/evmos/v20/wallets/accounts"
 	gethaccounts "github.com/ethereum/go-ethereum/accounts"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/signer/core/apitypes"
-	"github.com/evmos/evmos/v20/wallets/accounts"
 	usb "github.com/zondax/hid"
 )
 

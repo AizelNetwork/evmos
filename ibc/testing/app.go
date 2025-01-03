@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package ibctesting
 
@@ -22,14 +22,14 @@ import (
 
 	ibcgotesting "github.com/cosmos/ibc-go/v8/testing"
 
-	evmosapp "github.com/evmos/evmos/v20/app"
-	"github.com/evmos/evmos/v20/types"
+	aizelapp "github.com/AizelNetwork/evmos/v20/app"
+	"github.com/AizelNetwork/evmos/v20/types"
 )
 
 // DefaultTestingAppInit is a test helper function used to initialize an App
 // on the ibc testing pkg
 // need this design to make it compatible with the SetupTestinApp func on ibctesting pkg
-var DefaultTestingAppInit func(chainID string) func() (ibcgotesting.TestingApp, map[string]json.RawMessage) = evmosapp.SetupTestingApp
+var DefaultTestingAppInit func(chainID string) func() (ibcgotesting.TestingApp, map[string]json.RawMessage) = aizelapp.SetupTestingApp
 
 // SetupWithGenesisValSet initializes a new SimApp with a validator set and genesis accounts
 // that also act as delegators. For simplicity, each validator is bonded with a delegation
@@ -70,7 +70,7 @@ func SetupWithGenesisValSet(t *testing.T, valSet *cmttypes.ValidatorSet, genAccs
 
 	// set validators and delegations
 	stakingParams := stakingtypes.DefaultParams()
-	// set bond demon to be aevmos
+	// set bond demon to be aaizel
 	stakingParams.BondDenom = types.BaseDenom
 	stakingGenesis := stakingtypes.NewGenesisState(stakingParams, validators, delegations)
 	genesisState[stakingtypes.ModuleName] = app.AppCodec().MustMarshalJSON(stakingGenesis)
@@ -99,7 +99,7 @@ func SetupWithGenesisValSet(t *testing.T, valSet *cmttypes.ValidatorSet, genAccs
 		&abci.RequestInitChain{
 			ChainId:         chainID,
 			Validators:      []abci.ValidatorUpdate{},
-			ConsensusParams: evmosapp.DefaultConsensusParams,
+			ConsensusParams: aizelapp.DefaultConsensusParams,
 			AppStateBytes:   stateBytes,
 		},
 	)

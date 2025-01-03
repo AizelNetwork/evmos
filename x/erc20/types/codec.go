@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package types
 
@@ -27,11 +27,11 @@ var (
 
 const (
 	// Amino names
-	convertERC20Name = "evmos/MsgConvertERC20"
-	convertCoinName  = "evmos/MsgConvertCoin" // keep it for backwards compatibility when querying txs
-	updateParams     = "evmos/erc20/MsgUpdateParams"
-	registerERC20    = "evmos/erc20/MsgRegisterERC20"
-	toggleConversion = "evmos/erc20/MsgToggleConversion"
+	convertERC20Name = "aizel/MsgConvertERC20"
+	convertCoinName  = "aizel/MsgConvertCoin" // keep it for backwards compatibility when querying txs
+	updateParams     = "aizel/erc20/MsgUpdateParams"
+	registerERC20    = "aizel/erc20/MsgRegisterERC20"
+	toggleConversion = "aizel/erc20/MsgToggleConversion"
 )
 
 // NOTE: This is required for the GetSignBytes function

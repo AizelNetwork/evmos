@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 package backend
 
 import (
@@ -10,14 +10,14 @@ import (
 	"math/big"
 
 	errorsmod "cosmossdk.io/errors"
+	rpctypes "github.com/AizelNetwork/evmos/v20/rpc/types"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 	"github.com/cosmos/cosmos-sdk/client/flags"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	rpctypes "github.com/evmos/evmos/v20/rpc/types"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
 	"github.com/pkg/errors"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
@@ -65,7 +65,7 @@ func (b *Backend) Resend(args evmtypes.TransactionArgs, gasPrice *hexutil.Big, g
 	}
 
 	for _, tx := range pending {
-		// FIXME does Resend api possible at all?  https://github.com/evmos/ethermint/issues/905
+		// FIXME does Resend api possible at all?  https://github.com/aizel/ethermint/issues/905
 		p, err := evmtypes.UnwrapEthereumMsg(tx, common.Hash{})
 		if err != nil {
 			// not valid ethereum tx

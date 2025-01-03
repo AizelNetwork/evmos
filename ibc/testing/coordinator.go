@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package ibctesting
 
@@ -8,13 +8,13 @@ import (
 	"testing"
 	"time"
 
+	"github.com/AizelNetwork/evmos/v20/app"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	simtestutil "github.com/cosmos/cosmos-sdk/testutil/sims"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	ibctesting "github.com/cosmos/ibc-go/v8/testing"
-	"github.com/evmos/evmos/v20/app"
 	"github.com/stretchr/testify/require"
 )
 
@@ -22,7 +22,7 @@ const DefaultFeeAmt = int64(150_000_000_000_000_000) // 0.15 EVMOS
 
 var globalStartTime = time.Date(2020, 1, 2, 0, 0, 0, 0, time.UTC)
 
-// NewCoordinator initializes Coordinator with N EVM TestChain's (Evmos apps) and M Cosmos chains (Simulation Apps)
+// NewCoordinator initializes Coordinator with N EVM TestChain's (Aizel apps) and M Cosmos chains (Simulation Apps)
 func NewCoordinator(t *testing.T, nEVMChains, mCosmosChains int) *ibctesting.Coordinator {
 	chains := make(map[string]*ibctesting.TestChain)
 	coord := &ibctesting.Coordinator{
@@ -130,8 +130,8 @@ func SendMsgs(chain *ibctesting.TestChain, feeAmt int64, msgs ...sdk.Msg) (*sdk.
 	// ensure the chain has the latest time
 	chain.Coordinator.UpdateTimeForChain(chain)
 
-	if evmosChain, ok := chain.App.(*app.Evmos); ok {
-		bondDenom, err = evmosChain.StakingKeeper.BondDenom(chain.GetContext())
+	if aizelChain, ok := chain.App.(*app.Aizel); ok {
+		bondDenom, err = aizelChain.StakingKeeper.BondDenom(chain.GetContext())
 	} else {
 		bondDenom, err = chain.GetSimApp().StakingKeeper.BondDenom(chain.GetContext())
 	}

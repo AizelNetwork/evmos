@@ -70,7 +70,7 @@ struct ProposalData {
     address proposer;
 }
 
-/// @author The Evmos Core Team
+/// @author The Aizel Core Team
 /// @title Gov Precompile Contract
 /// @dev The interface through which solidity contracts will interact with Gov
 interface IGov {

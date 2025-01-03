@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package keeper
 
@@ -10,6 +10,22 @@ import (
 
 	evidencekeeper "cosmossdk.io/x/evidence/keeper"
 
+	bankprecompile "github.com/AizelNetwork/evmos/v20/precompiles/bank"
+	"github.com/AizelNetwork/evmos/v20/precompiles/bech32"
+	distprecompile "github.com/AizelNetwork/evmos/v20/precompiles/distribution"
+	evidenceprecompile "github.com/AizelNetwork/evmos/v20/precompiles/evidence"
+	govprecompile "github.com/AizelNetwork/evmos/v20/precompiles/gov"
+	ics20precompile "github.com/AizelNetwork/evmos/v20/precompiles/ics20"
+	"github.com/AizelNetwork/evmos/v20/precompiles/p256"
+	slashingprecompile "github.com/AizelNetwork/evmos/v20/precompiles/slashing"
+	stakingprecompile "github.com/AizelNetwork/evmos/v20/precompiles/staking"
+	vestingprecompile "github.com/AizelNetwork/evmos/v20/precompiles/vesting"
+	erc20Keeper "github.com/AizelNetwork/evmos/v20/x/erc20/keeper"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
+	"github.com/AizelNetwork/evmos/v20/x/evm/types"
+	transferkeeper "github.com/AizelNetwork/evmos/v20/x/ibc/transfer/keeper"
+	stakingkeeper "github.com/AizelNetwork/evmos/v20/x/staking/keeper"
+	vestingkeeper "github.com/AizelNetwork/evmos/v20/x/vesting/keeper"
 	authzkeeper "github.com/cosmos/cosmos-sdk/x/authz/keeper"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	distributionkeeper "github.com/cosmos/cosmos-sdk/x/distribution/keeper"
@@ -17,22 +33,6 @@ import (
 	slashingkeeper "github.com/cosmos/cosmos-sdk/x/slashing/keeper"
 	channelkeeper "github.com/cosmos/ibc-go/v8/modules/core/04-channel/keeper"
 	"github.com/ethereum/go-ethereum/common"
-	bankprecompile "github.com/evmos/evmos/v20/precompiles/bank"
-	"github.com/evmos/evmos/v20/precompiles/bech32"
-	distprecompile "github.com/evmos/evmos/v20/precompiles/distribution"
-	evidenceprecompile "github.com/evmos/evmos/v20/precompiles/evidence"
-	govprecompile "github.com/evmos/evmos/v20/precompiles/gov"
-	ics20precompile "github.com/evmos/evmos/v20/precompiles/ics20"
-	"github.com/evmos/evmos/v20/precompiles/p256"
-	slashingprecompile "github.com/evmos/evmos/v20/precompiles/slashing"
-	stakingprecompile "github.com/evmos/evmos/v20/precompiles/staking"
-	vestingprecompile "github.com/evmos/evmos/v20/precompiles/vesting"
-	erc20Keeper "github.com/evmos/evmos/v20/x/erc20/keeper"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
-	"github.com/evmos/evmos/v20/x/evm/types"
-	transferkeeper "github.com/evmos/evmos/v20/x/ibc/transfer/keeper"
-	stakingkeeper "github.com/evmos/evmos/v20/x/staking/keeper"
-	vestingkeeper "github.com/evmos/evmos/v20/x/vesting/keeper"
 )
 
 const bech32PrecompileBaseGas = 6_000

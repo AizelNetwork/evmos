@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CHAINID="${CHAIN_ID:-evmos_9002-20151225}"
-BASE_DENOM="aevmos"
+CHAINID="${CHAIN_ID:-aizel_9002-20151225}"
+BASE_DENOM="aaizel"
 MONIKER="node1"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
 # otherwise your balance will be wiped quickly
@@ -9,7 +9,7 @@ MONIKER="node1"
 KEYRING="test"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
-# Set dedicated home directory for the evmosd instance
+# Set dedicated home directory for the aizeld instance
 HOMEDIR="$EVMOSHOME/node1"
 # to trace evm
 #TRACE="--trace"
@@ -51,7 +51,7 @@ while [[ $# -gt 0 ]]; do
 		shift # Move past the argument
 		;;
 	--no-install)
-		echo "Flag --no-install passed -> Skipping installation of the evmosd binary."
+		echo "Flag --no-install passed -> Skipping installation of the aizeld binary."
 		install=false
 		shift # Move past the flag
 		;;
@@ -85,38 +85,38 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	rm -rf "$HOMEDIR"
 
 	# Set client config
-	evmosd config set client chain-id "$CHAINID" --home "$HOMEDIR"
-	evmosd config set client keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld config set client chain-id "$CHAINID" --home "$HOMEDIR"
+	aizeld config set client keyring-backend "$KEYRING" --home "$HOMEDIR"
 
-	# myKey address 0x7cb61d4117ae31a12e393a1cfa3bac666481d02e | evmos10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky
+	# myKey address 0x7cb61d4117ae31a12e393a1cfa3bac666481d02e | aizel10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky
 	VAL_KEY="mykey"
 	VAL_MNEMONIC="gesture inject test cycle original hollow east ridge hen combine junk child bacon zero hope comfort vacuum milk pitch cage oppose unhappy lunar seat"
 
-	# dev0 address 0xc6fe5d33615a1c52c08018c47e8bc53646a0e101 | evmos1cml96vmptgw99syqrrz8az79xer2pcgp84pdun
+	# dev0 address 0xc6fe5d33615a1c52c08018c47e8bc53646a0e101 | aizel1cml96vmptgw99syqrrz8az79xer2pcgp84pdun
 	USER1_KEY="dev0"
 	USER1_MNEMONIC="copper push brief egg scan entry inform record adjust fossil boss egg comic alien upon aspect dry avoid interest fury window hint race symptom"
 
-	# dev1 address 0x963ebdf2e1f8db8707d05fc75bfeffba1b5bac17 | evmos1jcltmuhplrdcwp7stlr4hlhlhgd4htqh3a79sq
+	# dev1 address 0x963ebdf2e1f8db8707d05fc75bfeffba1b5bac17 | aizel1jcltmuhplrdcwp7stlr4hlhlhgd4htqh3a79sq
 	USER2_KEY="dev1"
 	USER2_MNEMONIC="maximum display century economy unlock van census kite error heart snow filter midnight usage egg venture cash kick motor survey drastic edge muffin visual"
 
-	# dev2 address 0x40a0cb1C63e026A81B55EE1308586E21eec1eFa9 | evmos1gzsvk8rruqn2sx64acfsskrwy8hvrmafqkaze8
+	# dev2 address 0x40a0cb1C63e026A81B55EE1308586E21eec1eFa9 | aizel1gzsvk8rruqn2sx64acfsskrwy8hvrmafqkaze8
 	USER3_KEY="dev2"
 	USER3_MNEMONIC="will wear settle write dance topic tape sea glory hotel oppose rebel client problem era video gossip glide during yard balance cancel file rose"
 
-	# dev3 address 0x498B5AeC5D439b733dC2F58AB489783A23FB26dA | evmos1fx944mzagwdhx0wz7k9tfztc8g3lkfk6rrgv6l
+	# dev3 address 0x498B5AeC5D439b733dC2F58AB489783A23FB26dA | aizel1fx944mzagwdhx0wz7k9tfztc8g3lkfk6rrgv6l
 	USER4_KEY="dev3"
 	USER4_MNEMONIC="doll midnight silk carpet brush boring pluck office gown inquiry duck chief aim exit gain never tennis crime fragile ship cloud surface exotic patch"
 
 	# Import keys from mnemonics
-	echo "$VAL_MNEMONIC" | evmosd keys add "$VAL_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	echo "$USER1_MNEMONIC" | evmosd keys add "$USER1_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	echo "$USER2_MNEMONIC" | evmosd keys add "$USER2_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	echo "$USER3_MNEMONIC" | evmosd keys add "$USER3_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	echo "$USER4_MNEMONIC" | evmosd keys add "$USER4_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
+	echo "$VAL_MNEMONIC" | aizeld keys add "$VAL_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
+	echo "$USER1_MNEMONIC" | aizeld keys add "$USER1_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
+	echo "$USER2_MNEMONIC" | aizeld keys add "$USER2_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
+	echo "$USER3_MNEMONIC" | aizeld keys add "$USER3_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
+	echo "$USER4_MNEMONIC" | aizeld keys add "$USER4_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
 
-	# Set moniker and chain-id for Evmos (Moniker can be anything, chain-id must be an integer)
-	evmosd init $MONIKER -o --chain-id "$CHAINID" --home "$HOMEDIR"
+	# Set moniker and chain-id for Aizel (Moniker can be anything, chain-id must be an integer)
+	aizeld init $MONIKER -o --chain-id "$CHAINID" --home "$HOMEDIR"
 
 	# Change parameter token denominations to $BASE_DENOM
 	jq --arg base_denom "$BASE_DENOM" '.app_state["staking"]["params"]["bond_denom"]=$base_denom' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
@@ -189,26 +189,26 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	sed -i.bak 's/pruning-interval = "0"/pruning-interval = "10"/g' "$APP_TOML"
 
 	# Allocate genesis accounts (cosmos formatted addresses)
-	evmosd add-genesis-account "$(evmosd keys show "$VAL_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$(evmosd keys show "$USER1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$(evmosd keys show "$USER2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$(evmosd keys show "$USER3_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$(evmosd keys show "$USER4_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$(aizeld keys show "$VAL_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$(aizeld keys show "$USER1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$(aizeld keys show "$USER2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$(aizeld keys show "$USER3_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$(aizeld keys show "$USER4_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 
 	# Sign genesis transaction
-	evmosd gentx "$VAL_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"
+	aizeld gentx "$VAL_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"
 	## In case you want to create multiple validators at genesis
-	## 1. Back to `evmosd keys add` step, init more keys
-	## 2. Back to `evmosd add-genesis-account` step, add balance for those
-	## 3. Clone this ~/.evmosd home directory into some others, let's say `~/.clonedEvmosd`
+	## 1. Back to `aizeld keys add` step, init more keys
+	## 2. Back to `aizeld add-genesis-account` step, add balance for those
+	## 3. Clone this ~/.aizeld home directory into some others, let's say `~/.clonedAizeld`
 	## 4. Run `gentx` in each of those folders
-	## 5. Copy the `gentx-*` folders under `~/.clonedEvmosd/config/gentx/` folders into the original `~/.evmosd/config/gentx`
+	## 5. Copy the `gentx-*` folders under `~/.clonedAizeld/config/gentx/` folders into the original `~/.aizeld/config/gentx`
 
 	# Collect genesis tx
-	evmosd collect-gentxs --home "$HOMEDIR"
+	aizeld collect-gentxs --home "$HOMEDIR"
 
 	# Run this to ensure everything worked and that the genesis file is setup correctly
-	evmosd validate-genesis --home "$HOMEDIR"
+	aizeld validate-genesis --home "$HOMEDIR"
 
 	if [[ $1 == "pending" ]]; then
 		echo "pending mode is on, please wait for the first block committed."
@@ -216,7 +216,7 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 fi
 
 # Start the node
-evmosd start \
+aizeld start \
 	--metrics "$TRACE" \
 	--log_level $LOGLEVEL \
 	--minimum-gas-prices=0.0001$BASE_DENOM \

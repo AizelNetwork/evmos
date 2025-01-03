@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CHAINID="${CHAIN_ID:-evmos_9002-20151225}"
-BASE_DENOM="aevmos"
+CHAINID="${CHAIN_ID:-aizel_9002-20151225}"
+BASE_DENOM="aaizel"
 MONIKER="node2"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
 # otherwise your balance will be wiped quickly
@@ -9,7 +9,7 @@ MONIKER="node2"
 KEYRING="file"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
-# Set dedicated home directory for the evmosd instance
+# Set dedicated home directory for the aizeld instance
 HOMEDIR="$EVMOSHOME/node2"
 # to trace evm
 #TRACE="--trace"
@@ -30,4 +30,4 @@ VAL2_MNEMONIC="surround soft tragic ensure accuse tooth soul attack ahead cheese
 VAL2_KEY_PASS="20151225"
 
 # Sign genesis transaction
-evmosd gentx "$VAL2_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"
+aizeld gentx "$VAL2_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"

@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 package filters
 
 import (
@@ -8,8 +8,8 @@ import (
 	"fmt"
 	"math/big"
 
-	"github.com/evmos/evmos/v20/rpc/backend"
-	"github.com/evmos/evmos/v20/rpc/types"
+	"github.com/AizelNetwork/evmos/v20/rpc/backend"
+	"github.com/AizelNetwork/evmos/v20/rpc/types"
 
 	"cosmossdk.io/log"
 	tmrpctypes "github.com/cometbft/cometbft/rpc/core/types"

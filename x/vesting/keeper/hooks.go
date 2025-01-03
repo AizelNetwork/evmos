@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package keeper
 
@@ -8,10 +8,10 @@ import (
 	"errors"
 	"fmt"
 
+	vestingtypes "github.com/AizelNetwork/evmos/v20/x/vesting/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	govv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
-	vestingtypes "github.com/evmos/evmos/v20/x/vesting/types"
 )
 
 var _ govtypes.GovHooks = Hooks{}

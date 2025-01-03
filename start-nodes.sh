@@ -1,10 +1,10 @@
 #!/bin/bash
-CHAINID="${CHAIN_ID:-evmos_9002-20151225}"
-BASE_DENOM="aevmos"
+CHAINID="${CHAIN_ID:-aizel_9002-20151225}"
+BASE_DENOM="aaizel"
 TRACE=""
 LOGLEVEL="info"
 # Start the node1
-evmosd start \
+aizeld start \
 	--metrics "$TRACE" \
 	--log_level $LOGLEVEL \
 	--minimum-gas-prices=0.0001$BASE_DENOM \
@@ -16,7 +16,7 @@ evmosd start \
 # sleep 2
 
 # Start the node2
-evmosd start \
+aizeld start \
 	--metrics "$TRACE" \
 	--log_level $LOGLEVEL \
 	--minimum-gas-prices=0.0001$BASE_DENOM \
@@ -26,4 +26,4 @@ evmosd start \
 	 > $EVMOSHOME/node2/node2.log 2>&1 &
 
 # tmp
-# evmosd query ibc client params --chain-id evmos_9002-20151225
+# aizeld query ibc client params --chain-id aizel_9002-20151225

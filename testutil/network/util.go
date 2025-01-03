@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 
 package network
 
@@ -24,6 +24,7 @@ import (
 
 	"github.com/ethereum/go-ethereum/ethclient"
 
+	inflationtypes "github.com/AizelNetwork/evmos/v20/x/inflation/v1/types"
 	sdkserver "github.com/cosmos/cosmos-sdk/server"
 	"github.com/cosmos/cosmos-sdk/server/api"
 	servergrpc "github.com/cosmos/cosmos-sdk/server/grpc"
@@ -36,10 +37,9 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	govv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	inflationtypes "github.com/evmos/evmos/v20/x/inflation/v1/types"
 
-	"github.com/evmos/evmos/v20/server"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	"github.com/AizelNetwork/evmos/v20/server"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 func startInProcess(cfg Config, val *Validator) error {
@@ -158,7 +158,7 @@ func collectGenFiles(cfg Config, vals []*Validator, outputDir string) error {
 	for i := 0; i < cfg.NumValidators; i++ {
 		cmtCfg := vals[i].Ctx.Config
 
-		nodeDir := filepath.Join(outputDir, vals[i].Moniker, "evmosd")
+		nodeDir := filepath.Join(outputDir, vals[i].Moniker, "aizeld")
 		gentxsDir := filepath.Join(outputDir, "gentxs")
 
 		cmtCfg.Moniker = vals[i].Moniker

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CHAINID="${CHAIN_ID:-evmos_9002-1}"
-BASE_DENOM="aevmos"
+CHAINID="${CHAIN_ID:-aizel_9002-1}"
+BASE_DENOM="aaizel"
 MONIKER="localtestnet"
 KEYRING="test"          # remember to change to other types of keyring like 'file' in-case exposing to outside world, otherwise your balance will be wiped quickly. The keyring test does not require private key to steal tokens from you
 KEYALGO="eth_secp256k1" #gitleaks:allow
@@ -12,7 +12,7 @@ TRACE=""
 PRUNING="default"
 #PRUNING="custom"
 
-CHAINDIR="$HOME/.evmosd"
+CHAINDIR="$HOME/.aizeld"
 GENESIS="$CHAINDIR/config/genesis.json"
 TMP_GENESIS="$CHAINDIR/config/tmp_genesis.json"
 APP_TOML="$CHAINDIR/config/app.toml"
@@ -50,27 +50,27 @@ command -v jq >/dev/null 2>&1 || {
 # used to exit on first error (any non-zero exit code)
 set -e
 
-# Check evmosd version to decide how to set the client configuration
-# the older versions of evmosd accept less arguments
-sdk_version=$(evmosd version --long | grep 'cosmos_sdk_version' | awk '{print $2}')
+# Check aizeld version to decide how to set the client configuration
+# the older versions of aizeld accept less arguments
+sdk_version=$(aizeld version --long | grep 'cosmos_sdk_version' | awk '{print $2}')
 if [[ $sdk_version == *v0.4* ]]; then
-	evmosd config chain-id "$CHAINID"
-	evmosd config keyring-backend "$KEYRING"
+	aizeld config chain-id "$CHAINID"
+	aizeld config keyring-backend "$KEYRING"
 else
-	evmosd config set client chain-id "$CHAINID"
-	evmosd config set client keyring-backend "$KEYRING"
+	aizeld config set client chain-id "$CHAINID"
+	aizeld config set client keyring-backend "$KEYRING"
 fi
 
 # Import keys from mnemonics
-echo "$VAL_MNEMONIC" | evmosd keys add "$VAL_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
+echo "$VAL_MNEMONIC" | aizeld keys add "$VAL_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
 
-echo "$USER1_MNEMONIC" | evmosd keys add "$USER1_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
-echo "$USER2_MNEMONIC" | evmosd keys add "$USER2_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
-echo "$USER3_MNEMONIC" | evmosd keys add "$USER3_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
-echo "$USER4_MNEMONIC" | evmosd keys add "$USER4_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
+echo "$USER1_MNEMONIC" | aizeld keys add "$USER1_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
+echo "$USER2_MNEMONIC" | aizeld keys add "$USER2_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
+echo "$USER3_MNEMONIC" | aizeld keys add "$USER3_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
+echo "$USER4_MNEMONIC" | aizeld keys add "$USER4_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO"
 
-# Set moniker and chain-id for Evmos (Moniker can be anything, chain-id must be an integer)
-evmosd init "$MONIKER" --chain-id "$CHAINID"
+# Set moniker and chain-id for Aizel (Moniker can be anything, chain-id must be an integer)
+aizeld init "$MONIKER" --chain-id "$CHAINID"
 
 # Change parameter token denominations to $BASE_DENOM
 jq --arg base_denom "$BASE_DENOM" '.app_state["staking"]["params"]["bond_denom"]=$base_denom' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
@@ -107,11 +107,11 @@ jq '.app_state["feemarket"]["params"]["base_fee"]="'${BASEFEE}'"' "$GENESIS" >"$
 sed -i.bak 's/create_empty_blocks = true/create_empty_blocks = false/g' "$CONFIG_TOML"
 
 # Allocate genesis accounts (cosmos formatted addresses)
-evmosd add-genesis-account "$(evmosd keys show "$VAL_KEY" -a --keyring-backend "$KEYRING")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
-evmosd add-genesis-account "$(evmosd keys show "$USER1_KEY" -a --keyring-backend "$KEYRING")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
-evmosd add-genesis-account "$(evmosd keys show "$USER2_KEY" -a --keyring-backend "$KEYRING")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
-evmosd add-genesis-account "$(evmosd keys show "$USER3_KEY" -a --keyring-backend "$KEYRING")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
-evmosd add-genesis-account "$(evmosd keys show "$USER4_KEY" -a --keyring-backend "$KEYRING")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
+aizeld add-genesis-account "$(aizeld keys show "$VAL_KEY" -a --keyring-backend "$KEYRING")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
+aizeld add-genesis-account "$(aizeld keys show "$USER1_KEY" -a --keyring-backend "$KEYRING")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
+aizeld add-genesis-account "$(aizeld keys show "$USER2_KEY" -a --keyring-backend "$KEYRING")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
+aizeld add-genesis-account "$(aizeld keys show "$USER3_KEY" -a --keyring-backend "$KEYRING")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
+aizeld add-genesis-account "$(aizeld keys show "$USER4_KEY" -a --keyring-backend "$KEYRING")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING"
 
 # Update total supply with claim values
 # Bc is required to add this big numbers
@@ -134,13 +134,13 @@ sed -i.bak 's/127.0.0.1/0.0.0.0/g' "$APP_TOML"
 sed -i.bak 's/timeout_commit = "3s"/timeout_commit = "1s"/g' "$CONFIG_TOML"
 
 # Sign genesis transaction
-evmosd gentx "$VAL_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID"
+aizeld gentx "$VAL_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID"
 ## In case you want to create multiple validators at genesis
-## 1. Back to `evmosd keys add` step, init more keys
-## 2. Back to `evmosd add-genesis-account` step, add balance for those
-## 3. Clone this ~/.evmosd home directory into some others, let's say `~/.clonedEvmosd`
+## 1. Back to `aizeld keys add` step, init more keys
+## 2. Back to `aizeld add-genesis-account` step, add balance for those
+## 3. Clone this ~/.aizeld home directory into some others, let's say `~/.clonedAizeld`
 ## 4. Run `gentx` in each of those folders
-## 5. Copy the `gentx-*` folders under `~/.clonedEvmosd/config/gentx/` folders into the original `~/.evmosd/config/gentx`
+## 5. Copy the `gentx-*` folders under `~/.clonedAizeld/config/gentx/` folders into the original `~/.aizeld/config/gentx`
 
 # Enable the APIs for the tests to be successful
 sed -i.bak 's/enable = false/enable = true/g' "$APP_TOML"
@@ -152,13 +152,13 @@ grep -q -F '[memiavl]' "$APP_TOML" && sed -i.bak '/\[memiavl\]/,/^\[/ s/enable =
 grep -q -F '[versiondb]' "$APP_TOML" && sed -i.bak '/\[versiondb\]/,/^\[/ s/enable = true/enable = false/' "$APP_TOML"
 
 # Collect genesis tx
-evmosd collect-gentxs
+aizeld collect-gentxs
 
 # Run this to ensure everything worked and that the genesis file is setup correctly
-evmosd validate-genesis
+aizeld validate-genesis
 
 # Start the node
-evmosd start "$TRACE" \
+aizeld start "$TRACE" \
 	--log_level $LOGLEVEL \
 	--minimum-gas-prices=0.0001$BASE_DENOM \
 	--json-rpc.api eth,txpool,personal,net,debug,web3 \

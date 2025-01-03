@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
 package cosmos
 
 import (
@@ -7,6 +7,9 @@ import (
 
 	errorsmod "cosmossdk.io/errors"
 
+	"github.com/AizelNetwork/evmos/v20/crypto/ethsecp256k1"
+	"github.com/AizelNetwork/evmos/v20/ethereum/eip712"
+	"github.com/AizelNetwork/evmos/v20/types"
 	"github.com/cosmos/cosmos-sdk/codec"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
@@ -19,19 +22,16 @@ import (
 	ethcrypto "github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/crypto/secp256k1"
 	"github.com/ethereum/go-ethereum/signer/core/apitypes"
-	"github.com/evmos/evmos/v20/crypto/ethsecp256k1"
-	"github.com/evmos/evmos/v20/ethereum/eip712"
-	"github.com/evmos/evmos/v20/types"
 
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
-var evmosCodec codec.ProtoCodecMarshaler
+var aizelCodec codec.ProtoCodecMarshaler
 
 func init() {
 	registry := codectypes.NewInterfaceRegistry()
 	types.RegisterInterfaces(registry)
-	evmosCodec = codec.NewProtoCodec(registry)
+	aizelCodec = codec.NewProtoCodec(registry)
 }
 
 // Deprecated: LegacyEip712SigVerificationDecorator Verify all signatures for a tx and return an error if any are invalid. Note,
@@ -225,7 +225,7 @@ func VerifySignature(
 			FeePayer: feePayer,
 		}
 
-		typedData, err := eip712.LegacyWrapTxToTypedData(evmosCodec, extOpt.TypedDataChainID, msgs[0], txBytes, feeDelegation)
+		typedData, err := eip712.LegacyWrapTxToTypedData(aizelCodec, extOpt.TypedDataChainID, msgs[0], txBytes, feeDelegation)
 		if err != nil {
 			return errorsmod.Wrap(err, "failed to create EIP-712 typed data from tx")
 		}

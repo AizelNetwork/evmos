@@ -5,7 +5,7 @@ from eth_abi import abi
 from hexbytes import HexBytes
 from web3 import Web3
 
-from .network import setup_custom_evmos, setup_evmos
+from .network import setup_custom_aizel, setup_aizel
 from .utils import (
     ADDRS,
     CONTRACTS,
@@ -17,15 +17,15 @@ from .utils import (
 
 
 @pytest.fixture(scope="module")
-def custom_evmos(tmp_path_factory):
+def custom_aizel(tmp_path_factory):
     path = tmp_path_factory.mktemp("filters")
-    yield from setup_evmos(path, 26200)
+    yield from setup_aizel(path, 26200)
 
 
 @pytest.fixture(scope="module")
-def evmos_indexer(tmp_path_factory):
+def aizel_indexer(tmp_path_factory):
     path = tmp_path_factory.mktemp("indexer")
-    yield from setup_custom_evmos(
+    yield from setup_custom_aizel(
         path, 26660, Path(__file__).parent / "configs/enable-indexer.jsonnet"
     )
 
@@ -33,33 +33,33 @@ def evmos_indexer(tmp_path_factory):
 @pytest.fixture(
     scope="module",
     params=[
-        "evmos",
+        "aizel",
         "geth",
-        "evmos-ws",
-        "evmos-6dec",
+        "aizel-ws",
+        "aizel-6dec",
         "enable-indexer",
-        "evmos-rocksdb",
+        "aizel-rocksdb",
     ],
 )
-def cluster(request, custom_evmos, evmos_indexer, evmos_6dec, evmos_rocksdb, geth):
+def cluster(request, custom_aizel, aizel_indexer, aizel_6dec, aizel_rocksdb, geth):
     """
-    run on both evmos and geth
+    run on both aizel and geth
     """
     provider = request.param
-    if provider == "evmos":
-        yield custom_evmos
+    if provider == "aizel":
+        yield custom_aizel
     elif provider == "geth":
         yield geth
-    elif provider == "evmos-ws":
-        evmos_ws = custom_evmos.copy()
-        evmos_ws.use_websocket()
-        yield evmos_ws
+    elif provider == "aizel-ws":
+        aizel_ws = custom_aizel.copy()
+        aizel_ws.use_websocket()
+        yield aizel_ws
     elif provider == "enable-indexer":
-        yield evmos_indexer
-    elif provider == "evmos-6dec":
-        yield evmos_6dec
-    elif provider == "evmos-rocksdb":
-        yield evmos_rocksdb
+        yield aizel_indexer
+    elif provider == "aizel-6dec":
+        yield aizel_6dec
+    elif provider == "aizel-rocksdb":
+        yield aizel_rocksdb
     else:
         raise NotImplementedError
 

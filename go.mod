@@ -1,4 +1,4 @@
-module github.com/evmos/evmos/v20
+module github.com/AizelNetwork/evmos/v20
 
 go 1.22.8
 
@@ -140,6 +140,7 @@ require (
 	github.com/dvsekhvalnov/jose2go v1.6.0 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
 	github.com/emicklei/dot v1.6.2 // indirect
+	github.com/evmos/evmos/v20 v20.0.0-00010101000000-000000000000
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect
@@ -235,7 +236,6 @@ require (
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/status-im/keycard-go v0.2.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d // indirect
@@ -286,9 +286,10 @@ replace (
 	cosmossdk.io/store => github.com/evmos/cosmos-sdk/store v0.0.0-20240718141609-414cbd051fbe
 	// use cosmos fork of keyring
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.2.0
-	github.com/cosmos/cosmos-sdk => github.com/evmos/cosmos-sdk v0.50.9-evmos
-	// use Evmos geth fork
-	github.com/ethereum/go-ethereum => github.com/evmos/go-ethereum v1.10.26-evmos-rc4
+	github.com/cosmos/cosmos-sdk => github.com/AizelNetwork/cosmos-sdk v0.50.9-evmos
+	// use Aizel geth fork
+	github.com/ethereum/go-ethereum => github.com/jamesavechives/go-ethereum v1.10.26-evmos-rc4
+	github.com/evmos/evmos/v20 => github.com/AizelNetwork/evmos/v20 v20.0.0
 	// Security Advisory https://github.com/advisories/GHSA-h395-qcrw-5vmq
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
 	// replace broken goleveldb
