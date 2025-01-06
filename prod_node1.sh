@@ -126,11 +126,6 @@ $VAL2_MNEMONIC
 $VAL2_KEY_PASS
 $VAL2_KEY_PASS
 EOF
-	# echo "$VAL_MNEMONIC" | aizeld keys add "$VAL_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	# echo "$USER1_MNEMONIC" | aizeld keys add "$USER1_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	# echo "$USER2_MNEMONIC" | aizeld keys add "$USER2_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	# echo "$USER3_MNEMONIC" | aizeld keys add "$USER3_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	# echo "$USER4_MNEMONIC" | aizeld keys add "$USER4_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
 
 	# Set moniker and chain-id for Aizel (Moniker can be anything, chain-id must be an integer)
 	aizeld init $MONIKER -o --chain-id "$CHAINID" --home "$HOMEDIR"
@@ -195,6 +190,77 @@ EOF
 		grep -q -F '[versiondb]' "$APP_TOML" && sed -i '/\[versiondb\]/,/^\[/ s/enable = true/enable = false/' "$APP_TOML"
 	fi
 
+	# Additional modifications as requested:
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		# 1 & 2: Replace "localhost" & "127.0.0.1" with "0.0.0.0" in app, client, genesis
+		sed -i '' 's/localhost/0.0.0.0/g' "$APP_TOML"
+		sed -i '' 's/localhost/0.0.0.0/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+		sed -i '' 's/localhost/0.0.0.0/g' "$GENESIS"
+		sed -i '' 's/127.0.0.1/0.0.0.0/g' "$APP_TOML"
+		sed -i '' 's/127.0.0.1/0.0.0.0/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+		sed -i '' 's/127.0.0.1/0.0.0.0/g' "$GENESIS"
+
+		# 3: enabled-unsafe-cors = true in app
+		sed -i '' 's/^enabled-unsafe-cors = .*/enabled-unsafe-cors = true/' "$APP_TOML"
+
+		# 5: pruning="nothing" in app
+		sed -i '' 's/^pruning = .*/pruning = "nothing"/' "$APP_TOML"
+
+		# 6,7,8,9,10,11 (ports in app)
+		sed -i '' 's/:1317/:11317/g' "$APP_TOML"
+		sed -i '' 's/:9090/:19090/g' "$APP_TOML"
+		sed -i '' 's/:8545/:18545/g' "$APP_TOML"
+		sed -i '' 's/:8546/:18546/g' "$APP_TOML"
+		sed -i '' 's/:6065/:16065/g' "$APP_TOML"
+		sed -i '' 's/:26657/:56657/g' "$APP_TOML"
+
+		# 11,12,13,14,15 (ports in config + client)
+		sed -i '' 's/:26657/:56657/g' "$CONFIG"
+		sed -i '' 's/:26658/:56658/g' "$CONFIG"
+		sed -i '' 's/:6060/:16060/g' "$CONFIG"
+		sed -i '' 's/:26656/:56656/g' "$CONFIG"
+		sed -i '' 's/:26660/:56660/g' "$CONFIG"
+		# Also client
+		sed -i '' 's/:26657/:56657/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+
+		# 4: cors_allowed_origins = ["*"] in config
+		sed -i '' 's#^cors_allowed_origins = .*#cors_allowed_origins = ["*"]#' "$CONFIG"
+	else
+		# 1 & 2: Replace "localhost" & "127.0.0.1" with "0.0.0.0" in app, client, genesis
+		sed -i 's/localhost/0.0.0.0/g' "$APP_TOML"
+		sed -i 's/localhost/0.0.0.0/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+		sed -i 's/localhost/0.0.0.0/g' "$GENESIS"
+		sed -i 's/127.0.0.1/0.0.0.0/g' "$APP_TOML"
+		sed -i 's/127.0.0.1/0.0.0.0/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+		sed -i 's/127.0.0.1/0.0.0.0/g' "$GENESIS"
+
+		# 3: enabled-unsafe-cors = true in app
+		sed -i 's/^enabled-unsafe-cors = .*/enabled-unsafe-cors = true/' "$APP_TOML"
+
+		# 5: pruning="nothing" in app
+		sed -i 's/^pruning = .*/pruning = "nothing"/' "$APP_TOML"
+
+		# 6,7,8,9,10,11 (ports in app)
+		sed -i 's/:1317/:11317/g' "$APP_TOML"
+		sed -i 's/:9090/:19090/g' "$APP_TOML"
+		sed -i 's/:8545/:18545/g' "$APP_TOML"
+		sed -i 's/:8546/:18546/g' "$APP_TOML"
+		sed -i 's/:6065/:16065/g' "$APP_TOML"
+		sed -i 's/:26657/:56657/g' "$APP_TOML"
+
+		# 11,12,13,14,15 (ports in config + client)
+		sed -i 's/:26657/:56657/g' "$CONFIG"
+		sed -i 's/:26658/:56658/g' "$CONFIG"
+		sed -i 's/:6060/:16060/g' "$CONFIG"
+		sed -i 's/:26656/:56656/g' "$CONFIG"
+		sed -i 's/:26660/:56660/g' "$CONFIG"
+		# Also client
+		sed -i 's/:26657/:56657/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+
+		# 4: cors_allowed_origins = ["*"] in config
+		sed -i 's#^cors_allowed_origins = .*#cors_allowed_origins = ["*"]#' "$CONFIG"
+	fi
+
 	# Change proposal periods to pass within a reasonable time for local testing
 	sed -i.bak 's/"max_deposit_period": "172800s"/"max_deposit_period": "30s"/g' "$GENESIS"
 	sed -i.bak 's/"voting_period": "172800s"/"voting_period": "30s"/g' "$GENESIS"
@@ -208,28 +274,11 @@ EOF
 	# Allocate genesis accounts (cosmos formatted addresses)
 	aizeld add-genesis-account "$(aizeld keys show "$VAL1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	aizeld add-genesis-account "$(aizeld keys show "$VAL2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# aizeld add-genesis-account "$(aizeld keys show "$USER1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# aizeld add-genesis-account "$(aizeld keys show "$USER2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# aizeld add-genesis-account "$(aizeld keys show "$USER3_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# aizeld add-genesis-account "$(aizeld keys show "$USER4_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	aizeld add-genesis-account "$USER1_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	aizeld add-genesis-account "$USER2_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	aizeld add-genesis-account "$USER3_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	aizeld add-genesis-account "$USER4_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# Sign genesis transaction
 	aizeld gentx "$VAL1_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"
-	## In case you want to create multiple validators at genesis
-	## 1. Back to `aizeld keys add` step, init more keys
-	## 2. Back to `aizeld add-genesis-account` step, add balance for those
-	## 3. Clone this ~/.aizeld home directory into some others, let's say `~/.clonedAizeld`
-	## 4. Run `gentx` in each of those folders
-	## 5. Copy the `gentx-*` folders under `~/.clonedAizeld/config/gentx/` folders into the original `~/.aizeld/config/gentx`
-
-	# Collect genesis tx
-	# aizeld collect-gentxs --home "$HOMEDIR"
-
-	# Run this to ensure everything worked and that the genesis file is setup correctly
-	# aizeld validate-genesis --home "$HOMEDIR"
 
 	if [[ $1 == "pending" ]]; then
 		echo "pending mode is on, please wait for the first block committed."
