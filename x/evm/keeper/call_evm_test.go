@@ -3,15 +3,15 @@ package keeper_test
 import (
 	"fmt"
 
+	"github.com/AizelNetwork/evmos/v20/contracts"
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	"github.com/AizelNetwork/evmos/v20/x/erc20/types"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/evmos/evmos/v20/contracts"
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
-	"github.com/evmos/evmos/v20/x/erc20/types"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
 )
 
 func (suite *KeeperTestSuite) TestCallEVM() {
-	wevmosContract := common.HexToAddress(types.WEVMOSContractMainnet)
+	waizelContract := common.HexToAddress(types.WAIZELContractMainnet)
 	testCases := []struct {
 		name    string
 		method  string
@@ -33,7 +33,7 @@ func (suite *KeeperTestSuite) TestCallEVM() {
 
 		erc20 := contracts.ERC20MinterBurnerDecimalsContract.ABI
 		account := utiltx.GenerateAddress()
-		res, err := suite.network.App.EvmKeeper.CallEVM(suite.network.GetContext(), erc20, types.ModuleAddress, wevmosContract, false, tc.method, account)
+		res, err := suite.network.App.EvmKeeper.CallEVM(suite.network.GetContext(), erc20, types.ModuleAddress, waizelContract, false, tc.method, account)
 		if tc.expPass {
 			suite.Require().IsTypef(&evmtypes.MsgEthereumTxResponse{}, res, tc.name)
 			suite.Require().NoError(err)
@@ -45,7 +45,7 @@ func (suite *KeeperTestSuite) TestCallEVM() {
 
 func (suite *KeeperTestSuite) TestCallEVMWithData() {
 	erc20 := contracts.ERC20MinterBurnerDecimalsContract.ABI
-	wevmosContract := common.HexToAddress(types.WEVMOSContractMainnet)
+	waizelContract := common.HexToAddress(types.WAIZELContractMainnet)
 	testCases := []struct {
 		name     string
 		from     common.Address
@@ -134,7 +134,7 @@ func (suite *KeeperTestSuite) TestCallEVMWithData() {
 			if tc.deploy {
 				res, err = suite.network.App.EvmKeeper.CallEVMWithData(suite.network.GetContext(), tc.from, nil, data, true)
 			} else {
-				res, err = suite.network.App.EvmKeeper.CallEVMWithData(suite.network.GetContext(), tc.from, &wevmosContract, data, false)
+				res, err = suite.network.App.EvmKeeper.CallEVMWithData(suite.network.GetContext(), tc.from, &waizelContract, data, false)
 			}
 
 			if tc.expPass {

@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package statedb_test
 
@@ -8,15 +8,15 @@ import (
 	"testing"
 
 	"cosmossdk.io/math"
+	"github.com/AizelNetwork/evmos/v20/contracts"
+	stakingprecompile "github.com/AizelNetwork/evmos/v20/precompiles/staking"
+	testcontracts "github.com/AizelNetwork/evmos/v20/precompiles/testutil/contracts"
+	testfactory "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/grpc"
+	testkeyring "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	testnetwork "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/evmos/evmos/v20/contracts"
-	stakingprecompile "github.com/evmos/evmos/v20/precompiles/staking"
-	testcontracts "github.com/evmos/evmos/v20/precompiles/testutil/contracts"
-	testfactory "github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/grpc"
-	testkeyring "github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	testnetwork "github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
 
 	//nolint:revive // okay to use dot imports for Ginkgo
 	. "github.com/onsi/ginkgo/v2"

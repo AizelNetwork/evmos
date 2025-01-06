@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 package keeper_test
 
 import (
@@ -8,9 +8,9 @@ import (
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/utils"
+	"github.com/AizelNetwork/evmos/v20/x/evm/types"
 	sdktypes "github.com/cosmos/cosmos-sdk/types"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/utils"
-	"github.com/evmos/evmos/v20/x/evm/types"
 )
 
 func (suite *KeeperTestSuite) TestEthereumTx() {

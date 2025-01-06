@@ -1,9 +1,9 @@
 package keeper_test
 
 import (
-	testkeyring "github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	testkeyring "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 func (suite *KeeperTestSuite) TestEndBlock() {

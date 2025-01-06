@@ -4,7 +4,7 @@ FROM golang:1.23.4-alpine3.20 AS build-env
 ARG DB_BACKEND=goleveldb
 ARG ROCKSDB_VERSION="9.8.4"
 
-WORKDIR /go/src/github.com/evmos/evmos
+WORKDIR /go/src/github.com/AizelNetwork/evmos
 
 COPY go.mod go.sum ./
 
@@ -40,7 +40,7 @@ FROM alpine:3.21
 
 WORKDIR /root
 
-COPY --from=build-env /go/src/github.com/evmos/evmos/build/evmosd /usr/bin/evmosd
+COPY --from=build-env /go/src/github.com/AizelNetwork/evmos/build/aizeld /usr/bin/aizeld
 COPY --from=build-env /go/bin/toml-cli /usr/bin/toml-cli
 
 # required for rocksdb build
@@ -56,13 +56,13 @@ RUN apk add --no-cache \
     vim \
     lz4 \
     rclone \
-    && addgroup -g 1000 evmos \
-    && adduser -S -h /home/evmos -D evmos -u 1000 -G evmos
+    && addgroup -g 1000 aizel \
+    && adduser -S -h /home/aizel -D aizel -u 1000 -G aizel
 
 USER 1000
-WORKDIR /home/evmos
+WORKDIR /home/aizel
 
 EXPOSE 26656 26657 1317 9090 8545 8546
 HEALTHCHECK CMD curl --fail http://localhost:26657 || exit 1
 
-CMD ["evmosd"]
+CMD ["aizeld"]

@@ -3,12 +3,12 @@ pragma solidity >=0.8.17;
 
 import "../IWERC20.sol";
 
-contract WEVMOS9TestCaller {
-    address payable public immutable WEVMOS;
+contract WAIZEL9TestCaller {
+    address payable public immutable WAIZEL;
     uint256 public counter;
 
     constructor(address payable _wrappedTokenAddress) {
-        WEVMOS = _wrappedTokenAddress;
+        WAIZEL = _wrappedTokenAddress;
         counter = 0;
     }
 
@@ -18,7 +18,7 @@ contract WEVMOS9TestCaller {
         counter++;
 
         uint amountIn = msg.value;
-        IWERC20(WEVMOS).deposit{value: amountIn}();
+        IWERC20(WAIZEL).deposit{value: amountIn}();
 
         if (before) {
             require(false, "revert here");

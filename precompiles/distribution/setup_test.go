@@ -7,12 +7,12 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	distrtypes "github.com/cosmos/cosmos-sdk/x/distribution/types"
 
-	"github.com/evmos/evmos/v20/precompiles/distribution"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/grpc"
-	testkeyring "github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	evmostypes "github.com/evmos/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/precompiles/distribution"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/grpc"
+	testkeyring "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
 
 	"github.com/stretchr/testify/suite"
 )
@@ -82,7 +82,7 @@ func (s *PrecompileTestSuite) SetupTest() {
 	}
 
 	s.bondDenom = bondDenom
-	s.baseDenom = evmostypes.BaseDenom
+	s.baseDenom = aizeltypes.BaseDenom
 	s.factory = txFactory
 	s.grpcHandler = grpcHandler
 	s.keyring = keyring

@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package ics20
 
@@ -8,16 +8,16 @@ import (
 	"fmt"
 
 	storetypes "cosmossdk.io/store/types"
+	"github.com/AizelNetwork/evmos/v20/precompiles/authorization"
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
+	transferkeeper "github.com/AizelNetwork/evmos/v20/x/ibc/transfer/keeper"
+	stakingkeeper "github.com/AizelNetwork/evmos/v20/x/staking/keeper"
 	authzkeeper "github.com/cosmos/cosmos-sdk/x/authz/keeper"
 	channelkeeper "github.com/cosmos/ibc-go/v8/modules/core/04-channel/keeper"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/evmos/evmos/v20/precompiles/authorization"
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
-	transferkeeper "github.com/evmos/evmos/v20/x/ibc/transfer/keeper"
-	stakingkeeper "github.com/evmos/evmos/v20/x/staking/keeper"
 )
 
 // PrecompileAddress of the ICS-20 EVM extension in hex format.

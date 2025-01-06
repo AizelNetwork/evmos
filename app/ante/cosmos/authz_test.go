@@ -17,14 +17,14 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
+	cosmosante "github.com/AizelNetwork/evmos/v20/app/ante/cosmos"
+	"github.com/AizelNetwork/evmos/v20/testutil"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/common/factory"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	cosmosante "github.com/evmos/evmos/v20/app/ante/cosmos"
-	"github.com/evmos/evmos/v20/testutil"
-	"github.com/evmos/evmos/v20/testutil/integration/common/factory"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
 
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 func TestAuthzLimiterDecorator(t *testing.T) {

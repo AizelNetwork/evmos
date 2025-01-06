@@ -1,11 +1,11 @@
 package keeper_test
 
 import (
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/grpc"
+	testkeyring "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
 	"github.com/cosmos/cosmos-sdk/baseapp"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/grpc"
-	testkeyring "github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -25,7 +25,7 @@ func (suite *KeeperTestSuite) SetupTest() {
 	keyring := testkeyring.New(2)
 	nw := network.NewUnitTestNetwork(
 		network.WithPreFundedAccounts(keyring.GetAllAccAddrs()...),
-		network.WithCustomBaseAppOpts(baseapp.SetMinGasPrices("10aevmos")),
+		network.WithCustomBaseAppOpts(baseapp.SetMinGasPrices("10aaizel")),
 	)
 	grpcHandler := grpc.NewIntegrationHandler(nw)
 	txFactory := factory.New(nw, grpcHandler)

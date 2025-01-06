@@ -1,15 +1,15 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package testdata
 
 import (
-	contractutils "github.com/evmos/evmos/v20/contracts/utils"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	contractutils "github.com/AizelNetwork/evmos/v20/contracts/utils"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
-// LoadWEVMOS9Contract load the WEVMOS9 contract from the json representation of
+// LoadWAIZEL9Contract load the WAIZEL9 contract from the json representation of
 // the Solidity contract.
-func LoadWEVMOS9Contract() (evmtypes.CompiledContract, error) {
-	return contractutils.LoadContractFromJSONFile("WEVMOS9.json")
+func LoadWAIZEL9Contract() (evmtypes.CompiledContract, error) {
+	return contractutils.LoadContractFromJSONFile("WAIZEL9.json")
 }

@@ -6,11 +6,11 @@ from eth_utils import abi, big_endian_to_int
 from hexbytes import HexBytes
 from web3.datastructures import AttributeDict
 
-from .network import create_snapshots_dir, setup_custom_evmos
+from .network import create_snapshots_dir, setup_custom_aizel
 from .utils import (
     ADDRS,
     CONTRACTS,
-    EVMOS_6DEC_CHAIN_ID,
+    AIZEL_6DEC_CHAIN_ID,
     KEYS,
     deploy_contract,
     evm6dec_config,
@@ -22,9 +22,9 @@ from .utils import (
 @pytest.fixture(scope="module")
 def pruned(tmp_path_factory):
     """
-    setup evmos with 'pruning = everything'
+    setup aizel with 'pruning = everything'
     """
-    yield from setup_custom_evmos(
+    yield from setup_custom_aizel(
         tmp_path_factory.mktemp("pruned"),
         26900,
         Path(__file__).parent / "configs/pruned_node.jsonnet",
@@ -34,42 +34,42 @@ def pruned(tmp_path_factory):
 @pytest.fixture(scope="module")
 def pruned_6dec(tmp_path_factory):
     """
-    setup evmos with 6 decimal
+    setup aizel with 6 decimal
     EVM denom and 'pruning = everything'
     """
     path = tmp_path_factory.mktemp("pruned-6dec")
-    yield from setup_custom_evmos(
-        path, 46700, evm6dec_config(path, "pruned_node"), chain_id=EVMOS_6DEC_CHAIN_ID
+    yield from setup_custom_aizel(
+        path, 46700, evm6dec_config(path, "pruned_node"), chain_id=AIZEL_6DEC_CHAIN_ID
     )
 
 
 @pytest.fixture(scope="module")
 def pruned_rocksdb(tmp_path_factory):
     """
-    setup evmos with memIAVL + versionDB
+    setup aizel with memIAVL + versionDB
     and 'pruning = everything'
     """
-    yield from setup_custom_evmos(
+    yield from setup_custom_aizel(
         tmp_path_factory.mktemp("pruned-rocksdb"),
         26700,
         Path(__file__).parent / "configs/memiavl-pruned_node.jsonnet",
-        chain_binary="evmosd-rocksdb",
+        chain_binary="aizeld-rocksdb",
         post_init=create_snapshots_dir,
     )
 
 
-@pytest.fixture(scope="module", params=["evmos", "evmos-6dec", "evmos-rocksdb"])
+@pytest.fixture(scope="module", params=["aizel", "aizel-6dec", "aizel-rocksdb"])
 def pruned_cluster(request, pruned, pruned_6dec, pruned_rocksdb):
     """
-    run on evmos and
-    evmos built with rocksdb (memIAVL + versionDB)
+    run on aizel and
+    aizel built with rocksdb (memIAVL + versionDB)
     """
     provider = request.param
-    if provider == "evmos":
+    if provider == "aizel":
         yield pruned
-    elif provider == "evmos-6dec":
+    elif provider == "aizel-6dec":
         yield pruned_6dec
-    elif provider == "evmos-rocksdb":
+    elif provider == "aizel-rocksdb":
         yield pruned_rocksdb
     else:
         raise NotImplementedError

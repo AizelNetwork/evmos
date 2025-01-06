@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package network
 
@@ -32,6 +32,8 @@ import (
 	"google.golang.org/grpc"
 
 	pruningtypes "cosmossdk.io/store/pruning/types"
+	"github.com/AizelNetwork/evmos/v20/app"
+	"github.com/AizelNetwork/evmos/v20/crypto/hd"
 	"github.com/cosmos/cosmos-sdk/baseapp"
 	"github.com/cosmos/cosmos-sdk/client"
 	"github.com/cosmos/cosmos-sdk/client/tx"
@@ -50,11 +52,9 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	"github.com/cosmos/cosmos-sdk/x/genutil"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	"github.com/evmos/evmos/v20/app"
-	"github.com/evmos/evmos/v20/crypto/hd"
 
-	"github.com/evmos/evmos/v20/server/config"
-	evmostypes "github.com/evmos/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/server/config"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
 )
 
 // package-wide network lock to only allow one test network at a time
@@ -77,7 +77,7 @@ type Config struct {
 	TxConfig          client.TxConfig
 	AccountRetriever  client.AccountRetriever
 	AppConstructor    AppConstructor          // the ABCI application constructor
-	GenesisState      evmostypes.GenesisState // custom gensis state to provide
+	GenesisState      aizeltypes.GenesisState // custom gensis state to provide
 	TimeoutCommit     time.Duration           // the consensus commitment timeout
 	AccountTokens     math.Int                // the amount of unique validator tokens (e.g. 1000node0)
 	StakingTokens     math.Int                // the amount of tokens each validator has available to stake
@@ -100,13 +100,13 @@ type Config struct {
 // DefaultConfig returns a sane default configuration suitable for nearly all
 // testing requirements.
 func DefaultConfig() Config {
-	chainID := fmt.Sprintf("evmos_%d-1", cmtrand.Int63n(9999999999999)+1)
+	chainID := fmt.Sprintf("aizel_%d-1", cmtrand.Int63n(9999999999999)+1)
 	dir, err := os.MkdirTemp("", "simapp")
 	if err != nil {
 		panic(fmt.Sprintf("failed creating temporary directory: %v", err))
 	}
 	defer os.RemoveAll(dir)
-	app := app.NewEvmos(log.NewNopLogger(), dbm.NewMemDB(), nil, true, nil, dir, 0, simutils.NewAppOptionsWithFlagHome(dir), app.EvmosAppOptions, baseapp.SetChainID(chainID))
+	app := app.NewAizel(log.NewNopLogger(), dbm.NewMemDB(), nil, true, nil, dir, 0, simutils.NewAppOptionsWithFlagHome(dir), app.AizelAppOptions, baseapp.SetChainID(chainID))
 	return Config{
 		Codec:             app.AppCodec(),
 		TxConfig:          app.GetTxConfig(),
@@ -118,11 +118,11 @@ func DefaultConfig() Config {
 		TimeoutCommit:     3 * time.Second,
 		ChainID:           chainID,
 		NumValidators:     4,
-		BondDenom:         evmostypes.BaseDenom,
-		MinGasPrices:      fmt.Sprintf("0.000006%s", evmostypes.BaseDenom),
-		AccountTokens:     sdk.TokensFromConsensusPower(1000000000000000000, evmostypes.PowerReduction),
-		StakingTokens:     sdk.TokensFromConsensusPower(500000000000000000, evmostypes.PowerReduction),
-		BondedTokens:      sdk.TokensFromConsensusPower(100000000000000000, evmostypes.PowerReduction),
+		BondDenom:         aizeltypes.BaseDenom,
+		MinGasPrices:      fmt.Sprintf("0.000006%s", aizeltypes.BaseDenom),
+		AccountTokens:     sdk.TokensFromConsensusPower(1000000000000000000, aizeltypes.PowerReduction),
+		StakingTokens:     sdk.TokensFromConsensusPower(500000000000000000, aizeltypes.PowerReduction),
+		BondedTokens:      sdk.TokensFromConsensusPower(100000000000000000, aizeltypes.PowerReduction),
 		PruningStrategy:   pruningtypes.PruningOptionNothing,
 		CleanupDir:        true,
 		SigningAlgo:       string(hd.EthSecp256k1Type),
@@ -131,13 +131,13 @@ func DefaultConfig() Config {
 	}
 }
 
-// NewAppConstructor returns a new Evmos AppConstructor
+// NewAppConstructor returns a new Aizel AppConstructor
 func NewAppConstructor(chainID string) AppConstructor {
 	return func(val Validator) servertypes.Application {
-		return app.NewEvmos(
+		return app.NewAizel(
 			val.Ctx.Logger, dbm.NewMemDB(), nil, true, make(map[int64]bool), val.Ctx.Config.RootDir, 0,
 			simutils.NewAppOptionsWithFlagHome(val.Ctx.Config.RootDir),
-			app.EvmosAppOptions,
+			app.AizelAppOptions,
 			baseapp.SetPruning(pruningtypes.NewPruningOptionsFromString(val.AppConfig.Pruning)),
 			baseapp.SetMinGasPrices(val.AppConfig.MinGasPrices),
 			baseapp.SetChainID(chainID),
@@ -229,7 +229,7 @@ func New(l Logger, baseDir string, cfg Config) (*Network, error) {
 	l.Log("acquiring test network lock")
 	lock.Lock()
 
-	if !evmostypes.IsValidChainID(cfg.ChainID) {
+	if !aizeltypes.IsValidChainID(cfg.ChainID) {
 		return nil, fmt.Errorf("invalid chain-id: %s", cfg.ChainID)
 	}
 
@@ -337,8 +337,8 @@ func New(l Logger, baseDir string, cfg Config) (*Network, error) {
 		ctx.Logger = logger
 
 		nodeDirName := fmt.Sprintf("node%d", i)
-		nodeDir := filepath.Join(network.BaseDir, nodeDirName, "evmosd")
-		clientDir := filepath.Join(network.BaseDir, nodeDirName, "evmoscli")
+		nodeDir := filepath.Join(network.BaseDir, nodeDirName, "aizeld")
+		clientDir := filepath.Join(network.BaseDir, nodeDirName, "aizelcli")
 		gentxsDir := filepath.Join(network.BaseDir, "gentxs")
 
 		err := os.MkdirAll(filepath.Join(nodeDir, "config"), 0o750)
@@ -474,7 +474,7 @@ func New(l Logger, baseDir string, cfg Config) (*Network, error) {
 			return nil, err
 		}
 
-		customAppTemplate, _ := config.AppConfig(evmostypes.BaseDenom)
+		customAppTemplate, _ := config.AppConfig(aizeltypes.BaseDenom)
 		srvconfig.SetConfigTemplate(customAppTemplate)
 		srvconfig.WriteConfigFile(filepath.Join(nodeDir, "config/app.toml"), appCfg)
 

@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CHAINID="${CHAIN_ID:-evmos_9002-20151225}"
-BASE_DENOM="aevmos"
+CHAINID="${CHAIN_ID:-aizel_9002-20151225}"
+BASE_DENOM="aaizel"
 MONIKER="node1"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
 # otherwise your balance will be wiped quickly
@@ -9,8 +9,8 @@ MONIKER="node1"
 KEYRING="file"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
-# Set dedicated home directory for the evmosd instance
-HOMEDIR="$EVMOSHOME/node1"
+# Set dedicated home directory for the aizeld instance
+HOMEDIR="$AIZELHOME/node1"
 # to trace evm
 #TRACE="--trace"
 TRACE=""
@@ -25,7 +25,7 @@ GENESIS=$HOMEDIR/config/genesis.json
 TMP_GENESIS=$HOMEDIR/config/tmp_genesis.json
 
 # Collect genesis tx
-evmosd collect-gentxs --home "$HOMEDIR"
+aizeld collect-gentxs --home "$HOMEDIR"
 
 # Run this to ensure everything worked and that the genesis file is setup correctly
-evmosd validate-genesis --home "$HOMEDIR"
+aizeld validate-genesis --home "$HOMEDIR"

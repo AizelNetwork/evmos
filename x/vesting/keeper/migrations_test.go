@@ -4,15 +4,15 @@ import (
 	"testing"
 	"time"
 
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	testutiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/x/vesting/keeper"
+	v1vestingtypes "github.com/AizelNetwork/evmos/v20/x/vesting/migrations/types"
+	vestingtypes "github.com/AizelNetwork/evmos/v20/x/vesting/types"
 	"github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	sdkvesting "github.com/cosmos/cosmos-sdk/x/auth/vesting/types"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	testutiltx "github.com/evmos/evmos/v20/testutil/tx"
-	evmostypes "github.com/evmos/evmos/v20/types"
-	"github.com/evmos/evmos/v20/x/vesting/keeper"
-	v1vestingtypes "github.com/evmos/evmos/v20/x/vesting/migrations/types"
-	vestingtypes "github.com/evmos/evmos/v20/x/vesting/types"
 	"github.com/stretchr/testify/require"
 )
 
@@ -85,7 +85,7 @@ func TestMigrate2to3(t *testing.T) {
 			name:                    "delegated vesting > 0 and delegated free > 0",
 			initialDelegatedVesting: quarter,
 			initialDelegatedFree:    quarter,
-			expectedDelegatedFree:   types.NewCoins(types.NewInt64Coin(evmostypes.BaseDenom, 500)),
+			expectedDelegatedFree:   types.NewCoins(types.NewInt64Coin(aizeltypes.BaseDenom, 500)),
 		},
 		{
 			name:                    "delegated vesting == 0 and delegated free > 0",

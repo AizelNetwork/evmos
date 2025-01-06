@@ -14,12 +14,12 @@ import (
 	govtypes "github.com/cosmos/cosmos-sdk/x/gov/types"
 	govv1 "github.com/cosmos/cosmos-sdk/x/gov/types/v1"
 
-	"github.com/evmos/evmos/v20/precompiles/gov"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/grpc"
-	testkeyring "github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	evmostypes "github.com/evmos/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/precompiles/gov"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/grpc"
+	testkeyring "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
 
 	"github.com/stretchr/testify/suite"
 )
@@ -95,22 +95,22 @@ func (s *PrecompileTestSuite) SetupTest() {
 	bankGen := banktypes.DefaultGenesisState()
 	bankGen.Balances = []banktypes.Balance{{
 		Address: authtypes.NewModuleAddress(govtypes.ModuleName).String(),
-		Coins:   sdk.NewCoins(sdk.NewCoin(evmostypes.BaseDenom, math.NewInt(200))),
+		Coins:   sdk.NewCoins(sdk.NewCoin(aizeltypes.BaseDenom, math.NewInt(200))),
 	}}
 	govGen := govv1.DefaultGenesisState()
 	govGen.Deposits = []*govv1.Deposit{
 		{
 			ProposalId: 1,
 			Depositor:  keyring.GetAccAddr(0).String(),
-			Amount:     sdk.NewCoins(sdk.NewCoin(evmostypes.BaseDenom, math.NewInt(100))),
+			Amount:     sdk.NewCoins(sdk.NewCoin(aizeltypes.BaseDenom, math.NewInt(100))),
 		},
 		{
 			ProposalId: 2,
 			Depositor:  keyring.GetAccAddr(1).String(),
-			Amount:     sdk.NewCoins(sdk.NewCoin(evmostypes.BaseDenom, math.NewInt(100))),
+			Amount:     sdk.NewCoins(sdk.NewCoin(aizeltypes.BaseDenom, math.NewInt(100))),
 		},
 	}
-	govGen.Params.MinDeposit = sdk.NewCoins(sdk.NewCoin(evmostypes.BaseDenom, math.NewInt(100)))
+	govGen.Params.MinDeposit = sdk.NewCoins(sdk.NewCoin(aizeltypes.BaseDenom, math.NewInt(100)))
 	govGen.Proposals = append(govGen.Proposals, prop)
 	govGen.Proposals = append(govGen.Proposals, prop2)
 	customGen[govtypes.ModuleName] = govGen

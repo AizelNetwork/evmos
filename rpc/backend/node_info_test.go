@@ -5,16 +5,16 @@ import (
 	"math/big"
 
 	"cosmossdk.io/math"
+	"github.com/AizelNetwork/evmos/v20/crypto/ethsecp256k1"
+	"github.com/AizelNetwork/evmos/v20/rpc/backend/mocks"
+	"github.com/AizelNetwork/evmos/v20/server/config"
+	"github.com/AizelNetwork/evmos/v20/types"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 	tmrpcclient "github.com/cometbft/cometbft/rpc/client"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/hexutil"
-	"github.com/evmos/evmos/v20/crypto/ethsecp256k1"
-	"github.com/evmos/evmos/v20/rpc/backend/mocks"
-	"github.com/evmos/evmos/v20/server/config"
-	"github.com/evmos/evmos/v20/types"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
 	"github.com/spf13/viper"
 	"google.golang.org/grpc/metadata"
 )
@@ -283,7 +283,7 @@ func (suite *BackendTestSuite) TestSetEtherbase() {
 		//		queryClient := suite.backend.queryClient.QueryClient.(*mocks.EVMQueryClient)
 		//		RegisterStatus(client)
 		//		RegisterValidatorAccount(queryClient, suite.acc)
-		//		c := sdk.NewDecCoin(types.AttoEvmos, math.NewIntFromBigInt(big.NewInt(1)))
+		//		c := sdk.NewDecCoin(types.AttoAizel, math.NewIntFromBigInt(big.NewInt(1)))
 		//		suite.backend.cfg.SetMinGasPrices(sdk.DecCoins{c})
 		//		delAddr, _ := suite.backend.GetCoinbase()
 		//		account, _ := suite.backend.clientCtx.AccountRetriever.GetAccount(suite.backend.clientCtx, delAddr)

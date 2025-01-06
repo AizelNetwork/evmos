@@ -6,14 +6,14 @@ import (
 	"math/big"
 
 	"cosmossdk.io/math"
+	"github.com/AizelNetwork/evmos/v20/precompiles/authorization"
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
+	"github.com/AizelNetwork/evmos/v20/precompiles/erc20"
+	"github.com/AizelNetwork/evmos/v20/precompiles/testutil"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/evmos/evmos/v20/precompiles/authorization"
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
-	"github.com/evmos/evmos/v20/precompiles/erc20"
-	"github.com/evmos/evmos/v20/precompiles/testutil"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
 )
 
 //nolint:dupl // tests are not duplicate between the functions

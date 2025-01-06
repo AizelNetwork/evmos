@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package types
 
@@ -7,8 +7,8 @@ import (
 	"fmt"
 	"slices"
 
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
 )
 
 // PermissionPolicy is the interface that defines the permission policy for contract creation and calls.

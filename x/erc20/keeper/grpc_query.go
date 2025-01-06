@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package keeper
 
@@ -10,11 +10,11 @@ import (
 	"google.golang.org/grpc/status"
 
 	"cosmossdk.io/store/prefix"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/query"
-	evmostypes "github.com/evmos/evmos/v20/types"
 
-	"github.com/evmos/evmos/v20/x/erc20/types"
+	"github.com/AizelNetwork/evmos/v20/x/erc20/types"
 )
 
 var _ types.QueryServer = Keeper{}
@@ -57,7 +57,7 @@ func (k Keeper) TokenPair(c context.Context, req *types.QueryTokenPairRequest) (
 
 	// check if the token is a hex address, if not, check if it is a valid SDK
 	// denom
-	if err := evmostypes.ValidateAddress(req.Token); err != nil {
+	if err := aizeltypes.ValidateAddress(req.Token); err != nil {
 		if err := sdk.ValidateDenom(req.Token); err != nil {
 			return nil, status.Errorf(
 				codes.InvalidArgument,

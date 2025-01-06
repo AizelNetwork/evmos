@@ -1,21 +1,21 @@
 {
   "metadata": [
     {
-      "description": "The native staking and governance token of the Evmos chain",
+      "description": "The native staking and governance token of the Aizel chain",
       "denom_units": [
         {
-          "denom": "aevmos",
+          "denom": "aaizel",
           "exponent": 0
         },
         {
-          "denom": "evmos",
+          "denom": "aizel",
           "exponent": 18
         }
       ],
-      "base": "aevmos",
-      "display": "aevmos",
-      "name": "aevmos",
-      "symbol": "EVMOS"
+      "base": "aaizel",
+      "display": "aaizel",
+      "name": "aaizel",
+      "symbol": "AIZEL"
     }
   ]
 }
