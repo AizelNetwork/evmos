@@ -508,7 +508,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 ### Bug Fixes
 
 - (upgrade) [#1644](https://github.com/AizelNetwork/evmos/pull/1644) Adjust upgrade constants.
-- (ci) [#1642](https://github.com/AizelNetwork/evmos/pull/1642) Fix target folder in GH action to push to the [Buf Schema Registry](https://buf.build/aizel/aizel) upon release.
+- (ci) [#1642](https://github.com/AizelNetwork/evmos/pull/1642) Fix target folder in GH action to push to the [Buf Schema Registry](https://buf.build/AizelNetwork/evmos) upon release.
 
 ## [v13.0.1](https://github.com/AizelNetwork/evmos/releases/tag/v13.0.1) - 2023-07-04
 
@@ -564,7 +564,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 ### Bug Fixes
 
 - (ci) [#1546](https://github.com/AizelNetwork/evmos/pull/1546) Fix docker image push on release action.
-- (ci) [#1475](https://github.com/AizelNetwork/evmos/pull/1475) Fix version of GitHub action to push to the [Buf Schema Registry](https://buf.build/aizel/aizel) upon releases.
+- (ci) [#1475](https://github.com/AizelNetwork/evmos/pull/1475) Fix version of GitHub action to push to the [Buf Schema Registry](https://buf.build/AizelNetwork/evmos) upon releases.
 
 ## [v12.1.3](https://github.com/AizelNetwork/evmos/releases/tag/v12.1.3) - 2023-05-24
 
@@ -855,7 +855,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 
 ### API Breaking
 
-- (all) [#701](https://github.com/AizelNetwork/evmos/pull/701) Rename Go module to `aizel/aizel`.
+- (all) [#701](https://github.com/AizelNetwork/evmos/pull/701) Rename Go module to `AizelNetwork/evmos`.
 
 ### Improvements
 

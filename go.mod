@@ -70,6 +70,8 @@ require (
 	sigs.k8s.io/yaml v1.4.0
 )
 
+require github.com/status-im/keycard-go v0.2.0 // indirect
+
 require (
 	cloud.google.com/go v0.115.0 // indirect
 	cloud.google.com/go/auth v0.6.0 // indirect
@@ -140,7 +142,6 @@ require (
 	github.com/dvsekhvalnov/jose2go v1.6.0 // indirect
 	github.com/edsrzf/mmap-go v1.1.0 // indirect
 	github.com/emicklei/dot v1.6.2 // indirect
-	github.com/evmos/evmos/v20 v20.0.0-00010101000000-000000000000
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/felixge/httpsnoop v1.0.4 // indirect
 	github.com/fsnotify/fsnotify v1.7.0 // indirect

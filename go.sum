@@ -223,8 +223,6 @@ github.com/99designs/go-keychain v0.0.0-20191008050251-8e49817e8af4 h1:/vQbFIOMb
 github.com/99designs/go-keychain v0.0.0-20191008050251-8e49817e8af4/go.mod h1:hN7oaIRCjzsZ2dE+yG5k+rsdt3qcwykqK6HVGcKwsw4=
 github.com/AizelNetwork/cosmos-sdk v0.50.9-evmos h1:GPQh1xjNrtkzvocl/hx8rbtG/b5UkxfA+Qrz7owqd6Y=
 github.com/AizelNetwork/cosmos-sdk v0.50.9-evmos/go.mod h1:TMH6wpoYBcg7Cp5BEg8fneLr+8XloNQkf2MRNF9V6JE=
-github.com/AizelNetwork/evmos/v20 v20.0.0 h1:q8nhdS4wHRZ31GITs3pwP8qvX/f4eOsrhfagasUB2B0=
-github.com/AizelNetwork/evmos/v20 v20.0.0/go.mod h1:4/yC63TmDNH1tCu5OoLzd7rMwEiRdBDQ6iOStbAzypY=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161 h1:L/gRVlceqvL25UVaW/CKtUDjefjrs0SPonmDGUVOYP0=
 github.com/Azure/go-ansiterm v0.0.0-20230124172434-306776ec8161/go.mod h1:xomTg63KZ2rFqZQzSB4Vz2SUXa1BpHTVz9L5PTmPC4E=
 github.com/BurntSushi/toml v0.3.1/go.mod h1:xHWCNGjB5oqiDr8zfno3MHue2Ht5sIBksp03qcyfWMU=

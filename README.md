@@ -9,10 +9,10 @@ parent:
 
 <div align="center">
   <a href="https://github.com/AizelNetwork/evmos/releases/latest">
-    <img alt="Version" src="https://img.shields.io/github/tag/aizel/aizel.svg" />
+    <img alt="Version" src="https://img.shields.io/github/tag/AizelNetwork/evmos.svg" />
   </a>
   <a href="https://github.com/AizelNetwork/evmos/blob/main/LICENSE">
-    <img alt="License" src="https://img.shields.io/github/license/aizel/aizel.svg" />
+    <img alt="License" src="https://img.shields.io/github/license/AizelNetwork/evmos.svg" />
   </a>
   <a href="https://pkg.go.dev/github.com/AizelNetwork/evmos">
     <img alt="GoDoc" src="https://godoc.org/github.com/AizelNetwork/evmos?status.svg" />
@@ -28,8 +28,8 @@ parent:
   <a href="https://github.com/AizelNetwork/evmos/actions?query=branch%3Amain+workflow%3ALint">
     <img alt="Lint Status" src="https://github.com/AizelNetwork/evmos/actions/workflows/lint.yml/badge.svg?branch=main" />
   </a>
-  <a href="https://codecov.io/gh/aizel/aizel">
-    <img alt="Code Coverage" src="https://codecov.io/gh/aizel/aizel/branch/main/graph/badge.svg" />
+  <a href="https://codecov.io/gh/AizelNetwork/evmos">
+    <img alt="Code Coverage" src="https://codecov.io/gh/AizelNetwork/evmos/branch/main/graph/badge.svg" />
   </a>
   <a href="https://x.com/AizelOrg">
     <img alt="Follow Aizel on X" src="https://x.com/AizelOrg"/>

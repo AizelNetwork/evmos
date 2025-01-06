@@ -54,7 +54,7 @@ class TestParseChangelog:
                     2104: {
                         "description": "Refactor to use `sdkmath.Int` and `sdkmath.LegacyDec` instead of SDK types."
                     },
-                    701: {"description": "Rename Go module to `aizel/aizel`."},
+                    701: {"description": "Rename Go module to `AizelNetwork/evmos`."},
                 },
                 "Bug Fixes": {
                     1801: {"description": "Fixed the problem `gas_used` is 0."},

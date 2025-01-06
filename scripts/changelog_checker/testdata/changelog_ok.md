@@ -23,7 +23,7 @@ Some comments at head of file...
 - (testnet) [#1864](https://github.com/AizelNetwork/evmos/pull/1864) Add `--base-fee` and `--min-gas-price` flags.
 - (stride-outpost) [#1912](https://github.com/AizelNetwork/evmos/pull/1912) Add Stride outpost interface and ABI.
 - (app) [#2104](https://github.com/AizelNetwork/evmos/pull/2104) Refactor to use `sdkmath.Int` and `sdkmath.LegacyDec` instead of SDK types.
-- (all) [#701](https://github.com/AizelNetwork/evmos/pull/701) Rename Go module to `aizel/aizel`.
+- (all) [#701](https://github.com/AizelNetwork/evmos/pull/701) Rename Go module to `AizelNetwork/evmos`.
 
 ### Bug Fixes
 
