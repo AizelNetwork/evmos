@@ -25,4 +25,13 @@ func RegisterInterfaces(registry codectypes.InterfaceRegistry) {
 		&ExtensionOptionsWeb3Tx{},
 		&ExtensionOptionDynamicFeeTx{},
 	)
+	// registry.RegisterImplementations(
+	// 	(*tx.TxExtensionOptionI)(nil),
+	// 	&ExtensionOptionsWeb3Tx{},
+	// )
+	// registry.RegisterImplementations(
+	// 	(*tx.TxExtensionOptionI)(nil),
+	// 	&ExtensionOptionDynamicFeeTx{},
+	// )
+
 }

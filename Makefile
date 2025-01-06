@@ -143,7 +143,7 @@ BUILD_TARGETS := build install
 build: BUILD_ARGS=-o $(BUILDDIR)/
 build-linux:
 	GOOS=linux GOARCH=amd64 LEDGER_ENABLED=false $(MAKE) build
-
+$(BUILD_TARGETS): proto-gen
 $(BUILD_TARGETS): go.sum $(BUILDDIR)/
 	CGO_ENABLED="1" go $@ $(BUILD_FLAGS) $(BUILD_ARGS) ./...
 
@@ -454,11 +454,16 @@ protoLinter=$(DOCKER) run --rm -v "$(CURDIR):/workspace" --workdir /workspace --
 # NOTE: If you are experiencing problems running these commands, try deleting
 #       the docker images and execute the desired command again.
 #
+
 proto-all: proto-format proto-lint proto-gen proto-swagger-gen
 
+# proto-gen:
+# 	@echo "Generating Protobuf files"
+# 	$(protoImage) sh ./scripts/protocgen.sh
+
 proto-gen:
-	@echo "Generating Protobuf files"
-	$(protoImage) sh ./scripts/protocgen.sh
+	@echo "Generating Protobuf files (local) ..."
+	@sh ./scripts/protocgen.sh
 
 proto-swagger-gen:
 	@echo "Downloading Protobuf dependencies"

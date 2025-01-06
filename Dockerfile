@@ -62,7 +62,7 @@ RUN apk add --no-cache \
 USER 1000
 WORKDIR /home/aizel
 
-EXPOSE 26656 26657 1317 9090 8545 8546
-HEALTHCHECK CMD curl --fail http://localhost:26657 || exit 1
+EXPOSE 56656 56657 11317 19090 18545 18546
+HEALTHCHECK CMD curl --fail http://localhost:56657 || exit 1
 
 CMD ["aizeld"]
