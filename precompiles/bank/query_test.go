@@ -81,7 +81,7 @@ func (s *PrecompileTestSuite) TestBalances() {
 			},
 		},
 		{
-			"pass - EVMOS and XMPL balances present - mint extra XMPL",
+			"pass - AIZEL and XMPL balances present - mint extra XMPL",
 			func() []interface{} {
 				ctx = s.mintAndSendXMPLCoin(ctx, s.keyring.GetAccAddr(0), math.NewInt(1e18))
 				return []interface{}{
@@ -143,7 +143,7 @@ func (s *PrecompileTestSuite) TestTotalSupply() {
 		expSupply func(aizelAddr, xmplAddr common.Address) []bank.Balance
 	}{
 		{
-			"pass - EVMOS and XMPL total supply",
+			"pass - AIZEL and XMPL total supply",
 			func() {
 				ctx = s.mintAndSendXMPLCoin(ctx, s.keyring.GetAccAddr(0), math.NewInt(1e18))
 			},
@@ -242,7 +242,7 @@ func (s *PrecompileTestSuite) TestSupplyOf() {
 		},
 
 		{
-			"pass - EVMOS total supply",
+			"pass - AIZEL total supply",
 			func() []interface{} {
 				return []interface{}{
 					s.aizelAddr,

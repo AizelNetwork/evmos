@@ -527,7 +527,7 @@ func (s *PrecompileTestSuite) TestFundCommunityPool() {
 			"invalid hex address address",
 		},
 		{
-			"success - fund the community pool 1 EVMOS",
+			"success - fund the community pool 1 AIZEL",
 			func() []interface{} {
 				return []interface{}{
 					s.keyring.GetAddr(0),
@@ -557,7 +557,7 @@ func (s *PrecompileTestSuite) TestFundCommunityPool() {
 			var contract *vm.Contract
 			contract, ctx = testutil.NewPrecompileContract(s.T(), ctx, s.keyring.GetAddr(0), s.precompile, tc.gas)
 
-			// Sanity check to make sure the starting balance is always 100k EVMOS
+			// Sanity check to make sure the starting balance is always 100k AIZEL
 			balance := s.network.App.BankKeeper.GetBalance(ctx, s.keyring.GetAddr(0).Bytes(), s.baseDenom)
 			s.Require().Equal(balance.Amount, network.PrefundedAccountInitialBalance)
 

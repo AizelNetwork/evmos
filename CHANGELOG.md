@@ -196,7 +196,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (build) [#2319](https://github.com/AizelNetwork/evmos/pull/2319) Bump go.mod golang version to v1.21.
 - (ci) [#2321](https://github.com/AizelNetwork/evmos/pull/2321) Add build and markdown lint checker for `main` and `release` branches.
 - (cli) [#2245](https://github.com/AizelNetwork/evmos/pull/2245) Update convert an address between hex and bech32.
-- (werc20-precompile) [#2329](https://github.com/AizelNetwork/evmos/pull/2329) Make WEVMOS precompile `deposit` and `withdraw` functions no-ops.
+- (werc20-precompile) [#2329](https://github.com/AizelNetwork/evmos/pull/2329) Make WAIZEL precompile `deposit` and `withdraw` functions no-ops.
 - (tests) [#2348](https://github.com/AizelNetwork/evmos/pull/2348) Extend integration transaction factory utils.
 - (all) [#2388](https://github.com/AizelNetwork/evmos/pull/2388) Remove legacy handler files from repository.
 - (tests) [#2421](https://github.com/AizelNetwork/evmos/pull/2421) Remove configuration for deprecated modules from local node script.
@@ -306,7 +306,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (post) [#2128](https://github.com/AizelNetwork/evmos/pull/2128) Add `BurnDecorator` to `PostHandler` to burn cosmos transaction fees.
 - (evm) [#2172](https://github.com/AizelNetwork/evmos/pull/2172) Add channel selector from chain id.
 - (inflation) [#2137](https://github.com/AizelNetwork/evmos/pull/2137) Reduce inflation by 2/3.
-- (outposts) [#2185](https://github.com/AizelNetwork/evmos/pull/2185) Refactor `Stride` and `Osmosis` outposts to hardcode WEVMOS address.
+- (outposts) [#2185](https://github.com/AizelNetwork/evmos/pull/2185) Refactor `Stride` and `Osmosis` outposts to hardcode WAIZEL address.
 - (upgrade) [#2186](https://github.com/AizelNetwork/evmos/pull/2186) Add `feecollector` Burner role in upgrade handler.
 - (incentives) [#2221](https://github.com/AizelNetwork/evmos/pull/2221) Burn the usage incentives pool balance during v16 upgrade.
 
@@ -370,7 +370,7 @@ Ref: https://keepachangelog.com/en/1.0.0/
 - (erc20-precompile) [#2067](https://github.com/AizelNetwork/evmos/pull/2067) Further alignments between ERC-20 smart contracts and EVM extension.
 - (stride-outpost) [#2069](https://github.com/AizelNetwork/evmos/pull/2069) Refactor `osmosis` and `stride` testing.
 - (erc20-precompile) [#2073](https://github.com/AizelNetwork/evmos/pull/2073) Align metadata query errors with ERC-20 contracts.
-- (werc20-precompile) [#2074](https://github.com/AizelNetwork/evmos/pull/2074) Add `werc20` EVM Extension acceptance tests with `WEVMOS` contract.
+- (werc20-precompile) [#2074](https://github.com/AizelNetwork/evmos/pull/2074) Add `werc20` EVM Extension acceptance tests with `WAIZEL` contract.
 - (erc20-precompile) [#2075](https://github.com/AizelNetwork/evmos/pull/2075) Align allowance adjustment errors with ERC-20 contracts.
 - (erc20-precompile) [#2080](https://github.com/AizelNetwork/evmos/pull/2080) Add ERC-20 integration test setup.
 - (erc20-precompile) [#2081](https://github.com/AizelNetwork/evmos/pull/2081) Add ERC-20 query integration tests.

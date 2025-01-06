@@ -63,7 +63,7 @@ func TestEqualMetadata(t *testing.T) {
 				Base:        "aaizel",
 				Display:     "aizel",
 				Name:        "Aizel",
-				Symbol:      "EVMOS",
+				Symbol:      "AIZEL",
 				Description: "EVM, staking and governance denom of Aizel",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
@@ -81,7 +81,7 @@ func TestEqualMetadata(t *testing.T) {
 				Base:        "aaizel",
 				Display:     "aizel",
 				Name:        "Aizel",
-				Symbol:      "EVMOS",
+				Symbol:      "AIZEL",
 				Description: "EVM, staking and governance denom of Aizel",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
@@ -113,7 +113,7 @@ func TestEqualMetadata(t *testing.T) {
 				Base:        "aaizel",
 				Display:     "aizel",
 				Name:        "Aizel",
-				Symbol:      "EVMOS",
+				Symbol:      "AIZEL",
 				Description: "EVM, staking and governance denom of Aizel",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
@@ -131,7 +131,7 @@ func TestEqualMetadata(t *testing.T) {
 				Base:        "aaizel",
 				Display:     "aizel",
 				Name:        "Aizel",
-				Symbol:      "EVMOS",
+				Symbol:      "AIZEL",
 				Description: "EVM, staking and governance denom of Aizel",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
@@ -149,7 +149,7 @@ func TestEqualMetadata(t *testing.T) {
 				Base:        "aaizel",
 				Display:     "aizel",
 				Name:        "Aizel",
-				Symbol:      "EVMOS",
+				Symbol:      "AIZEL",
 				Description: "EVM, staking and governance denom of Aizel",
 				DenomUnits: []*banktypes.DenomUnit{
 					{
@@ -172,7 +172,7 @@ func TestEqualMetadata(t *testing.T) {
 				Base:        "aaizel",
 				Display:     "aizel",
 				Name:        "Aizel",
-				Symbol:      "EVMOS",
+				Symbol:      "AIZEL",
 				Description: "EVM, staking and governance denom of Aizel",
 				DenomUnits: []*banktypes.DenomUnit{
 					{

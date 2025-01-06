@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Aizel)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 package tx
 
 import (
@@ -21,7 +21,7 @@ import (
 
 var (
 	feeAmt     = math.Pow10(16)
-	DefaultFee = sdk.NewCoin(aizeltypes.BaseDenom, sdkmath.NewIntFromUint64(uint64(feeAmt))) // 0.01 EVMOS
+	DefaultFee = sdk.NewCoin(aizeltypes.BaseDenom, sdkmath.NewIntFromUint64(uint64(feeAmt))) // 0.01 AIZEL
 )
 
 // CosmosTxArgs contains the params to create a cosmos tx

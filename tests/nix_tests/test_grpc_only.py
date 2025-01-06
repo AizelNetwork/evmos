@@ -11,7 +11,7 @@ from pystarport import ports
 from .network import Aizel, create_snapshots_dir, setup_custom_aizel
 from .utils import (
     CONTRACTS,
-    EVMOS_6DEC_CHAIN_ID,
+    AIZEL_6DEC_CHAIN_ID,
     decode_bech32,
     deploy_contract,
     evm6dec_config,
@@ -36,7 +36,7 @@ def custom_aizel(tmp_path_factory):
 def custom_aizel_6dec(tmp_path_factory):
     path = tmp_path_factory.mktemp("grpc-only-6dec")
     yield from setup_custom_aizel(
-        path, 46810, evm6dec_config(path, "rollback-test"), chain_id=EVMOS_6DEC_CHAIN_ID
+        path, 46810, evm6dec_config(path, "rollback-test"), chain_id=AIZEL_6DEC_CHAIN_ID
     )
 
 

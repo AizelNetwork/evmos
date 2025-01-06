@@ -10,7 +10,7 @@ KEYRING="file"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
 # Set dedicated home directory for the aizeld instance
-HOMEDIR="$EVMOSHOME/node2"
+HOMEDIR="$AIZELHOME/node2"
 # to trace evm
 #TRACE="--trace"
 TRACE=""

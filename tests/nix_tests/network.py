@@ -11,7 +11,7 @@ from web3.middleware import geth_poa_middleware
 
 from .cosmoscli import CosmosCLI
 from .utils import (
-    EVMOS_6DEC_CHAIN_ID,
+    AIZEL_6DEC_CHAIN_ID,
     evm6dec_config,
     http_wait_for_block,
     memiavl_config,
@@ -143,7 +143,7 @@ def setup_aizel_6dec(path, base_port, long_timeout_commit=False):
         path, "default" if long_timeout_commit is False else "long_timeout_commit"
     )
     cfg = Path(__file__).parent / config
-    yield from setup_custom_aizel(path, base_port, cfg, chain_id=EVMOS_6DEC_CHAIN_ID)
+    yield from setup_custom_aizel(path, base_port, cfg, chain_id=AIZEL_6DEC_CHAIN_ID)
 
 
 # for memiavl need to create the data/snapshots dir
@@ -248,7 +248,7 @@ def setup_custom_aizel(
 def build_patched_aizeld(patch_nix_file):
     """
     build the binary modified for a custom scenario
-    e.g. allow to register WEVMOS token
+    e.g. allow to register WAIZEL token
     (removes a validation check in erc20 gov proposals)
     """
     cmd = [

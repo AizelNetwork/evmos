@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Aizel)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package werc20
 
@@ -83,7 +83,7 @@ func (p Precompile) Address() common.Address {
 
 // RequiredGas calculates the contract gas use.
 func (p Precompile) RequiredGas(input []byte) uint64 {
-	// TODO: these values were obtained from Remix using the WEVMOS9.sol.
+	// TODO: these values were obtained from Remix using the WAIZEL9.sol.
 	// We should execute the transactions from Aizel testnet
 	// to ensure parity in the values.
 

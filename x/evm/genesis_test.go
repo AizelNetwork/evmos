@@ -243,5 +243,5 @@ func TestExportGenesis(t *testing.T) {
 	}
 	require.Contains(t, genAddresses, contractAddr.Hex(), "expected contract 1 address in exported genesis")
 	require.Contains(t, genAddresses, contractAddr2.Hex(), "expected contract 2 address in exported genesis")
-	require.Contains(t, genAddresses, erc20.WEVMOSContractMainnet, "expected mainnet aaizel contract address in exported genesis")
+	require.Contains(t, genAddresses, erc20.WAIZELContractMainnet, "expected mainnet aaizel contract address in exported genesis")
 }

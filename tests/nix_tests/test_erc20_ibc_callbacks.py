@@ -79,7 +79,7 @@ def test_ibc_callbacks(
     w3_wait_for_new_blocks(w3, 2)
 
     # Check token pairs before IBC transfer,
-    # should only exist the WEVMOS pair
+    # should only exist the WAIZEL pair
     pairs = aizel_cli.get_token_pairs()
     pairs_count_before = len(pairs)
 

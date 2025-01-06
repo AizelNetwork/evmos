@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Aizel)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 package keeper_test
 
 import (
@@ -32,8 +32,8 @@ type IntegrationTestSuite struct {
 	keyring     testkeyring.Keyring
 }
 
-// This test suite is meant to test the EVM module in the context of the EVMOS.
-// It uses the integration test framework to spin up a local EVMOS network and
+// This test suite is meant to test the EVM module in the context of the AIZEL.
+// It uses the integration test framework to spin up a local AIZEL network and
 // perform transactions on it.
 // The test suite focus on testing how the MsgEthereumTx message is handled under the
 // different params configuration of the module while testing the different Tx types

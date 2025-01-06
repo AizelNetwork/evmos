@@ -12,7 +12,7 @@
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the Aizel packages. If not, see https://github.com/aizel/aizel/blob/main/LICENSE
+// along with the Aizel packages. If not, see https://github.com/AizelNetwork/evmos/blob/main/LICENSE
 package v4_test
 
 import (

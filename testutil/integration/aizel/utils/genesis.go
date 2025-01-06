@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Aizel)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package utils
 
@@ -16,7 +16,7 @@ import (
 )
 
 // CreateGenesisWithTokenPairs creates a genesis that includes
-// the WEVMOS and the provided denoms.
+// the WAIZEL and the provided denoms.
 // If no denoms provided, creates only one dynamic precompile with the 'xmpl' denom.
 func CreateGenesisWithTokenPairs(keyring testkeyring.Keyring, denoms ...string) network.CustomGenesisState {
 	// Add all keys from the keyring to the genesis accounts as well.
@@ -50,7 +50,7 @@ func CreateGenesisWithTokenPairs(keyring testkeyring.Keyring, denoms ...string) 
 	}
 
 	// get the common.Address to store the hex string addresses using EIP-55
-	waizelAddr := common.HexToAddress(erc20types.WEVMOSContractTestnet).Hex()
+	waizelAddr := common.HexToAddress(erc20types.WAIZELContractTestnet).Hex()
 
 	// Add token pairs to genesis
 	tokenPairs := make([]erc20types.TokenPair, 0, len(denoms)+1)
@@ -79,7 +79,7 @@ func CreateGenesisWithTokenPairs(keyring testkeyring.Keyring, denoms ...string) 
 	erc20GenesisState.TokenPairs = tokenPairs
 
 	// STR v2: update the NativePrecompiles and DynamicPrecompiles
-	// with the WEVMOS (default is mainnet) and 'xmpl' tokens in the erc20 params
+	// with the WAIZEL (default is mainnet) and 'xmpl' tokens in the erc20 params
 	erc20GenesisState.Params.NativePrecompiles = []string{waizelAddr}
 	erc20GenesisState.Params.DynamicPrecompiles = dynPrecAddr
 

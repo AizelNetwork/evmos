@@ -4,7 +4,7 @@ import pytest
 
 from .ibc_utils import (
     BASECRO_IBC_DENOM,
-    EVMOS_IBC_DENOM,
+    AIZEL_IBC_DENOM,
     OSMO_IBC_DENOM,
     assert_ready,
     get_balance,
@@ -522,7 +522,7 @@ def test_revoke(ibc, name, args, exp_err, err_contains):
             0,
         ),
         (
-            "increase allowance by 1 EVMOS",
+            "increase allowance by 1 AIZEL",
             [
                 ADDRS["signer2"],
                 [["transfer", "channel-0", [["aaizel", int(1e18)]], [], []]],
@@ -580,7 +580,7 @@ def test_increase_allowance(
 
     # setup: create authorization to revoke
     # validator address creates authorization for signer2 address
-    # for 1 EVMOS
+    # for 1 AIZEL
     approve_tx = pc.functions.approve(*auth_args).build_transaction(
         {
             "from": ADDRS["validator"],
@@ -706,7 +706,7 @@ def test_increase_allowance(
             0,
         ),
         (
-            "decrease allowance by 0.5 EVMOS",
+            "decrease allowance by 0.5 AIZEL",
             [
                 ADDRS["signer2"],
                 [["transfer", "channel-0", [["aaizel", int(1e18)]], [], []]],
@@ -764,7 +764,7 @@ def test_decrease_allowance(
 
     # setup: create authorization to revoke
     # community address creates authorization for signer2 address
-    # for 1 EVMOS
+    # for 1 AIZEL
     approve_tx = pc.functions.approve(*auth_args).build_transaction(
         {
             "from": ADDRS["community"],
@@ -968,7 +968,7 @@ def test_ibc_transfer_with_authorization(
     # get the balances previous to the transfer to validate them after the tx
     src_balances_prev = get_balances(ibc.chains["aizel"], src_address)
     dst_balance_prev = get_balance(
-        ibc.chains["chainmain"], dst_address, EVMOS_IBC_DENOM
+        ibc.chains["chainmain"], dst_address, AIZEL_IBC_DENOM
     )
     try:
         # Calling the actual transfer function on the custom contract
@@ -1060,7 +1060,7 @@ def test_ibc_transfer_with_authorization(
     def check_balance_change():
         nonlocal dst_balance_final
         dst_balance_final = get_balance(
-            ibc.chains["chainmain"], dst_address, EVMOS_IBC_DENOM
+            ibc.chains["chainmain"], dst_address, AIZEL_IBC_DENOM
         )
         return dst_balance_final > dst_balance_prev
 
@@ -1119,7 +1119,7 @@ def test_ibc_transfer_from_eoa_through_contract(ibc):
 
     src_starting_balances = get_balances(ibc.chains["aizel"], src_adr)
     dest_starting_balance = get_balance(
-        ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+        ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
     )
     # Calling the actual transfer function on the custom contract
     send_tx = eth_contract.functions.transferFromEOA(
@@ -1137,7 +1137,7 @@ def test_ibc_transfer_from_eoa_through_contract(ibc):
     def check_dest_balance():
         nonlocal final_dest_balance
         final_dest_balance = get_balance(
-            ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+            ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
         )
         return final_dest_balance > dest_starting_balance
 
@@ -1260,7 +1260,7 @@ def test_ibc_transfer_from_eoa_with_internal_transfer(
     src_starting_balances = get_balances(ibc.chains["aizel"], src_bech32)
 
     dest_starting_balance = get_balance(
-        ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+        ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
     )
     other_addr_initial_balances = get_balances(ibc.chains["aizel"], other_addr_bech32)
     escrow_initial_balances = get_balances(ibc.chains["aizel"], escrow_bech32)
@@ -1289,7 +1289,7 @@ def test_ibc_transfer_from_eoa_with_internal_transfer(
     def check_dest_balance():
         nonlocal final_dest_balance
         final_dest_balance = get_balance(
-            ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+            ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
         )
         return final_dest_balance > dest_starting_balance
 
@@ -1493,7 +1493,7 @@ def test_ibc_multi_transfer_from_eoa_with_internal_transfer(
     # get starting balances to check after the tx
     src_starting_balances = get_balances(aizel, src_bech32)
     dest_starting_balance = get_balance(
-        ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+        ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
     )
     escrow_initial_balances = get_balances(aizel, escrow_bech32)
 
@@ -1546,7 +1546,7 @@ def test_ibc_multi_transfer_from_eoa_with_internal_transfer(
         wait_for_new_blocks(ibc.chains["chainmain"].cosmos_cli(), 5)
 
         dest_final_balance = get_balance(
-            ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+            ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
         )
         assert dest_final_balance == dest_starting_balance
 
@@ -1564,7 +1564,7 @@ def test_ibc_multi_transfer_from_eoa_with_internal_transfer(
     def check_dest_balance():
         nonlocal final_dest_balance
         final_dest_balance = get_balance(
-            ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+            ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
         )
         return final_dest_balance > dest_starting_balance
 
@@ -1682,7 +1682,7 @@ def test_multi_ibc_transfers_with_revert(ibc):
     # get starting balances to check after the tx
     src_starting_balances = get_balances(ibc.chains["aizel"], src_bech32)
     dest_starting_balance = get_balance(
-        ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+        ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
     )
     escrow_initial_balances = get_balances(ibc.chains["aizel"], escrow_bech32)
 
@@ -1712,7 +1712,7 @@ def test_multi_ibc_transfers_with_revert(ibc):
     def check_dest_balance():
         nonlocal final_dest_balance
         final_dest_balance = get_balance(
-            ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+            ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
         )
         return final_dest_balance > dest_starting_balance
 
@@ -1831,7 +1831,7 @@ def test_multi_ibc_transfers_with_nested_revert(ibc):
     # get starting balances to check after the tx
     src_starting_balances = get_balances(ibc.chains["aizel"], src_bech32)
     dest_starting_balance = get_balance(
-        ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+        ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
     )
     escrow_initial_balances = get_balances(ibc.chains["aizel"], escrow_bech32)
 
@@ -1868,7 +1868,7 @@ def test_multi_ibc_transfers_with_nested_revert(ibc):
         nonlocal final_dest_balance
         tries += 1
         final_dest_balance = get_balance(
-            ibc.chains["chainmain"], dst_addr, EVMOS_IBC_DENOM
+            ibc.chains["chainmain"], dst_addr, AIZEL_IBC_DENOM
         )
         if tries == 7:
             return True

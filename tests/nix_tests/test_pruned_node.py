@@ -10,7 +10,7 @@ from .network import create_snapshots_dir, setup_custom_aizel
 from .utils import (
     ADDRS,
     CONTRACTS,
-    EVMOS_6DEC_CHAIN_ID,
+    AIZEL_6DEC_CHAIN_ID,
     KEYS,
     deploy_contract,
     evm6dec_config,
@@ -39,7 +39,7 @@ def pruned_6dec(tmp_path_factory):
     """
     path = tmp_path_factory.mktemp("pruned-6dec")
     yield from setup_custom_aizel(
-        path, 46700, evm6dec_config(path, "pruned_node"), chain_id=EVMOS_6DEC_CHAIN_ID
+        path, 46700, evm6dec_config(path, "pruned_node"), chain_id=AIZEL_6DEC_CHAIN_ID
     )
 
 

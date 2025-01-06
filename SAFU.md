@@ -67,10 +67,10 @@ transferred to the Aizel community pool (aka. community treasury).
 ### Reward Policy
 
 Whitehats that secure vulnerable funds are able to claim 5% of the total funds
-secured (Bounty Percent) up to a total of 250,000 EVMOS (Bounty Cap).
+secured (Bounty Percent) up to a total of 250,000 AIZEL (Bounty Cap).
 
 There is no minimum to the amount that can be secured. The reward white hack
-hacker can secure from 1 atto EVMOS (1e-18 EVMOS or the equivalent unit of 1 wei
+hacker can secure from 1 atto AIZEL (1e-18 AIZEL or the equivalent unit of 1 wei
 on Ethereum).
 
 We encourage whitehat hackers to report undisclosed vulnerabilities using the
@@ -86,7 +86,7 @@ transferring secured funds by whitehats:
 | Dropbox | aizel1c6jdy4gy86s69auueqwfjs86vse7kz3grxm9h2 | 0xc6A4d255043ea1A2F79CC81c9940FA6433eb0A28 |
 
 While the original purpose for the Dropbox address is to primarily help secure
-vulnerable EVMOS tokens, it can also be used as a general purpose escrow account
+vulnerable AIZEL tokens, it can also be used as a general purpose escrow account
 for whitehackers to help secure other tokens (Native or ERC20) that have been
 exploited due to a vulnerability and thus declare behaviour in accordance to
 this Agreement.

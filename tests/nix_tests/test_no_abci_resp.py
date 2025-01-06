@@ -3,7 +3,7 @@ from pathlib import Path
 import pytest
 
 from .network import create_snapshots_dir, setup_custom_aizel
-from .utils import EVMOS_6DEC_CHAIN_ID, evm6dec_config, memiavl_config, wait_for_block
+from .utils import AIZEL_6DEC_CHAIN_ID, evm6dec_config, memiavl_config, wait_for_block
 
 
 @pytest.fixture(scope="module")
@@ -23,7 +23,7 @@ def custom_aizel_6dec(tmp_path_factory):
         path,
         46860,
         evm6dec_config(path, "discard-abci-resp"),
-        chain_id=EVMOS_6DEC_CHAIN_ID,
+        chain_id=AIZEL_6DEC_CHAIN_ID,
     )
 
 

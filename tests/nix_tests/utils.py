@@ -35,9 +35,9 @@ ACCOUNTS = {
 }
 KEYS = {name: account.key for name, account in ACCOUNTS.items()}
 ADDRS = {name: account.address for name, account in ACCOUNTS.items()}
-EVMOS_ADDRESS_PREFIX = "aizel"
+AIZEL_ADDRESS_PREFIX = "aizel"
 DEFAULT_DENOM = "aaizel"
-WEVMOS_ADDRESS = Web3.toChecksumAddress("0xD4949664cD82660AaE99bEdc034a0deA8A0bd517")
+WAIZEL_ADDRESS = Web3.toChecksumAddress("0xD4949664cD82660AaE99bEdc034a0deA8A0bd517")
 TEST_CONTRACTS = {
     "TestERC20A": "TestERC20A.sol",
     "TestRevert": "TestRevert.sol",
@@ -93,7 +93,7 @@ PROPOSAL_STATUS_REJECTED = 4
 PROPOSAL_STATUS_FAILED = 5
 
 SCALE_FACTOR_6DEC = 1e12
-EVMOS_6DEC_CHAIN_ID = "aizelics_9000-1"
+AIZEL_6DEC_CHAIN_ID = "aizelics_9000-1"
 EVM_6DEC_CONF = """'aizelics_9000-1': default['aizel_9002-1'] + {
     'app-config'+:{
       'minimum-gas-prices': '0ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2',
@@ -449,7 +449,7 @@ def send_successful_transaction(w3, i=0):
     return txhash
 
 
-def eth_to_bech32(addr, prefix=EVMOS_ADDRESS_PREFIX):
+def eth_to_bech32(addr, prefix=AIZEL_ADDRESS_PREFIX):
     bz = bech32.convertbits(HexBytes(addr), 8, 5)
     return bech32.bech32_encode(prefix, bz)
 

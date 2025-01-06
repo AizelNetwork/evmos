@@ -36,7 +36,7 @@ IGNORED_FILES: List[str] = [
     # compile
     "ERC20Minter_OpenZeppelinV5.sol",
     # Ignored because it requires an older version of Solidity
-    "WEVMOS.sol",
+    "WAIZEL.sol",
 ]
 
 

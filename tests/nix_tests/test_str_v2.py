@@ -9,7 +9,7 @@ from .network import CosmosChain, Aizel
 from .utils import (
     ADDRS,
     KEYS,
-    WEVMOS_ADDRESS,
+    WAIZEL_ADDRESS,
     approve_proposal,
     erc20_balance,
     erc20_transfer,
@@ -88,7 +88,7 @@ def test_str_v2_single_hop(ibc):
     assert len(active_dynamic_precompiles) == 0
 
     # Check token pairs before IBC transfer,
-    # should only exist the WEVMOS pair
+    # should only exist the WAIZEL pair
     pairs = aizel_cli.get_token_pairs()
     assert len(pairs) == 1
 
@@ -183,7 +183,7 @@ def test_str_v2_multi_hop(ibc):
 def test_waizel_precompile_transfer(ibc):
     """
     Test the ERC20 transfer from one signer to another using the now
-    registered ERC20 precompiled contract for WEVMOS.
+    registered ERC20 precompiled contract for WAIZEL.
     """
     assert_ready(ibc)
 
@@ -195,16 +195,16 @@ def test_waizel_precompile_transfer(ibc):
 
     w3 = aizel.w3
     aizel_balance = get_balance(aizel, bech_dst, src_denom)
-    signer2_balance = erc20_balance(w3, WEVMOS_ADDRESS, signer2)
+    signer2_balance = erc20_balance(w3, WAIZEL_ADDRESS, signer2)
 
     assert aizel_balance == signer2_balance
 
     receipt = erc20_transfer(
-        w3, WEVMOS_ADDRESS, signer1, signer2, 1000000, KEYS["signer1"]
+        w3, WAIZEL_ADDRESS, signer1, signer2, 1000000, KEYS["signer1"]
     )
     assert receipt.status == 1
 
-    signer_2_balance_after = erc20_balance(w3, WEVMOS_ADDRESS, signer2)
+    signer_2_balance_after = erc20_balance(w3, WAIZEL_ADDRESS, signer2)
     assert signer_2_balance_after == signer2_balance + 1000000
 
     aizel_balance_after = get_balance(aizel, bech_dst, src_denom)

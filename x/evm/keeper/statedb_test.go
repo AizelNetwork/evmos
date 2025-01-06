@@ -405,7 +405,7 @@ func TestIterateContracts(t *testing.T) {
 
 	network.App.EvmKeeper.IterateContracts(network.GetContext(), func(addr common.Address, codeHash common.Hash) bool {
 		// NOTE: we only care about the 2 contracts deployed above, not the ERC20 native precompile for the aaizel denomination
-		if bytes.Equal(addr.Bytes(), common.HexToAddress(erc20.WEVMOSContractMainnet).Bytes()) {
+		if bytes.Equal(addr.Bytes(), common.HexToAddress(erc20.WAIZELContractMainnet).Bytes()) {
 			return false
 		}
 

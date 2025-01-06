@@ -14,7 +14,7 @@ from .network import (
 )
 from .utils import (
     ADDRS,
-    EVMOS_6DEC_CHAIN_ID,
+    AIZEL_6DEC_CHAIN_ID,
     eth_to_bech32,
     evm6dec_ibc_config,
     memiavl_config,
@@ -26,7 +26,7 @@ from .utils import (
 )
 
 # aaizel IBC representation on another chain connected via channel-0.
-EVMOS_IBC_DENOM = "ibc/8EAC8061F4499F03D2D1419A3E73D346289AE9DB89CAB1486B72539572B1915E"
+AIZEL_IBC_DENOM = "ibc/8EAC8061F4499F03D2D1419A3E73D346289AE9DB89CAB1486B72539572B1915E"
 # uosmo IBC representation on the Aizel chain.
 OSMO_IBC_DENOM = "ibc/ED07A3391A112B175915CD8FAF43A2DA8E4790EDE12566649D0C2F97716B8518"
 # cro IBC representation on another chain connected via channel-0.
@@ -113,7 +113,7 @@ def get_aizel_generator(
     elif is_6dec:
         file = evm6dec_ibc_config(tmp_path, file)
         gen = setup_custom_aizel(
-            tmp_path, 56710, Path(__file__).parent / file, chain_id=EVMOS_6DEC_CHAIN_ID
+            tmp_path, 56710, Path(__file__).parent / file, chain_id=AIZEL_6DEC_CHAIN_ID
         )
     else:
         file = f"configs/{file}.jsonnet"

@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Aizel)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package werc20_test
 
@@ -45,7 +45,7 @@ type PrecompileIntegrationTestSuite struct {
 
 	wrappedCoinDenom string
 
-	// WEVMOS related fields
+	// WAIZEL related fields
 	precompile        *werc20.Precompile
 	precompileAddrHex string
 }
@@ -53,7 +53,7 @@ type PrecompileIntegrationTestSuite struct {
 func TestPrecompileIntegrationTestSuite(t *testing.T) {
 	// Run Ginkgo integration tests
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "WEVMOS precompile test suite")
+	RunSpecs(t, "WAIZEL precompile test suite")
 }
 
 // checkAndReturnBalance check that the balance of the address is the same in
@@ -84,7 +84,7 @@ func (is *PrecompileIntegrationTestSuite) checkAndReturnBalance(
 // Integration tests
 // -------------------------------------------------------------------------------------------------
 
-var _ = When("a user interact with the WEVMOS precompiled contract", func() {
+var _ = When("a user interact with the WAIZEL precompiled contract", func() {
 	var (
 		is                                         *PrecompileIntegrationTestSuite
 		passCheck, failCheck                       testutil.LogCheckArgs
@@ -130,13 +130,13 @@ var _ = When("a user interact with the WEVMOS precompiled contract", func() {
 		is.wrappedCoinDenom = evmtypes.GetEVMCoinDenom()
 
 		cosmosChainID := strings.Split(is.network.GetChainID(), "-")[0]
-		is.precompileAddrHex = erc20types.GetWEVMOSContractHex(cosmosChainID)
+		is.precompileAddrHex = erc20types.GetWAIZELContractHex(cosmosChainID)
 
 		ctx := integrationNetwork.GetContext()
 
 		// Perform some check before adding the precompile to the suite.
 
-		// Check that WEVMOS is part of the native precompiles.
+		// Check that WAIZEL is part of the native precompiles.
 		erc20Params := is.network.App.Erc20Keeper.GetParams(ctx)
 		Expect(erc20Params.NativePrecompiles).To(
 			ContainElement(is.precompileAddrHex),
@@ -145,7 +145,7 @@ var _ = When("a user interact with the WEVMOS precompiled contract", func() {
 		_, found := is.network.App.BankKeeper.GetDenomMetaData(ctx, evmtypes.GetEVMCoinDenom())
 		Expect(found).To(BeTrue(), "expected native token metadata to be registered")
 
-		// Check that WEVMOS is registered in the token pairs map.
+		// Check that WAIZEL is registered in the token pairs map.
 		tokenPairID := is.network.App.Erc20Keeper.GetTokenPairID(ctx, is.wrappedCoinDenom)
 		tokenPair, found := is.network.App.Erc20Keeper.GetTokenPair(ctx, tokenPairID)
 		Expect(found).To(BeTrue(), "expected waizel precompile to be registered in the tokens map")
@@ -168,7 +168,7 @@ var _ = When("a user interact with the WEVMOS precompiled contract", func() {
 
 		// Setup of the contract calling into the precompile to tests revert
 		// edge cases and proper handling of snapshots.
-		revertCallerContract, err := testdata.LoadWEVMOS9TestCaller()
+		revertCallerContract, err := testdata.LoadWAIZEL9TestCaller()
 		Expect(err).ToNot(HaveOccurred(), "failed to load werc20 reverter caller contract")
 
 		txArgs := evmtypes.EvmTxArgs{}
@@ -576,7 +576,7 @@ var _ = When("a user interact with the WEVMOS precompiled contract", func() {
 				var symbol string
 				err = is.precompile.UnpackIntoInterface(&symbol, erc20.SymbolMethod, ethRes.Ret)
 				Expect(err).ToNot(HaveOccurred(), "failed to unpack result")
-				Expect(symbol).To(ContainSubstring("EVMOS"), "expected different symbol")
+				Expect(symbol).To(ContainSubstring("AIZEL"), "expected different symbol")
 			})
 
 			It("should return the decimals", func() {

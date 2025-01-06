@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Aizel)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 //
 // This files contains handler for the testing suite that has to be run to
 // modify the chain configuration depending on the chainID
@@ -42,7 +42,7 @@ func generateBankGenesisMetadata(chainID string) banktypes.Metadata {
 				},
 			},
 			Name:    "tAizel",
-			Symbol:  "tEVMOS",
+			Symbol:  "tAIZEL",
 			Display: "taizel",
 		}
 	}
@@ -61,7 +61,7 @@ func generateBankGenesisMetadata(chainID string) banktypes.Metadata {
 			},
 		},
 		Name:    "Aizel",
-		Symbol:  "EVMOS",
+		Symbol:  "AIZEL",
 		Display: "aizel",
 	}
 }
@@ -80,12 +80,12 @@ func updateErc20GenesisStateForChainID(chainID string, erc20GenesisState erc20ty
 }
 
 // updateErc20Params modifies the erc20 module params to use the correct
-// WEVMOS contract depending on ChainID
+// WAIZEL contract depending on ChainID
 func updateErc20Params(chainID string, params erc20types.Params) erc20types.Params {
-	mainnetAddress := erc20types.GetWEVMOSContractHex(utils.MainnetChainID)
+	mainnetAddress := erc20types.GetWAIZELContractHex(utils.MainnetChainID)
 
 	cosmosChainID := strings.Split(chainID, "-")[0]
-	testnetAddress := erc20types.GetWEVMOSContractHex(cosmosChainID)
+	testnetAddress := erc20types.GetWAIZELContractHex(cosmosChainID)
 
 	nativePrecompiles := make([]string, len(params.NativePrecompiles))
 	for i, nativePrecompile := range params.NativePrecompiles {
@@ -100,13 +100,13 @@ func updateErc20Params(chainID string, params erc20types.Params) erc20types.Para
 }
 
 // updateErc20TokenPairs modifies the erc20 token pairs to use the correct
-// WEVMOS depending on ChainID
+// WAIZEL depending on ChainID
 func updateErc20TokenPairs(chainID string, tokenPairs []erc20types.TokenPair) []erc20types.TokenPair {
 	cosmosChainID := strings.Split(chainID, "-")[0]
-	testnetAddress := erc20types.GetWEVMOSContractHex(cosmosChainID)
+	testnetAddress := erc20types.GetWAIZELContractHex(cosmosChainID)
 	coinInfo := evmtypes.ChainsCoinInfo[cosmosChainID]
 
-	mainnetAddress := erc20types.GetWEVMOSContractHex(utils.MainnetChainID)
+	mainnetAddress := erc20types.GetWAIZELContractHex(utils.MainnetChainID)
 
 	updatedTokenPairs := make([]erc20types.TokenPair, len(tokenPairs))
 	for i, tokenPair := range tokenPairs {

@@ -3,7 +3,7 @@ import re
 import pytest
 
 from .ibc_utils import (
-    EVMOS_IBC_DENOM,
+    AIZEL_IBC_DENOM,
     assert_ready,
     get_balance,
     get_balances,
@@ -102,13 +102,13 @@ def test_ibc_transfer(ibc):
     def check_balance_change():
         nonlocal new_dst_balances
         new_dst_balances = get_balances(ibc.chains["chainmain"], dst_addr)
-        return amount_of(old_dst_balances, EVMOS_IBC_DENOM) != amount_of(
-            new_dst_balances, EVMOS_IBC_DENOM
+        return amount_of(old_dst_balances, AIZEL_IBC_DENOM) != amount_of(
+            new_dst_balances, AIZEL_IBC_DENOM
         )
 
     wait_for_fn("balance change", check_balance_change)
-    assert amount_of(old_dst_balances, EVMOS_IBC_DENOM) + amt == amount_of(
-        new_dst_balances, EVMOS_IBC_DENOM
+    assert amount_of(old_dst_balances, AIZEL_IBC_DENOM) + amt == amount_of(
+        new_dst_balances, AIZEL_IBC_DENOM
     )
     new_src_balances = get_balances(ibc.chains["aizel"], src_addr)
     old_src_denom_amt = amount_of(old_src_balances, src_denom)

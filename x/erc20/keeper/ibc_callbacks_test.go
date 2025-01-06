@@ -267,7 +267,7 @@ func (suite *KeeperTestSuite) TestOnRecvPacket() {
 				&suite.network.App.TransferKeeper,
 			)
 
-			// Fund receiver account with EVMOS, ERC20 coins and IBC vouchers
+			// Fund receiver account with AIZEL, ERC20 coins and IBC vouchers
 			// We do this since we are interested in the conversion portion w/ OnRecvPacket
 			err = testutil.FundAccount(ctx, suite.network.App.BankKeeper, tc.receiver, coins)
 			suite.Require().NoError(err)
@@ -477,7 +477,7 @@ func (suite *KeeperTestSuite) TestOnAcknowledgementPacket() {
 
 				sender = sdk.AccAddress(senderPk.PubKey().Address())
 
-				// Fund receiver account with EVMOS, ERC20 coins and IBC vouchers
+				// Fund receiver account with AIZEL, ERC20 coins and IBC vouchers
 				// We do this since we are interested in the conversion portion w/ OnRecvPacket
 				err = testutil.FundAccount(
 					ctx,

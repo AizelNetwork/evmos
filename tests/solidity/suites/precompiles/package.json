@@ -4,7 +4,7 @@
   "author": "Aizel team",
   "license": "GPL-3.0-or-later",
   "scripts": {
-    "get-contracts": "mkdir -p ./contracts/aizel && rsync -avm --include='*/' --exclude='**/ERC20Minter_OpenZeppelinV5.sol' --exclude='**/WEVMOS.sol' --exclude='**/ERC20NoMetadata.sol' --include='*.sol' --exclude='*' ../../../../precompiles/ ./contracts/aizel/",
+    "get-contracts": "mkdir -p ./contracts/aizel && rsync -avm --include='*/' --exclude='**/ERC20Minter_OpenZeppelinV5.sol' --exclude='**/WAIZEL.sol' --exclude='**/ERC20NoMetadata.sol' --include='*.sol' --exclude='*' ../../../../precompiles/ ./contracts/aizel/",
     "clean-contracts": "rm -rf ./contracts/aizel/*",
     "test-ganache": "yarn hardhat test",
     "test-aizel": "yarn get-contracts && yarn hardhat test --network aizel && yarn clean-contracts"

@@ -19,7 +19,7 @@
 ### 3.1 Clone node1 to node2 
 
 ```bash
-sudo cp -r $EVMOSHOME/node1 $EVMOSHOME/node2
+sudo cp -r $AIZELHOME/node1 $AIZELHOME/node2
 ```
 
 ### 3.2 Customize node2 config
@@ -37,7 +37,7 @@ port 6060 => 6070
 pruning="nothing" => pruning="custom"
 
 # get boot node id by 
-aizeld tendermint show-node-id --home $EVMOSHOME/node1
+aizeld tendermint show-node-id --home $AIZELHOME/node1
 # set the persistent_peers in node2/config/config.toml file
 persistent_peers = "<node1_id>@<node1_ip>:26656"
 ```
@@ -46,28 +46,28 @@ persistent_peers = "<node1_id>@<node1_ip>:26656"
 
 ```bash
 # inital node in other folder
-aizeld init node3 --chain-id=aizel_9002-20151225 --home=$EVMOSHOME/node3
+aizeld init node3 --chain-id=aizel_9002-20151225 --home=$AIZELHOME/node3
 
 # delete key files in node2
-sudo rm $EVMOSHOME/node2/config/node_key.json
-sudo rm $EVMOSHOME/node2/config/priv_validator_key.json
+sudo rm $AIZELHOME/node2/config/node_key.json
+sudo rm $AIZELHOME/node2/config/priv_validator_key.json
 
 # copy node_key and validator_key to node2 folder
-sudo cp $EVMOSHOME/node3/config/node_key.json  $EVMOSHOME/node2/config/
-sudo cp $EVMOSHOME/node3/config/priv_validator_key.json  $EVMOSHOME/node2/config/
+sudo cp $AIZELHOME/node3/config/node_key.json  $AIZELHOME/node2/config/
+sudo cp $AIZELHOME/node3/config/priv_validator_key.json  $AIZELHOME/node2/config/
 
 # delete node3 folder
-sudo rm -rf $EVMOSHOME/node3
+sudo rm -rf $AIZELHOME/node3
 ```
 
 ### 3.4 Run `gentx` in node2 folders
 ```bash
 ./prod_node2.sh
 ```
-### 3.5 copy the `gentx-*` folders under  `$EVMOSHOME/node2/config/gentx/` folders into the original `$EVMOSHOME/node1/config/gentx/`
+### 3.5 copy the `gentx-*` folders under  `$AIZELHOME/node2/config/gentx/` folders into the original `$AIZELHOME/node1/config/gentx/`
 
 ```bash
-sudo cp -r $EVMOSHOME/node2/config/gentx/*  $EVMOSHOME/node1/config/gentx/
+sudo cp -r $AIZELHOME/node2/config/gentx/*  $AIZELHOME/node1/config/gentx/
 ```
 
 ### 4. Back with node2 
@@ -80,9 +80,9 @@ sudo cp -r $EVMOSHOME/node2/config/gentx/*  $EVMOSHOME/node1/config/gentx/
 #### 4.2 Copy genisis file from node1 to node2
 
 ```bash
-sudo rm $EVMOSHOME/node2/config/genesis.json
+sudo rm $AIZELHOME/node2/config/genesis.json
 
-sudo cp $EVMOSHOME/node1/config/genesis.json $EVMOSHOME/node2/config/
+sudo cp $AIZELHOME/node1/config/genesis.json $AIZELHOME/node2/config/
 ```
 
 #### 4.3 Start the nodes

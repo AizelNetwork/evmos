@@ -6,7 +6,7 @@ from web3 import Web3
 from .network import create_snapshots_dir, setup_custom_aizel
 from .utils import (
     ADDRS,
-    EVMOS_6DEC_CHAIN_ID,
+    AIZEL_6DEC_CHAIN_ID,
     KEYS,
     eth_to_bech32,
     evm6dec_config,
@@ -33,7 +33,7 @@ def custom_aizel_6dec(tmp_path_factory):
     """
     path = tmp_path_factory.mktemp("zero-fee-6dec")
     yield from setup_custom_aizel(
-        path, 46900, evm6dec_config(path, "zero-fee"), chain_id=EVMOS_6DEC_CHAIN_ID
+        path, 46900, evm6dec_config(path, "zero-fee"), chain_id=AIZEL_6DEC_CHAIN_ID
     )
 
 

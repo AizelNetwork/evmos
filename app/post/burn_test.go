@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Aizel)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/aizel/aizel/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package post_test
 
@@ -131,7 +131,7 @@ func (s *PostTestSuite) TestPostHandle() {
 			},
 		},
 		{
-			name: "pass - fees exceeds MaxUint64 (~18 EVMOS). Should not panic",
+			name: "pass - fees exceeds MaxUint64 (~18 AIZEL). Should not panic",
 			tx: func() sdk.Tx {
 				amt, ok := sdkmath.NewIntFromString("10000000000000000000000000000000000")
 				s.Require().True(ok)

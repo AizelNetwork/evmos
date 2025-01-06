@@ -113,10 +113,10 @@ start_func() {
 		>"$DATA_DIR"/node"$i".log 2>&1 &
 	disown
 
-	EVMOS_PID=$!
-	echo "started aizel node, pid=$EVMOS_PID"
+	AIZEL_PID=$!
+	echo "started aizel node, pid=$AIZEL_PID"
 	# add PID to array
-	arr+=("$EVMOS_PID")
+	arr+=("$AIZEL_PID")
 
 	if [[ $MODE == "pending" ]]; then
 		echo "waiting for the first block..."
@@ -159,12 +159,12 @@ if [[ -z $TEST || $TEST == "rpc" || $TEST == "pending" ]]; then
 fi
 
 stop_func() {
-	EVMOS_PID=$i
-	echo "shutting down node, pid=$EVMOS_PID ..."
+	AIZEL_PID=$i
+	echo "shutting down node, pid=$AIZEL_PID ..."
 
 	# Shutdown aizel node
-	kill -9 "$EVMOS_PID"
-	wait "$EVMOS_PID"
+	kill -9 "$AIZEL_PID"
+	wait "$AIZEL_PID"
 
 	if [ "$REMOVE_DATA_DIR" == "true" ]; then
 		rm -rf "$DATA_DIR"*

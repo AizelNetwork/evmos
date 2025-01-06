@@ -9,9 +9,9 @@ aizeld start \
 	--log_level $LOGLEVEL \
 	--minimum-gas-prices=0.0001$BASE_DENOM \
 	--json-rpc.api eth,txpool,personal,net,debug,web3 \
-	--home "$EVMOSHOME/node1" \
+	--home "$AIZELHOME/node1" \
 	--chain-id "$CHAINID" \
-	 > $EVMOSHOME/node1/node1.log 2>&1 &
+	 > $AIZELHOME/node1/node1.log 2>&1 &
 
 # sleep 2
 
@@ -21,9 +21,9 @@ aizeld start \
 	--log_level $LOGLEVEL \
 	--minimum-gas-prices=0.0001$BASE_DENOM \
 	--json-rpc.api eth,txpool,personal,net,debug,web3 \
-	--home "$EVMOSHOME/node2" \
+	--home "$AIZELHOME/node2" \
 	--chain-id "$CHAINID" \
-	 > $EVMOSHOME/node2/node2.log 2>&1 &
+	 > $AIZELHOME/node2/node2.log 2>&1 &
 
 # tmp
 # aizeld query ibc client params --chain-id aizel_9002-20151225
