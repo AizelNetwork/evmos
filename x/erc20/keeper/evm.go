@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package keeper
 
@@ -12,10 +12,10 @@ import (
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 
-	"github.com/evmos/evmos/v20/contracts"
-	"github.com/evmos/evmos/v20/x/erc20/types"
+	"github.com/AizelNetwork/evmos/v20/contracts"
+	"github.com/AizelNetwork/evmos/v20/x/erc20/types"
 )
 
 // DeployERC20Contract creates and deploys an ERC20 contract on the EVM with the

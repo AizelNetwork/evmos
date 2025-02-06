@@ -10,13 +10,13 @@ import (
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/evmos/evmos/v20/crypto/ethsecp256k1"
+	"github.com/AizelNetwork/evmos/v20/crypto/ethsecp256k1"
 	"github.com/stretchr/testify/require"
 )
 
 func init() {
 	cfg := sdk.GetConfig()
-	cfg.SetBech32PrefixForAccount("evmos", "evmospub")
+	cfg.SetBech32PrefixForAccount("aizel", "aizelpub")
 }
 
 func TestIsSupportedKeys(t *testing.T) {
@@ -87,32 +87,32 @@ func TestGetEvmosAddressFromBech32(t *testing.T) {
 		},
 		{
 			"invalid bech32 address",
-			"evmos",
+			"aizel",
 			"",
 			true,
 		},
 		{
 			"invalid address bytes",
-			"evmos1123",
+			"aizel1123",
 			"",
 			true,
 		},
 		{
-			"evmos address",
-			"evmos1qql8ag4cluz6r4dz28p3w00dnc9w8ueuafmxps",
-			"evmos1qql8ag4cluz6r4dz28p3w00dnc9w8ueuafmxps",
+			"aizel address",
+			"aizel1qql8ag4cluz6r4dz28p3w00dnc9w8ueuafmxps",
+			"aizel1qql8ag4cluz6r4dz28p3w00dnc9w8ueuafmxps",
 			false,
 		},
 		{
 			"cosmos address",
 			"cosmos1qql8ag4cluz6r4dz28p3w00dnc9w8ueulg2gmc",
-			"evmos1qql8ag4cluz6r4dz28p3w00dnc9w8ueuafmxps",
+			"aizel1qql8ag4cluz6r4dz28p3w00dnc9w8ueuafmxps",
 			false,
 		},
 		{
 			"osmosis address",
 			"osmo1qql8ag4cluz6r4dz28p3w00dnc9w8ueuhnecd2",
-			"evmos1qql8ag4cluz6r4dz28p3w00dnc9w8ueuafmxps",
+			"aizel1qql8ag4cluz6r4dz28p3w00dnc9w8ueuafmxps",
 			false,
 		},
 	}
@@ -136,7 +136,7 @@ func TestEvmosCoinDenom(t *testing.T) {
 	}{
 		{
 			"valid denom - native coin",
-			"aevmos",
+			"aaizel",
 			false,
 		},
 		{
@@ -235,7 +235,7 @@ func TestAccAddressFromBech32(t *testing.T) {
 
 func TestAddressConversion(t *testing.T) {
 	hex := "0x7cB61D4117AE31a12E393a1Cfa3BaC666481D02E"
-	bech32 := "evmos10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky"
+	bech32 := "aizel10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky"
 
 	hexAddr := common.HexToAddress(hex)
 	require.Equal(t, bech32, EthToCosmosAddr(hexAddr).String())

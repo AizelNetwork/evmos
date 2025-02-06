@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package app
 
@@ -120,55 +120,55 @@ import (
 	consensusparamkeeper "github.com/cosmos/cosmos-sdk/x/consensus/keeper"
 	consensusparamtypes "github.com/cosmos/cosmos-sdk/x/consensus/types"
 
-	"github.com/evmos/evmos/v20/encoding"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
+	"github.com/AizelNetwork/evmos/v20/encoding"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
 
 	// unnamed import of statik for swagger UI support
-	_ "github.com/evmos/evmos/v20/client/docs/statik"
-	"github.com/evmos/evmos/v20/utils"
+	_ "github.com/AizelNetwork/evmos/v20/client/docs/statik"
+	"github.com/AizelNetwork/evmos/v20/utils"
 
-	evmostypes "github.com/evmos/evmos/v20/types"
-	"github.com/evmos/evmos/v20/x/epochs"
-	epochskeeper "github.com/evmos/evmos/v20/x/epochs/keeper"
-	epochstypes "github.com/evmos/evmos/v20/x/epochs/types"
-	"github.com/evmos/evmos/v20/x/evm"
-	evmkeeper "github.com/evmos/evmos/v20/x/evm/keeper"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
-	inflation "github.com/evmos/evmos/v20/x/inflation/v1"
-	inflationkeeper "github.com/evmos/evmos/v20/x/inflation/v1/keeper"
-	inflationtypes "github.com/evmos/evmos/v20/x/inflation/v1/types"
+	evmostypes "github.com/AizelNetwork/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/x/epochs"
+	epochskeeper "github.com/AizelNetwork/evmos/v20/x/epochs/keeper"
+	epochstypes "github.com/AizelNetwork/evmos/v20/x/epochs/types"
+	"github.com/AizelNetwork/evmos/v20/x/evm"
+	evmkeeper "github.com/AizelNetwork/evmos/v20/x/evm/keeper"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
+	inflation "github.com/AizelNetwork/evmos/v20/x/inflation/v1"
+	inflationkeeper "github.com/AizelNetwork/evmos/v20/x/inflation/v1/keeper"
+	inflationtypes "github.com/AizelNetwork/evmos/v20/x/inflation/v1/types"
 
-	"github.com/evmos/evmos/v20/app/ante"
-	ethante "github.com/evmos/evmos/v20/app/ante/evm"
-	"github.com/evmos/evmos/v20/app/post"
-	v20 "github.com/evmos/evmos/v20/app/upgrades/v20"
-	srvflags "github.com/evmos/evmos/v20/server/flags"
-	"github.com/evmos/evmos/v20/x/erc20"
-	erc20keeper "github.com/evmos/evmos/v20/x/erc20/keeper"
-	erc20types "github.com/evmos/evmos/v20/x/erc20/types"
-	"github.com/evmos/evmos/v20/x/feemarket"
-	feemarketkeeper "github.com/evmos/evmos/v20/x/feemarket/keeper"
-	feemarkettypes "github.com/evmos/evmos/v20/x/feemarket/types"
-	"github.com/evmos/evmos/v20/x/staking"
-	stakingkeeper "github.com/evmos/evmos/v20/x/staking/keeper"
-	"github.com/evmos/evmos/v20/x/vesting"
-	vestingkeeper "github.com/evmos/evmos/v20/x/vesting/keeper"
-	vestingtypes "github.com/evmos/evmos/v20/x/vesting/types"
+	"github.com/AizelNetwork/evmos/v20/app/ante"
+	ethante "github.com/AizelNetwork/evmos/v20/app/ante/evm"
+	"github.com/AizelNetwork/evmos/v20/app/post"
+	v20 "github.com/AizelNetwork/evmos/v20/app/upgrades/v20"
+	srvflags "github.com/AizelNetwork/evmos/v20/server/flags"
+	"github.com/AizelNetwork/evmos/v20/x/erc20"
+	erc20keeper "github.com/AizelNetwork/evmos/v20/x/erc20/keeper"
+	erc20types "github.com/AizelNetwork/evmos/v20/x/erc20/types"
+	"github.com/AizelNetwork/evmos/v20/x/feemarket"
+	feemarketkeeper "github.com/AizelNetwork/evmos/v20/x/feemarket/keeper"
+	feemarkettypes "github.com/AizelNetwork/evmos/v20/x/feemarket/types"
+	"github.com/AizelNetwork/evmos/v20/x/staking"
+	stakingkeeper "github.com/AizelNetwork/evmos/v20/x/staking/keeper"
+	"github.com/AizelNetwork/evmos/v20/x/vesting"
+	vestingkeeper "github.com/AizelNetwork/evmos/v20/x/vesting/keeper"
+	vestingtypes "github.com/AizelNetwork/evmos/v20/x/vesting/types"
 
 	// NOTE: override ICS20 keeper to support IBC transfers of ERC20 tokens
-	"github.com/evmos/evmos/v20/x/ibc/transfer"
-	transferkeeper "github.com/evmos/evmos/v20/x/ibc/transfer/keeper"
+	"github.com/AizelNetwork/evmos/v20/x/ibc/transfer"
+	transferkeeper "github.com/AizelNetwork/evmos/v20/x/ibc/transfer/keeper"
 
 	memiavlstore "github.com/crypto-org-chain/cronos/store"
 
 	// Force-load the tracer engines to trigger registration due to Go-Ethereum v1.10.15 changes
-	_ "github.com/evmos/evmos/v20/x/evm/core/tracers/js"
-	_ "github.com/evmos/evmos/v20/x/evm/core/tracers/native"
+	_ "github.com/AizelNetwork/evmos/v20/x/evm/core/tracers/js"
+	_ "github.com/AizelNetwork/evmos/v20/x/evm/core/tracers/native"
 )
 
 func init() {
 	var err error
-	DefaultNodeHome, err = clienthelpers.GetNodeHomeDirectory(".evmosd")
+	DefaultNodeHome, err = clienthelpers.GetNodeHomeDirectory(".aizeld")
 	if err != nil {
 		panic(err)
 	}
@@ -183,7 +183,7 @@ func init() {
 }
 
 // Name defines the application binary name
-const Name = "evmosd"
+const Name = "aizeld"
 
 var (
 	// DefaultNodeHome default home directories for the application daemon

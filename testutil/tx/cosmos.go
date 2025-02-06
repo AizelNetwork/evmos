@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 package tx
 
 import (
@@ -14,14 +14,14 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/cosmos/cosmos-sdk/types/tx/signing"
 	authsigning "github.com/cosmos/cosmos-sdk/x/auth/signing"
-	evmostypes "github.com/evmos/evmos/v20/types"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
 
-	"github.com/evmos/evmos/v20/app"
+	"github.com/AizelNetwork/evmos/v20/app"
 )
 
 var (
 	feeAmt     = math.Pow10(16)
-	DefaultFee = sdk.NewCoin(evmostypes.BaseDenom, sdkmath.NewIntFromUint64(uint64(feeAmt))) // 0.01 EVMOS
+	DefaultFee = sdk.NewCoin(aizeltypes.BaseDenom, sdkmath.NewIntFromUint64(uint64(feeAmt))) // 0.01 EVMOS
 )
 
 // CosmosTxArgs contains the params to create a cosmos tx
@@ -30,7 +30,7 @@ type CosmosTxArgs struct {
 	TxCfg client.TxConfig
 	// Priv is the private key that will be used to sign the tx
 	Priv cryptotypes.PrivKey
-	// ChainID is the chain's id on cosmos format, e.g. 'evmos_9000-1'
+	// ChainID is the chain's id on cosmos format, e.g. 'aizel_9000-1'
 	ChainID string
 	// Gas to be used on the tx
 	Gas uint64
@@ -57,7 +57,7 @@ func PrepareCosmosTx(
 
 	var fees sdk.Coins
 	if args.GasPrice != nil {
-		fees = sdk.Coins{{Denom: evmostypes.BaseDenom, Amount: args.GasPrice.MulRaw(int64(args.Gas))}} //#nosec G115
+		fees = sdk.Coins{{Denom: aizeltypes.BaseDenom, Amount: args.GasPrice.MulRaw(int64(args.Gas))}} //#nosec G115
 	} else {
 		fees = sdk.Coins{DefaultFee}
 	}

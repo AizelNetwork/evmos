@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 //
 // The bank package contains the implementation of the x/bank module precompile.
 // The precompiles returns all bank's information in the original decimals
@@ -15,10 +15,10 @@ import (
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
-	erc20keeper "github.com/evmos/evmos/v20/x/erc20/keeper"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
+	erc20keeper "github.com/AizelNetwork/evmos/v20/x/erc20/keeper"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 const (

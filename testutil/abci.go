@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 package testutil
 
 import (
@@ -15,8 +15,8 @@ import (
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	errortypes "github.com/cosmos/cosmos-sdk/types/errors"
 
-	"github.com/evmos/evmos/v20/app"
-	"github.com/evmos/evmos/v20/testutil/tx"
+	"github.com/AizelNetwork/evmos/v20/app"
+	"github.com/AizelNetwork/evmos/v20/testutil/tx"
 )
 
 // Commit commits a block at a given time. Reminder: At the end of each

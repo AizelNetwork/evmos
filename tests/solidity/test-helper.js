@@ -32,7 +32,7 @@ function checkTestEnv () {
     )
     .describe('allowTests', 'only run specified tests. Separated by comma.')
     .boolean('verbose-log')
-    .describe('verbose-log', 'print evmosd output, default false').argv
+    .describe('verbose-log', 'print aizeld output, default false').argv
 
   if (!fs.existsSync(path.join(__dirname, './node_modules'))) {
     panic(
@@ -196,19 +196,19 @@ function setupNetwork ({ runConfig, timeout }) {
 
   const spawnPromise = new Promise((resolve, reject) => {
     const serverStartedLog = 'Starting JSON-RPC server'
-    const serverStartedMsg = 'evmosd started'
+    const serverStartedMsg = 'aizeld started'
 
-    const evmosdProc = spawn('../e2e/init-node.sh', {
+    const aizeldProc = spawn('../e2e/init-node.sh', {
       cwd: __dirname,
       stdio: ['ignore', 'pipe', 'pipe']
     })
 
-    logger.info(`Starting evmosd process... timeout: ${timeout}ms`)
+    logger.info(`Starting aizeld process... timeout: ${timeout}ms`)
     if (runConfig.verboseLog) {
-      evmosdProc.stdout.pipe(process.stdout)
+      aizeldProc.stdout.pipe(process.stdout)
     }
 
-    evmosdProc.stdout.on('data', (d) => {
+    aizeldProc.stdout.on('data', (d) => {
       const oLine = d.toString()
       if (runConfig.verboseLog) {
         process.stdout.write(oLine)
@@ -216,11 +216,11 @@ function setupNetwork ({ runConfig, timeout }) {
 
       if (oLine.indexOf(serverStartedLog) !== -1) {
         logger.info(serverStartedMsg)
-        resolve(evmosdProc)
+        resolve(aizeldProc)
       }
     })
 
-    evmosdProc.stderr.on('data', (d) => {
+    aizeldProc.stderr.on('data', (d) => {
       const oLine = d.toString()
       if (runConfig.verboseLog) {
         process.stdout.write(oLine)
@@ -228,13 +228,13 @@ function setupNetwork ({ runConfig, timeout }) {
 
       if (oLine.indexOf(serverStartedLog) !== -1) {
         logger.info(serverStartedMsg)
-        resolve(evmosdProc)
+        resolve(aizeldProc)
       }
     })
   })
 
   const timeoutPromise = new Promise((resolve, reject) => {
-    setTimeout(() => reject(new Error('Start evmosd timeout!')), timeout)
+    setTimeout(() => reject(new Error('Start aizeld timeout!')), timeout)
   })
   return Promise.race([spawnPromise, timeoutPromise])
 }

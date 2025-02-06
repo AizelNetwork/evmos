@@ -3,7 +3,7 @@ ARG INITIAL_VERSION
 # checkov:skip=CKV_DOCKER_3:No need to create a user, this is only used on tests
 FROM tharsishq/evmos:$INITIAL_VERSION
 
-WORKDIR /go/src/github.com/evmos/evmos
+WORKDIR /go/src/github.com/AizelNetwork/evmos
 
 COPY ./init-node.sh .
 

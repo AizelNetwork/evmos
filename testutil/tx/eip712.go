@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 package tx
 
 import (
@@ -16,10 +16,10 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/signer/core/apitypes"
 
-	"github.com/evmos/evmos/v20/app"
-	cryptocodec "github.com/evmos/evmos/v20/crypto/codec"
-	"github.com/evmos/evmos/v20/ethereum/eip712"
-	"github.com/evmos/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/app"
+	cryptocodec "github.com/AizelNetwork/evmos/v20/crypto/codec"
+	"github.com/AizelNetwork/evmos/v20/ethereum/eip712"
+	"github.com/AizelNetwork/evmos/v20/types"
 )
 
 type EIP712TxArgs struct {
@@ -172,14 +172,14 @@ func createTypedData(args typedDataArgs, useLegacy bool) (apitypes.TypedData, er
 		registry := codectypes.NewInterfaceRegistry()
 		types.RegisterInterfaces(registry)
 		cryptocodec.RegisterInterfaces(registry)
-		evmosCodec := codec.NewProtoCodec(registry)
+		aizelCodec := codec.NewProtoCodec(registry)
 
 		feeDelegation := &eip712.FeeDelegationOptions{
 			FeePayer: args.legacyFeePayer,
 		}
 
 		return eip712.LegacyWrapTxToTypedData(
-			evmosCodec,
+			aizelCodec,
 			args.chainID,
 			args.legacyMsg,
 			args.data,

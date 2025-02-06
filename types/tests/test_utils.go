@@ -1,11 +1,11 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package tests
 
 import (
 	transfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
-	evmostypes "github.com/evmos/evmos/v20/types"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
 )
 
 var (
@@ -21,11 +21,11 @@ var (
 	}
 	UatomIbcdenom = UatomDenomtrace.IBCDenom()
 
-	UevmosDenomtrace = transfertypes.DenomTrace{
+	UaizelDenomtrace = transfertypes.DenomTrace{
 		Path:      "transfer/channel-0",
-		BaseDenom: evmostypes.BaseDenom,
+		BaseDenom: aizeltypes.BaseDenom,
 	}
-	UevmosIbcdenom = UevmosDenomtrace.IBCDenom()
+	UaizelIbcdenom = UaizelDenomtrace.IBCDenom()
 
 	UatomOsmoDenomtrace = transfertypes.DenomTrace{
 		Path:      "transfer/channel-0/transfer/channel-1",
@@ -33,9 +33,9 @@ var (
 	}
 	UatomOsmoIbcdenom = UatomOsmoDenomtrace.IBCDenom()
 
-	AevmosDenomtrace = transfertypes.DenomTrace{
+	AaizelDenomtrace = transfertypes.DenomTrace{
 		Path:      "transfer/channel-0",
-		BaseDenom: evmostypes.BaseDenom,
+		BaseDenom: aizeltypes.BaseDenom,
 	}
-	AevmosIbcdenom = AevmosDenomtrace.IBCDenom()
+	AaizelIbcdenom = AaizelDenomtrace.IBCDenom()
 )

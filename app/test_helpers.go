@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package app
 
@@ -26,10 +26,10 @@ import (
 	banktypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 
-	evmostypes "github.com/evmos/evmos/v20/types"
-	feemarkettypes "github.com/evmos/evmos/v20/x/feemarket/types"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
+	feemarkettypes "github.com/AizelNetwork/evmos/v20/x/feemarket/types"
 
-	"github.com/evmos/evmos/v20/cmd/config"
+	"github.com/AizelNetwork/evmos/v20/cmd/config"
 )
 
 // DefaultTestingAppInit defines the IBC application used for testing
@@ -74,7 +74,7 @@ func Setup(
 	validator := cmttypes.NewValidator(pubKey, 1)
 	valSet := cmttypes.NewValidatorSet([]*cmttypes.Validator{validator})
 
-	baseDenom := evmostypes.BaseDenom
+	baseDenom := aizeltypes.BaseDenom
 
 	// generate genesis account
 	senderPrivKey := secp256k1.GenPrivKey()
@@ -128,10 +128,10 @@ func Setup(
 	return app
 }
 
-func GenesisStateWithValSet(app *Evmos, genesisState evmostypes.GenesisState,
+func GenesisStateWithValSet(app *Evmos, genesisState aizeltypes.GenesisState,
 	valSet *cmttypes.ValidatorSet, genAccs []authtypes.GenesisAccount,
 	balances ...banktypes.Balance,
-) evmostypes.GenesisState {
+) aizeltypes.GenesisState {
 	// set genesis accounts
 	authGenesis := authtypes.NewGenesisState(authtypes.DefaultParams(), genAccs)
 	genesisState[authtypes.ModuleName] = app.AppCodec().MustMarshalJSON(authGenesis)
@@ -163,7 +163,7 @@ func GenesisStateWithValSet(app *Evmos, genesisState evmostypes.GenesisState,
 	}
 	// set validators and delegations
 	stakingParams := stakingtypes.DefaultParams()
-	stakingParams.BondDenom = evmostypes.BaseDenom
+	stakingParams.BondDenom = aizeltypes.BaseDenom
 	stakingGenesis := stakingtypes.NewGenesisState(stakingParams, validators, delegations)
 	genesisState[stakingtypes.ModuleName] = app.AppCodec().MustMarshalJSON(stakingGenesis)
 

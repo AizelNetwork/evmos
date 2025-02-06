@@ -19,7 +19,7 @@ from .utils import (
     wait_for_port,
 )
 
-DEFAULT_CHAIN_BINARY = "evmosd"
+DEFAULT_CHAIN_BINARY = "aizeld"
 
 
 class Evmos:
@@ -170,7 +170,7 @@ def setup_evmos_rocksdb(path, base_port, long_timeout_commit=False):
         base_port,
         cfg,
         post_init=create_snapshots_dir,
-        chain_binary="evmosd-rocksdb",
+        chain_binary="aizeld-rocksdb",
     )
 
 
@@ -245,7 +245,7 @@ def setup_custom_evmos(
         proc.wait()
 
 
-def build_patched_evmosd(patch_nix_file):
+def build_patched_aizeld(patch_nix_file):
     """
     build the binary modified for a custom scenario
     e.g. allow to register WEVMOS token
@@ -259,5 +259,5 @@ def build_patched_evmosd(patch_nix_file):
     print(*cmd)
     return (
         Path(subprocess.check_output(cmd, universal_newlines=True, text=True).strip())
-        / "bin/evmosd"
+        / "bin/aizeld"
     )

@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package ledger_test
 
@@ -21,10 +21,10 @@ import (
 	auxTx "github.com/cosmos/cosmos-sdk/x/auth/tx"
 	bankTypes "github.com/cosmos/cosmos-sdk/x/bank/types"
 
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	"github.com/evmos/evmos/v20/wallets/ledger"
-	"github.com/evmos/evmos/v20/wallets/ledger/mocks"
-	"github.com/evmos/evmos/v20/wallets/usbwallet"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	"github.com/AizelNetwork/evmos/v20/wallets/ledger"
+	"github.com/AizelNetwork/evmos/v20/wallets/ledger/mocks"
+	"github.com/AizelNetwork/evmos/v20/wallets/usbwallet"
 )
 
 type LedgerTestSuite struct {
@@ -48,7 +48,7 @@ func TestLedgerTestSuite(t *testing.T) {
 }
 
 func (suite *LedgerTestSuite) SetupTest() {
-	suite.hrp = "evmos"
+	suite.hrp = "aizel"
 
 	suite.txAmino = suite.getMockTxAmino()
 	suite.txProtobuf = suite.getMockTxProtobuf()
@@ -75,7 +75,7 @@ func (suite *LedgerTestSuite) getMockTxAmino() []byte {
 	tmp := whitespaceRegex.ReplaceAllString(
 		`{
 			"account_number": "0",
-			"chain_id":"evmos_9000-1",
+			"chain_id":"aizel_9000-1",
 			"fee":{
 				"amount":[{"amount":"150","denom":"atom"}],
 				"gas":"20000"
@@ -85,8 +85,8 @@ func (suite *LedgerTestSuite) getMockTxAmino() []byte {
 				"type":"cosmos-sdk/MsgSend",
 				"value":{
 					"amount":[{"amount":"150","denom":"atom"}],
-					"from_address":"evmos10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky",
-					"to_address":"evmos1fx944mzagwdhx0wz7k9tfztc8g3lkfk6rrgv6l"
+					"from_address":"aizel10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky",
+					"to_address":"aizel1fx944mzagwdhx0wz7k9tfztc8g3lkfk6rrgv6l"
 				}
 			}],
 			"sequence":"6"
@@ -102,8 +102,8 @@ func (suite *LedgerTestSuite) getMockTxProtobuf() []byte {
 
 	memo := "memo"
 	msg := bankTypes.NewMsgSend(
-		sdk.MustAccAddressFromBech32("evmos10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky"),
-		sdk.MustAccAddressFromBech32("evmos1fx944mzagwdhx0wz7k9tfztc8g3lkfk6rrgv6l"),
+		sdk.MustAccAddressFromBech32("aizel10jmp6sgh4cc6zt3e8gw05wavvejgr5pwjnpcky"),
+		sdk.MustAccAddressFromBech32("aizel1fx944mzagwdhx0wz7k9tfztc8g3lkfk6rrgv6l"),
 		[]sdk.Coin{
 			{
 				Denom:  "atom",
@@ -154,7 +154,7 @@ func (suite *LedgerTestSuite) getMockTxProtobuf() []byte {
 	signBytes, err := auxTx.DirectSignBytes(
 		bodyBytes,
 		authInfoBytes,
-		"evmos_9000-1",
+		"aizel_9000-1",
 		0,
 	)
 	suite.Require().NoError(err)

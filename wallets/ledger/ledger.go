@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package ledger
 
@@ -14,19 +14,19 @@ import (
 	"github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/signer/core/apitypes"
 
-	"github.com/evmos/evmos/v20/ethereum/eip712"
-	"github.com/evmos/evmos/v20/wallets/accounts"
-	"github.com/evmos/evmos/v20/wallets/usbwallet"
+	"github.com/AizelNetwork/evmos/v20/ethereum/eip712"
+	"github.com/AizelNetwork/evmos/v20/wallets/accounts"
+	"github.com/AizelNetwork/evmos/v20/wallets/usbwallet"
 )
 
 // Secp256k1DerivationFn defines the derivation function used on the Cosmos SDK Keyring.
 type Secp256k1DerivationFn func() (sdkledger.SECP256K1, error)
 
 func EvmosLedgerDerivation() Secp256k1DerivationFn {
-	evmosSECP256K1 := new(EvmosSECP256K1)
+	aizelSECP256K1 := new(EvmosSECP256K1)
 
 	return func() (sdkledger.SECP256K1, error) {
-		return evmosSECP256K1.connectToLedgerApp()
+		return aizelSECP256K1.connectToLedgerApp()
 	}
 }
 
@@ -69,7 +69,7 @@ func (e EvmosSECP256K1) GetPublicKeySECP256K1(hdPath []uint32) ([]byte, error) {
 	return pubkeyBz, nil
 }
 
-// GetAddressPubKeySECP256K1 takes in the HD path as well as a "Human Readable Prefix" (HRP, e.g. "evmos")
+// GetAddressPubKeySECP256K1 takes in the HD path as well as a "Human Readable Prefix" (HRP, e.g. "aizel")
 // to return the public key bytes in secp256k1 format as well as the account address.
 func (e EvmosSECP256K1) GetAddressPubKeySECP256K1(hdPath []uint32, hrp string) ([]byte, string, error) {
 	if e.PrimaryWallet == nil {

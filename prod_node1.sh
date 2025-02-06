@@ -1,7 +1,7 @@
 #!/bin/bash
 
-CHAINID="${CHAIN_ID:-evmos_9002-20151225}"
-BASE_DENOM="aevmos"
+CHAINID="${CHAIN_ID:-aizel_9002-20151225}"
+BASE_DENOM="aaizel"
 MONIKER="node1"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
 # otherwise your balance will be wiped quickly
@@ -9,8 +9,8 @@ MONIKER="node1"
 KEYRING="file"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
-# Set dedicated home directory for the evmosd instance
-HOMEDIR="$EVMOSHOME/node1"
+# Set dedicated home directory for the aizeld instance
+HOMEDIR="$AIZELHOME/node1"
 # to trace evm
 #TRACE="--trace"
 TRACE=""
@@ -51,7 +51,7 @@ while [[ $# -gt 0 ]]; do
 		shift # Move past the argument
 		;;
 	--no-install)
-		echo "Flag --no-install passed -> Skipping installation of the evmosd binary."
+		echo "Flag --no-install passed -> Skipping installation of the aizeld binary."
 		install=false
 		shift # Move past the flag
 		;;
@@ -85,30 +85,30 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	rm -rf "$HOMEDIR"
 
 	# Set client config
-	evmosd config set client chain-id "$CHAINID" --home "$HOMEDIR"
-	evmosd config set client keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld config set client chain-id "$CHAINID" --home "$HOMEDIR"
+	aizeld config set client keyring-backend "$KEYRING" --home "$HOMEDIR"
 
-	# validator1 address 0x | evmos1yxkkj0ujpt95mj7zfy737ua8tqtgxhqft5ze93
+	# validator1 address 0x | aizel1yxkkj0ujpt95mj7zfy737ua8tqtgxhqft5ze93
 	VAL1_KEY="validator1"
 	VAL1_MNEMONIC="razor system inherit front boss cigar youth museum vocal enhance fat dolphin gas joy gift peace ramp doctor cargo equip chalk joke arrow fresh"
 	VAL1_KEY_PASS="20151225"
 	VAL2_KEY="validator2"
 	VAL2_MNEMONIC="surround soft tragic ensure accuse tooth soul attack ahead cheese few taxi hope priority globe crater enable still silly glad hire correct brush defense"
 	VAL2_KEY_PASS="20151225"
-	# dev0 address 0xaaafB3972B05630fCceE866eC69CdADd9baC2771 | evmos142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh
-	USER1_KEY_ADDRESS="evmos142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh"
+	# dev0 address 0xaaafB3972B05630fCceE866eC69CdADd9baC2771 | aizel142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh
+	USER1_KEY_ADDRESS="aizel142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh"
 	
-	# # dev1 address 0xF34B930cF45ED5C1B095A9ED7f9F9b63676C31a5 | evmos17d9exr85tm2urvy448khl8umvdnkcvd9e6dhpq
-	USER2_KEY_ADDRESS="evmos17d9exr85tm2urvy448khl8umvdnkcvd9e6dhpq"
+	# # dev1 address 0xF34B930cF45ED5C1B095A9ED7f9F9b63676C31a5 | aizel17d9exr85tm2urvy448khl8umvdnkcvd9e6dhpq
+	USER2_KEY_ADDRESS="aizel17d9exr85tm2urvy448khl8umvdnkcvd9e6dhpq"
 	
-	# # dev2 address 0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b | evmos1d0sz68fkv4nq6ghljcjt00s928hp4jgmymmkel
-	USER3_KEY_ADDRESS="evmos1d0sz68fkv4nq6ghljcjt00s928hp4jgmymmkel"
+	# # dev2 address 0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b | aizel1d0sz68fkv4nq6ghljcjt00s928hp4jgmymmkel
+	USER3_KEY_ADDRESS="aizel1d0sz68fkv4nq6ghljcjt00s928hp4jgmymmkel"
 	
-	# # dev3 address 0xFcC0E188e0214B818AFD4a8aA71EaEF7dcaf8ffd | evmos1lnqwrz8qy99crzhaf292w84w7lw2lrla3yyhmm
-	USER4_KEY_ADDRESS="evmos1lnqwrz8qy99crzhaf292w84w7lw2lrla3yyhmm"
+	# # dev3 address 0xFcC0E188e0214B818AFD4a8aA71EaEF7dcaf8ffd | aizel1lnqwrz8qy99crzhaf292w84w7lw2lrla3yyhmm
+	USER4_KEY_ADDRESS="aizel1lnqwrz8qy99crzhaf292w84w7lw2lrla3yyhmm"
 	
 	# Import keys from mnemonics
-	evmosd keys add "$VAL1_KEY" \
+	aizeld keys add "$VAL1_KEY" \
   		--recover \
   		--keyring-backend file \
   		--algo "$KEYALGO" \
@@ -117,7 +117,7 @@ $VAL1_MNEMONIC
 $VAL1_KEY_PASS
 $VAL1_KEY_PASS
 EOF
-	evmosd keys add "$VAL2_KEY" \
+	aizeld keys add "$VAL2_KEY" \
   		--recover \
   		--keyring-backend file \
   		--algo "$KEYALGO" \
@@ -126,14 +126,9 @@ $VAL2_MNEMONIC
 $VAL2_KEY_PASS
 $VAL2_KEY_PASS
 EOF
-	# echo "$VAL_MNEMONIC" | evmosd keys add "$VAL_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	# echo "$USER1_MNEMONIC" | evmosd keys add "$USER1_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	# echo "$USER2_MNEMONIC" | evmosd keys add "$USER2_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	# echo "$USER3_MNEMONIC" | evmosd keys add "$USER3_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
-	# echo "$USER4_MNEMONIC" | evmosd keys add "$USER4_KEY" --recover --keyring-backend "$KEYRING" --algo "$KEYALGO" --home "$HOMEDIR"
 
-	# Set moniker and chain-id for Evmos (Moniker can be anything, chain-id must be an integer)
-	evmosd init $MONIKER -o --chain-id "$CHAINID" --home "$HOMEDIR"
+	# Set moniker and chain-id for Aizel (Moniker can be anything, chain-id must be an integer)
+	aizeld init $MONIKER -o --chain-id "$CHAINID" --home "$HOMEDIR"
 
 	# Change parameter token denominations to $BASE_DENOM
 	jq --arg base_denom "$BASE_DENOM" '.app_state["staking"]["params"]["bond_denom"]=$base_denom' "$GENESIS" >"$TMP_GENESIS" && mv "$TMP_GENESIS" "$GENESIS"
@@ -195,6 +190,79 @@ EOF
 		grep -q -F '[versiondb]' "$APP_TOML" && sed -i '/\[versiondb\]/,/^\[/ s/enable = true/enable = false/' "$APP_TOML"
 	fi
 
+	# Additional modifications as requested:
+	if [[ "$OSTYPE" == "darwin"* ]]; then
+		# 1 & 2: Replace "localhost" & "127.0.0.1" with "0.0.0.0" in app, client, genesis
+		sed -i '' 's/localhost/0.0.0.0/g' "$APP_TOML"
+		sed -i '' 's/localhost/0.0.0.0/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+		sed -i '' 's/localhost/0.0.0.0/g' "$GENESIS"
+		sed -i '' 's/create_0.0.0.0/create_localhost/g' "$GENESIS"
+		sed -i '' 's/127.0.0.1/0.0.0.0/g' "$APP_TOML"
+		sed -i '' 's/127.0.0.1/0.0.0.0/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+		sed -i '' 's/127.0.0.1/0.0.0.0/g' "$GENESIS"
+
+		# 3: enabled-unsafe-cors = true in app
+		sed -i '' 's/^enabled-unsafe-cors = .*/enabled-unsafe-cors = true/' "$APP_TOML"
+
+		# 5: pruning="nothing" in app
+		sed -i '' 's/^pruning = .*/pruning = "nothing"/' "$APP_TOML"
+
+		# 6,7,8,9,10,11 (ports in app)
+		sed -i '' 's/:1317/:11317/g' "$APP_TOML"
+		sed -i '' 's/:9090/:19090/g' "$APP_TOML"
+		sed -i '' 's/:8545/:18545/g' "$APP_TOML"
+		sed -i '' 's/:8546/:18546/g' "$APP_TOML"
+		sed -i '' 's/:6065/:16065/g' "$APP_TOML"
+		sed -i '' 's/:26657/:56657/g' "$APP_TOML"
+
+		# 11,12,13,14,15 (ports in config + client)
+		sed -i '' 's/:26657/:56657/g' "$CONFIG"
+		sed -i '' 's/:26658/:56658/g' "$CONFIG"
+		sed -i '' 's/:6060/:16060/g' "$CONFIG"
+		sed -i '' 's/:26656/:56656/g' "$CONFIG"
+		sed -i '' 's/:26660/:56660/g' "$CONFIG"
+		# Also client
+		sed -i '' 's/:26657/:56657/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+
+		# 4: cors_allowed_origins = ["*"] in config
+		sed -i '' 's#^cors_allowed_origins = .*#cors_allowed_origins = ["*"]#' "$CONFIG"
+	else
+		# 1 & 2: Replace "localhost" & "127.0.0.1" with "0.0.0.0" in app, client, genesis
+		sed -i 's/localhost/0.0.0.0/g' "$APP_TOML"
+		sed -i 's/localhost/0.0.0.0/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+		sed -i 's/localhost/0.0.0.0/g' "$GENESIS"
+		sed -i 's/create_0.0.0.0/create_localhost/g' "$GENESIS"
+		sed -i 's/127.0.0.1/0.0.0.0/g' "$APP_TOML"
+		sed -i 's/127.0.0.1/0.0.0.0/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+		sed -i 's/127.0.0.1/0.0.0.0/g' "$GENESIS"
+
+		# 3: enabled-unsafe-cors = true in app
+		sed -i 's/^enabled-unsafe-cors = .*/enabled-unsafe-cors = true/' "$APP_TOML"
+
+		# 5: pruning="nothing" in app
+		sed -i 's/^pruning = .*/pruning = "nothing"/' "$APP_TOML"
+
+		# 6,7,8,9,10,11 (ports in app)
+		sed -i 's/:1317/:11317/g' "$APP_TOML"
+		sed -i 's/:9090/:19090/g' "$APP_TOML"
+		sed -i 's/:8545/:18545/g' "$APP_TOML"
+		sed -i 's/:8546/:18546/g' "$APP_TOML"
+		sed -i 's/:6065/:16065/g' "$APP_TOML"
+		sed -i 's/:26657/:56657/g' "$APP_TOML"
+
+		# 11,12,13,14,15 (ports in config + client)
+		sed -i 's/:26657/:56657/g' "$CONFIG"
+		sed -i 's/:26658/:56658/g' "$CONFIG"
+		sed -i 's/:6060/:16060/g' "$CONFIG"
+		sed -i 's/:26656/:56656/g' "$CONFIG"
+		sed -i 's/:26660/:56660/g' "$CONFIG"
+		# Also client
+		sed -i 's/:26657/:56657/g' "$HOMEDIR/config/client.toml" 2>/dev/null || true
+
+		# 4: cors_allowed_origins = ["*"] in config
+		sed -i 's#^cors_allowed_origins = .*#cors_allowed_origins = ["*"]#' "$CONFIG"
+	fi
+
 	# Change proposal periods to pass within a reasonable time for local testing
 	sed -i.bak 's/"max_deposit_period": "172800s"/"max_deposit_period": "30s"/g' "$GENESIS"
 	sed -i.bak 's/"voting_period": "172800s"/"voting_period": "30s"/g' "$GENESIS"
@@ -206,30 +274,13 @@ EOF
 	sed -i.bak 's/pruning-interval = "0"/pruning-interval = "10"/g' "$APP_TOML"
 
 	# Allocate genesis accounts (cosmos formatted addresses)
-	evmosd add-genesis-account "$(evmosd keys show "$VAL1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$(evmosd keys show "$VAL2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# evmosd add-genesis-account "$(evmosd keys show "$USER1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# evmosd add-genesis-account "$(evmosd keys show "$USER2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# evmosd add-genesis-account "$(evmosd keys show "$USER3_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# evmosd add-genesis-account "$(evmosd keys show "$USER4_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 1000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$USER1_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$USER2_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$USER3_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	evmosd add-genesis-account "$USER4_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# Sign genesis transaction
-	evmosd gentx "$VAL1_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"
-	## In case you want to create multiple validators at genesis
-	## 1. Back to `evmosd keys add` step, init more keys
-	## 2. Back to `evmosd add-genesis-account` step, add balance for those
-	## 3. Clone this ~/.evmosd home directory into some others, let's say `~/.clonedEvmosd`
-	## 4. Run `gentx` in each of those folders
-	## 5. Copy the `gentx-*` folders under `~/.clonedEvmosd/config/gentx/` folders into the original `~/.evmosd/config/gentx`
-
-	# Collect genesis tx
-	# evmosd collect-gentxs --home "$HOMEDIR"
-
-	# Run this to ensure everything worked and that the genesis file is setup correctly
-	# evmosd validate-genesis --home "$HOMEDIR"
+	aizeld add-genesis-account "$(aizeld keys show "$VAL1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$(aizeld keys show "$VAL2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	# aizeld add-genesis-account "$USER1_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	# aizeld add-genesis-account "$USER2_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	# aizeld add-genesis-account "$USER3_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	# aizeld add-genesis-account "$USER4_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld gentx "$VAL1_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"
 
 	if [[ $1 == "pending" ]]; then
 		echo "pending mode is on, please wait for the first block committed."
@@ -237,7 +288,7 @@ EOF
 fi
 
 # Start the node
-# evmosd start \
+# aizeld start \
 # 	--metrics "$TRACE" \
 # 	--log_level $LOGLEVEL \
 # 	--minimum-gas-prices=0.0001$BASE_DENOM \

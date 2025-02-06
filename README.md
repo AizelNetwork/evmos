@@ -8,25 +8,25 @@ parent:
 </div>
 
 <div align="center">
-  <a href="https://github.com/evmos/evmos/releases/latest">
+  <a href="https://github.com/AizelNetwork/evmos/releases/latest">
     <img alt="Version" src="https://img.shields.io/github/tag/evmos/evmos.svg" />
   </a>
-  <a href="https://github.com/evmos/evmos/blob/main/LICENSE">
+  <a href="https://github.com/AizelNetwork/evmos/blob/main/LICENSE">
     <img alt="License" src="https://img.shields.io/github/license/evmos/evmos.svg" />
   </a>
-  <a href="https://pkg.go.dev/github.com/evmos/evmos">
-    <img alt="GoDoc" src="https://godoc.org/github.com/evmos/evmos?status.svg" />
+  <a href="https://pkg.go.dev/github.com/AizelNetwork/evmos">
+    <img alt="GoDoc" src="https://godoc.org/github.com/AizelNetwork/evmos?status.svg" />
   </a>
-  <a href="https://goreportcard.com/report/github.com/evmos/evmos">
-    <img alt="Go report card" src="https://goreportcard.com/badge/github.com/evmos/evmos"/>
+  <a href="https://goreportcard.com/report/github.com/AizelNetwork/evmos">
+    <img alt="Go report card" src="https://goreportcard.com/badge/github.com/AizelNetwork/evmos"/>
   </a>
 </div>
 <div align="center">
   <a href="https://discord.gg/evmos">
     <img alt="Discord" src="https://img.shields.io/discord/809048090249134080.svg" />
   </a>
-  <a href="https://github.com/evmos/evmos/actions?query=branch%3Amain+workflow%3ALint">
-    <img alt="Lint Status" src="https://github.com/evmos/evmos/actions/workflows/lint.yml/badge.svg?branch=main" />
+  <a href="https://github.com/AizelNetwork/evmos/actions?query=branch%3Amain+workflow%3ALint">
+    <img alt="Lint Status" src="https://github.com/AizelNetwork/evmos/actions/workflows/lint.yml/badge.svg?branch=main" />
   </a>
   <a href="https://codecov.io/gh/evmos/evmos">
     <img alt="Code Coverage" src="https://codecov.io/gh/evmos/evmos/branch/main/graph/badge.svg" />
@@ -64,7 +64,7 @@ Once the dependencies are installed, run:
 make install
 ```
 
-Or check out the latest [release](https://github.com/evmos/evmos/releases).
+Or check out the latest [release](https://github.com/AizelNetwork/evmos/releases).
 
 ## Community
 
@@ -78,7 +78,7 @@ The following chat channels and forums are great spots to ask questions about Ev
 
 Looking for a good place to start contributing?
 Check out some
-[`good first issues`](https://github.com/evmos/evmos/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22).
+[`good first issues`](https://github.com/AizelNetwork/evmos/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22).
 
 For additional instructions, standards and style guides, please refer to the [Contributing](./CONTRIBUTING.md) document.
 
@@ -97,7 +97,7 @@ to be licensed under LGPLv3:
 - `x/erc20/keeper/proposals.go`
 - `x/erc20/types/utils.go`
 
-LGPLv3 will continue to apply to older versions ([<v13.0.0](https://github.com/evmos/evmos/releases/tag/v12.1.5))
+LGPLv3 will continue to apply to older versions ([<v13.0.0](https://github.com/AizelNetwork/evmos/releases/tag/v12.1.5))
 of the Evmos repository. For more information see [LICENSE](./LICENSE).
 
 > [!WARNING]
@@ -112,7 +112,7 @@ short form has been added to all ENCL-1.0 files:
 
 ```go
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 ```
 
 Exempted files contain the following SPDX ID:

@@ -6,7 +6,7 @@ import (
 	"math"
 	"math/big"
 
-	"github.com/evmos/evmos/v20/x/evm/keeper/testdata"
+	"github.com/AizelNetwork/evmos/v20/x/evm/keeper/testdata"
 
 	sdkmath "cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
@@ -15,17 +15,17 @@ import (
 	"github.com/ethereum/go-ethereum/common/hexutil"
 	"github.com/ethereum/go-ethereum/crypto"
 	ethparams "github.com/ethereum/go-ethereum/params"
-	ethlogger "github.com/evmos/evmos/v20/x/evm/core/logger"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
+	ethlogger "github.com/AizelNetwork/evmos/v20/x/evm/core/logger"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
 
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
-	"github.com/evmos/evmos/v20/server/config"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	testkeyring "github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	"github.com/evmos/evmos/v20/x/evm/statedb"
-	"github.com/evmos/evmos/v20/x/evm/types"
-	feemarkettypes "github.com/evmos/evmos/v20/x/feemarket/types"
+	"github.com/AizelNetwork/evmos/v20/server/config"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	testkeyring "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	"github.com/AizelNetwork/evmos/v20/x/evm/statedb"
+	"github.com/AizelNetwork/evmos/v20/x/evm/types"
+	feemarkettypes "github.com/AizelNetwork/evmos/v20/x/feemarket/types"
 )
 
 // Not valid Ethereum address

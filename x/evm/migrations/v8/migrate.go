@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package v8
 
@@ -8,8 +8,8 @@ import (
 	"github.com/cosmos/cosmos-sdk/codec"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	v7types "github.com/evmos/evmos/v20/x/evm/migrations/v8/types"
-	"github.com/evmos/evmos/v20/x/evm/types"
+	v7types "github.com/AizelNetwork/evmos/v20/x/evm/migrations/v8/types"
+	"github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 // MigrateStore migrates the x/evm module state from the consensus version 7 to

@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package slashing_test
 
@@ -8,10 +8,10 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
-	"github.com/evmos/evmos/v20/precompiles/slashing"
-	"github.com/evmos/evmos/v20/precompiles/testutil"
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
+	"github.com/AizelNetwork/evmos/v20/precompiles/slashing"
+	"github.com/AizelNetwork/evmos/v20/precompiles/testutil"
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
 )
 
 func (s *PrecompileTestSuite) TestUnjail() {

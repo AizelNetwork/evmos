@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package utils
 
@@ -11,7 +11,7 @@ import (
 	ibctransfertypes "github.com/cosmos/ibc-go/v8/modules/apps/transfer/types"
 	"github.com/ethereum/go-ethereum/common"
 
-	"github.com/evmos/evmos/v20/crypto/ethsecp256k1"
+	"github.com/AizelNetwork/evmos/v20/crypto/ethsecp256k1"
 
 	errorsmod "cosmossdk.io/errors"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
@@ -24,16 +24,16 @@ import (
 
 const (
 	// MainnetChainID defines the Evmos EIP155 chain ID for mainnet
-	MainnetChainID = "evmos_9001"
+	MainnetChainID = "aizel_9001"
 	// TestnetChainID defines the Evmos EIP155 chain ID for testnet
-	TestnetChainID = "evmos_9000"
+	TestnetChainID = "aizel_9000"
 	// TestingChainID defines the Evmos EIP155 chain ID for testing purposes
 	// like the local node.
-	TestingChainID = "evmos_9002"
+	TestingChainID = "aizel_9002"
 	// SixDecChainID defines the Evmos EIP155 chain ID with 6 decimals precision
-	SixDecChainID = "evmosix_9000"
+	SixDecChainID = "aizelix_9000"
 	// ICSChainID defines the Evmos EIP155 chain ID with IBC uatom as denom with 6 decimals precision
-	ICSChainID = "evmosics_9000"
+	ICSChainID = "aizelics_9000"
 )
 
 // EthHexToCosmosAddr takes a given Hex string and derives a Cosmos SDK account address
@@ -104,7 +104,7 @@ func IsSupportedKey(pubkey cryptotypes.PubKey) bool {
 
 // GetEvmosAddressFromBech32 returns the sdk.Account address of given address,
 // while also changing bech32 human readable prefix (HRP) to the value set on
-// the global sdk.Config (eg: `evmos`).
+// the global sdk.Config (eg: `aizel`).
 // The function fails if the provided bech32 address is invalid.
 func GetEvmosAddressFromBech32(address string) (sdk.AccAddress, error) {
 	bech32Prefix := strings.SplitN(address, "1", 2)[0]

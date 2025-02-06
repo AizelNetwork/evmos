@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 //go:build test
 // +build test
@@ -12,7 +12,7 @@ import (
 
 	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 // EvmosOptionsFn defines a function type for setting app options specifically for
@@ -51,7 +51,7 @@ func EvmosAppOptions(chainID string) error {
 	// reset configuration to set the new one
 	configurator.ResetTestConfig()
 	err = configurator.
-		WithExtendedEips(evmosActivators).
+		WithExtendedEips(aizelActivators).
 		WithChainConfig(ethCfg).
 		WithEVMCoinInfo(baseDenom, uint8(coinInfo.Decimals)).
 		Configure()

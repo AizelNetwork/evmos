@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package ibctesting
 
@@ -19,9 +19,9 @@ import (
 	ibcgotesting "github.com/cosmos/ibc-go/v8/testing"
 	"github.com/cosmos/ibc-go/v8/testing/mock"
 
-	"github.com/evmos/evmos/v20/crypto/ethsecp256k1"
-	evmostypes "github.com/evmos/evmos/v20/types"
-	"github.com/evmos/evmos/v20/utils"
+	"github.com/AizelNetwork/evmos/v20/crypto/ethsecp256k1"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/utils"
 )
 
 // ChainIDPrefix defines the default chain ID prefix for Evmos test chains
@@ -63,11 +63,11 @@ func NewTestChain(t *testing.T, coord *ibcgotesting.Coordinator, chainID string)
 
 	baseAcc := authtypes.NewBaseAccount(senderPrivKey.PubKey().Address().Bytes(), senderPrivKey.PubKey(), 0, 0)
 
-	amount := sdk.TokensFromConsensusPower(1, evmostypes.PowerReduction)
+	amount := sdk.TokensFromConsensusPower(1, aizeltypes.PowerReduction)
 
 	balance := banktypes.Balance{
 		Address: baseAcc.GetAddress().String(),
-		Coins:   sdk.NewCoins(sdk.NewCoin(evmostypes.BaseDenom, amount)),
+		Coins:   sdk.NewCoins(sdk.NewCoin(aizeltypes.BaseDenom, amount)),
 	}
 
 	app := SetupWithGenesisValSet(t, valSet, []authtypes.GenesisAccount{baseAcc}, chainID, balance)

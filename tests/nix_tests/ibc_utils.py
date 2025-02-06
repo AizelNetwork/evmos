@@ -8,7 +8,7 @@ from pystarport import ports
 from .network import (
     CosmosChain,
     Hermes,
-    build_patched_evmosd,
+    build_patched_aizeld,
     create_snapshots_dir,
     setup_custom_evmos,
 )
@@ -20,7 +20,7 @@ from .utils import (
     memiavl_config,
     setup_stride,
     update_evmos_bin,
-    update_evmosd_and_setup_stride,
+    update_aizeld_and_setup_stride,
     wait_for_fn,
     wait_for_port,
 )
@@ -41,17 +41,17 @@ RATIO = 10**10
 IBC_CHAINS_META = {
     "evmos": {
         "chain_name": "evmos_9002-1",
-        "bin": "evmosd",
+        "bin": "aizeld",
         "denom": "aevmos",
     },
     "evmos-6dec": {
         "chain_name": "evmosics_9000-1",
-        "bin": "evmosd",
+        "bin": "aizeld",
         "denom": "ibc/27394FB092D2ECCD56123C74F36E4C1F926001CEADA9CA97EA622B25F41E5EB2",
     },
     "evmos-rocksdb": {
         "chain_name": "evmos_9002-1",
-        "bin": "evmosd-rocksdb",
+        "bin": "aizeld-rocksdb",
         "denom": "aevmos",
     },
     "chainmain": {
@@ -107,7 +107,7 @@ def get_evmos_generator(
             tmp_path,
             26710,
             Path(__file__).parent / file,
-            chain_binary="evmosd-rocksdb",
+            chain_binary="aizeld-rocksdb",
             post_init=create_snapshots_dir,
         )
     elif is_6dec:
@@ -119,10 +119,10 @@ def get_evmos_generator(
         file = f"configs/{file}.jsonnet"
         if custom_scenario:
             # build the binary modified for a custom scenario
-            modified_bin = build_patched_evmosd(custom_scenario)
+            modified_bin = build_patched_aizeld(custom_scenario)
             post_init_func = update_evmos_bin(modified_bin)
             if stride_included:
-                post_init_func = update_evmosd_and_setup_stride(modified_bin)
+                post_init_func = update_aizeld_and_setup_stride(modified_bin)
             gen = setup_custom_evmos(
                 tmp_path,
                 26700,

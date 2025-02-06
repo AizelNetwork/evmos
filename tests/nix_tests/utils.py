@@ -531,7 +531,7 @@ local default = import '{tests_dir}/configs/{file_name}.jsonnet';
 default {{
   dotenv: '{root_dir}/scripts/.env',
   'evmos_9002-1'+: {{
-    cmd: 'evmosd-rocksdb',
+    cmd: 'aizeld-rocksdb',
     'app-config'+: {{
       'app-db-backend': 'rocksdb',
       memiavl: {{
@@ -665,7 +665,7 @@ def update_node_cmd(path, cmd, i):
         ini.write(fp)
 
 
-def update_evmosd_and_setup_stride(modified_bin):
+def update_aizeld_and_setup_stride(modified_bin):
     def inner(path, base_port, config):  # pylint: disable=unused-argument
         update_evmos_bin(modified_bin)(path, base_port, config)
         setup_stride()(path, base_port, config)

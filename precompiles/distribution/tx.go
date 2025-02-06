@@ -1,20 +1,20 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package distribution
 
 import (
 	"fmt"
 
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
 
 	"github.com/ethereum/go-ethereum/common"
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	distributionkeeper "github.com/cosmos/cosmos-sdk/x/distribution/keeper"
 	"github.com/ethereum/go-ethereum/accounts/abi"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 const (

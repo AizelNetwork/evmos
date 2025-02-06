@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package types
 
@@ -9,8 +9,8 @@ import (
 	"slices"
 
 	"github.com/ethereum/go-ethereum/common"
-	"github.com/evmos/evmos/v20/types"
-	"github.com/evmos/evmos/v20/utils"
+	"github.com/AizelNetwork/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/utils"
 )
 
 const (
@@ -29,7 +29,7 @@ var chainsWEVMOSHex = map[string]string{
 
 // GetWEVMOSContractHex returns the hex format of address for the WEVMOS contract given the
 // chainID. If the chainID is not found, it defaults to the mainnet address.
-// The function expect the chain ID for a Cosmos chain, i.e. evmos_9000
+// The function expect the chain ID for a Cosmos chain, i.e. aizel_9000
 func GetWEVMOSContractHex(chainID string) string {
 	address, found := chainsWEVMOSHex[chainID]
 	// default to mainnet address

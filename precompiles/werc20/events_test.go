@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package werc20_test
 
@@ -13,15 +13,15 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
-	"github.com/evmos/evmos/v20/precompiles/werc20"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/grpc"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	"github.com/evmos/evmos/v20/utils"
-	erc20types "github.com/evmos/evmos/v20/x/erc20/types"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
+	"github.com/AizelNetwork/evmos/v20/precompiles/werc20"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/grpc"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	"github.com/AizelNetwork/evmos/v20/utils"
+	erc20types "github.com/AizelNetwork/evmos/v20/x/erc20/types"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 )
 
 type PrecompileUnitTestSuite struct {
@@ -66,7 +66,7 @@ func (s *PrecompileUnitTestSuite) SetupTest(chainID string) {
 
 	tokenPairID := s.network.App.Erc20Keeper.GetTokenPairID(ctx, evmtypes.GetEVMCoinDenom())
 	tokenPair, found := s.network.App.Erc20Keeper.GetTokenPair(ctx, tokenPairID)
-	s.Require().True(found, "expected wevmos precompile to be registered in the tokens map")
+	s.Require().True(found, "expected waizel precompile to be registered in the tokens map")
 	s.Require().Equal(s.precompileAddrHex, tokenPair.Erc20Address, "expected a different address of the contract")
 
 	precompile, err := werc20.NewPrecompile(

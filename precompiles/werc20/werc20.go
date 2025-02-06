@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package werc20
 
@@ -8,17 +8,17 @@ import (
 	"fmt"
 	"slices"
 
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
 
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 
 	authzkeeper "github.com/cosmos/cosmos-sdk/x/authz/keeper"
 	bankkeeper "github.com/cosmos/cosmos-sdk/x/bank/keeper"
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
-	erc20 "github.com/evmos/evmos/v20/precompiles/erc20"
-	erc20types "github.com/evmos/evmos/v20/x/erc20/types"
-	transferkeeper "github.com/evmos/evmos/v20/x/ibc/transfer/keeper"
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
+	erc20 "github.com/AizelNetwork/evmos/v20/precompiles/erc20"
+	erc20types "github.com/AizelNetwork/evmos/v20/x/erc20/types"
+	transferkeeper "github.com/AizelNetwork/evmos/v20/x/ibc/transfer/keeper"
 )
 
 // abiPath defines the path to the WERC-20 precompile ABI JSON file.

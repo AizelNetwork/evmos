@@ -183,7 +183,7 @@ def is_evmos_repo(path: Path) -> bool:
             if not line:
                 break
 
-            if "module github.com/evmos/evmos" in line:
+            if "module github.com/AizelNetwork/evmos" in line:
                 return True
 
     return False

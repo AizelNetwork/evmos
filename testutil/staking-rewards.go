@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package testutil
 
@@ -16,9 +16,9 @@ import (
 	stakingkeeper "github.com/cosmos/cosmos-sdk/x/staking/keeper"
 	teststaking "github.com/cosmos/cosmos-sdk/x/staking/testutil"
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
-	"github.com/evmos/evmos/v20/app"
-	testutiltx "github.com/evmos/evmos/v20/testutil/tx"
-	evmostypes "github.com/evmos/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/app"
+	testutiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
 	"github.com/stretchr/testify/require"
 )
 
@@ -86,7 +86,7 @@ func PrepareAccountsForDelegationRewards(t *testing.T, ctx sdk.Context, app *app
 
 	// set distribution module account balance which pays out the rewards
 	distrAcc := app.DistrKeeper.GetDistributionAccount(ctx)
-	err := FundModuleAccount(ctx, app.BankKeeper, distrAcc.GetName(), sdk.NewCoins(sdk.NewCoin(evmostypes.BaseDenom, totalRewards)))
+	err := FundModuleAccount(ctx, app.BankKeeper, distrAcc.GetName(), sdk.NewCoins(sdk.NewCoin(aizeltypes.BaseDenom, totalRewards)))
 	if err != nil {
 		return sdk.Context{}, fmt.Errorf("failed to fund distribution module account: %s", err.Error())
 	}
@@ -110,7 +110,7 @@ func PrepareAccountsForDelegationRewards(t *testing.T, ctx sdk.Context, app *app
 		if err != nil {
 			return sdk.Context{}, fmt.Errorf("failed to get staking params: %s", err.Error())
 		}
-		stakingParams.BondDenom = evmostypes.BaseDenom
+		stakingParams.BondDenom = aizeltypes.BaseDenom
 		stakingParams.MinCommissionRate = zeroDec
 		err = app.StakingKeeper.SetParams(ctx, stakingParams)
 		require.NoError(t, err)

@@ -12,7 +12,7 @@
 // GNU Lesser General Public License for more details.
 //
 // You should have received a copy of the GNU Lesser General Public License
-// along with the Evmos packages. If not, see https://github.com/evmos/evmos/blob/main/LICENSE
+// along with the Evmos packages. If not, see https://github.com/AizelNetwork/evmos/blob/main/LICENSE
 package v4_test
 
 import (
@@ -21,9 +21,9 @@ import (
 	storetypes "cosmossdk.io/store/types"
 	"github.com/cosmos/cosmos-sdk/testutil"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	"github.com/evmos/evmos/v20/encoding"
-	v4 "github.com/evmos/evmos/v20/x/feemarket/migrations/v4"
-	"github.com/evmos/evmos/v20/x/feemarket/types"
+	"github.com/AizelNetwork/evmos/v20/encoding"
+	v4 "github.com/AizelNetwork/evmos/v20/x/feemarket/migrations/v4"
+	"github.com/AizelNetwork/evmos/v20/x/feemarket/types"
 	"github.com/stretchr/testify/require"
 )
 

@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package ledger_test
 
@@ -9,8 +9,8 @@ import (
 	gethaccounts "github.com/ethereum/go-ethereum/accounts"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/evmos/evmos/v20/wallets/accounts"
-	"github.com/evmos/evmos/v20/wallets/ledger"
+	"github.com/AizelNetwork/evmos/v20/wallets/accounts"
+	"github.com/AizelNetwork/evmos/v20/wallets/ledger"
 )
 
 func (suite *LedgerTestSuite) TestEvmosLedgerDerivation() {
@@ -206,7 +206,7 @@ func (suite *LedgerTestSuite) TestGetAddressPubKeySECP256K1() {
 	suite.Require().NoError(err)
 
 	addr := crypto.PubkeyToAddress(privKey.PublicKey)
-	expAddr, err := sdk.Bech32ifyAddressBytes("evmos", common.HexToAddress(addr.String()).Bytes())
+	expAddr, err := sdk.Bech32ifyAddressBytes("aizel", common.HexToAddress(addr.String()).Bytes())
 	suite.Require().NoError(err)
 
 	testCases := []struct {

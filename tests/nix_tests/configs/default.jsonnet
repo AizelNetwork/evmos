@@ -3,7 +3,7 @@
   'evmos_9002-1': {
     'account-prefix': 'evmos',
     'coin-type': 60,
-    cmd: 'evmosd',
+    cmd: 'aizeld',
     'start-flags': '--trace',
     'app-config': {
       'app-db-backend': 'goleveldb',

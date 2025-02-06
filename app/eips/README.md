@@ -19,7 +19,7 @@ defined with the signature:
 func(jt *vm.JumpTable) {}
 ```
 
-where `vm` is the package `"github.com/evmos/evmos/v20/x/evm/core/vm"`.
+where `vm` is the package `"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"`.
 
 Custom EIPs are used to modify the behavior of opcodes, which are described by the `operation` structure:
 
@@ -70,7 +70,7 @@ In the same folder should also be defined tests and contracts used to verify the
 
 The activation of custom EIPs should be done inside the `config.go` file defined in the `./app/` folder. This file has
 the role of the single source for modify the EVM implementation which is defined in the
-[`x/evm/`](https://github.com/evmos/evmos/tree/main/x/evm) folder
+[`x/evm/`](https://github.com/AizelNetwork/evmos/tree/main/x/evm) folder
 of **evmOS**.
 
 In this file, 3 main components should be defined:

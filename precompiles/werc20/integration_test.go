@@ -1,5 +1,5 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package werc20_test
 
@@ -11,19 +11,19 @@ import (
 	"cosmossdk.io/math"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
-	auth "github.com/evmos/evmos/v20/precompiles/authorization"
-	"github.com/evmos/evmos/v20/precompiles/erc20"
-	"github.com/evmos/evmos/v20/precompiles/testutil"
-	"github.com/evmos/evmos/v20/precompiles/werc20"
-	"github.com/evmos/evmos/v20/precompiles/werc20/testdata"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/grpc"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
-	erc20types "github.com/evmos/evmos/v20/x/erc20/types"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
-	feemarkettypes "github.com/evmos/evmos/v20/x/feemarket/types"
+	auth "github.com/AizelNetwork/evmos/v20/precompiles/authorization"
+	"github.com/AizelNetwork/evmos/v20/precompiles/erc20"
+	"github.com/AizelNetwork/evmos/v20/precompiles/testutil"
+	"github.com/AizelNetwork/evmos/v20/precompiles/werc20"
+	"github.com/AizelNetwork/evmos/v20/precompiles/werc20/testdata"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/grpc"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	erc20types "github.com/AizelNetwork/evmos/v20/x/erc20/types"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
+	feemarkettypes "github.com/AizelNetwork/evmos/v20/x/feemarket/types"
 
 	"github.com/ethereum/go-ethereum/common"
 
@@ -140,7 +140,7 @@ var _ = When("a user interact with the WEVMOS precompiled contract", func() {
 		erc20Params := is.network.App.Erc20Keeper.GetParams(ctx)
 		Expect(erc20Params.NativePrecompiles).To(
 			ContainElement(is.precompileAddrHex),
-			"expected wevmos to be in the native precompiles",
+			"expected waizel to be in the native precompiles",
 		)
 		_, found := is.network.App.BankKeeper.GetDenomMetaData(ctx, evmtypes.GetEVMCoinDenom())
 		Expect(found).To(BeTrue(), "expected native token metadata to be registered")
@@ -148,7 +148,7 @@ var _ = When("a user interact with the WEVMOS precompiled contract", func() {
 		// Check that WEVMOS is registered in the token pairs map.
 		tokenPairID := is.network.App.Erc20Keeper.GetTokenPairID(ctx, is.wrappedCoinDenom)
 		tokenPair, found := is.network.App.Erc20Keeper.GetTokenPair(ctx, tokenPairID)
-		Expect(found).To(BeTrue(), "expected wevmos precompile to be registered in the tokens map")
+		Expect(found).To(BeTrue(), "expected waizel precompile to be registered in the tokens map")
 		Expect(tokenPair.Erc20Address).To(Equal(is.precompileAddrHex))
 
 		precompileAddr := common.HexToAddress(is.precompileAddrHex)

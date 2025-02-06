@@ -85,7 +85,7 @@ class TestParseChangelog:
         changelog = Changelog(os.path.join(SCRIPT_DIR, "testdata", "changelog_fail.md"))
         assert changelog.parse() is False
         assert changelog.problems == [
-            'PR link is not matching PR number 1948: "https://github.com/evmos/evmos/pull/1949"',
+            'PR link is not matching PR number 1948: "https://github.com/AizelNetwork/evmos/pull/1949"',
             "There should be no backslash in front of the # in the PR link",
             '"ABI" should be used instead of "ABi"',
             '"outpost" should be used instead of "Outpost"',
@@ -103,7 +103,7 @@ class TestParseChangelog:
         changelog = Changelog(create_tmp_copy)
         assert changelog.parse(fix=True) is False
         assert changelog.problems == [
-            'PR link is not matching PR number 1948: "https://github.com/evmos/evmos/pull/1949"',
+            'PR link is not matching PR number 1948: "https://github.com/AizelNetwork/evmos/pull/1949"',
             "There should be no backslash in front of the # in the PR link",
             '"ABI" should be used instead of "ABi"',
             '"outpost" should be used instead of "Outpost"',

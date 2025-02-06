@@ -1,18 +1,18 @@
 // Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package types
 
 import (
 	"fmt"
 
-	evmostypes "github.com/evmos/evmos/v20/types"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
 )
 
 var DefaultTokenPairs = []TokenPair{
 	{
 		Erc20Address:  WEVMOSContractMainnet,
-		Denom:         evmostypes.BaseDenom,
+		Denom:         aizeltypes.BaseDenom,
 		Enabled:       true,
 		ContractOwner: OWNER_MODULE,
 	},
