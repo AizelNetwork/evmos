@@ -96,16 +96,16 @@ if [[ $overwrite == "y" || $overwrite == "Y" ]]; then
 	VAL2_MNEMONIC="surround soft tragic ensure accuse tooth soul attack ahead cheese few taxi hope priority globe crater enable still silly glad hire correct brush defense"
 	VAL2_KEY_PASS="20151225"
 	# dev0 address 0xaaafB3972B05630fCceE866eC69CdADd9baC2771 | aizel142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh
-	USER1_KEY_ADDRESS="aizel142hm89etq43sln8wsehvd8x6mkd6cfm36gdlkh"
+	USER1_KEY_ADDRESS="aizel142hm89etq43sln8wsehvd8x6mkd6cfm35279kg"
 	
 	# # dev1 address 0xF34B930cF45ED5C1B095A9ED7f9F9b63676C31a5 | aizel17d9exr85tm2urvy448khl8umvdnkcvd9e6dhpq
-	USER2_KEY_ADDRESS="aizel17d9exr85tm2urvy448khl8umvdnkcvd9e6dhpq"
+	USER2_KEY_ADDRESS="aizel17d9exr85tm2urvy448khl8umvdnkcvd9hc7dpl"
 	
 	# # dev2 address 0x6Be02d1d3665660d22FF9624b7BE0551ee1Ac91b | aizel1d0sz68fkv4nq6ghljcjt00s928hp4jgmymmkel
-	USER3_KEY_ADDRESS="aizel1d0sz68fkv4nq6ghljcjt00s928hp4jgmymmkel"
+	USER3_KEY_ADDRESS="aizel1d0sz68fkv4nq6ghljcjt00s928hp4jgm2egveq"
 	
 	# # dev3 address 0xFcC0E188e0214B818AFD4a8aA71EaEF7dcaf8ffd | aizel1lnqwrz8qy99crzhaf292w84w7lw2lrla3yyhmm
-	USER4_KEY_ADDRESS="aizel1lnqwrz8qy99crzhaf292w84w7lw2lrla3yyhmm"
+	USER4_KEY_ADDRESS="aizel1lnqwrz8qy99crzhaf292w84w7lw2lrlalxhdmy"
 	
 	# Import keys from mnemonics
 	aizeld keys add "$VAL1_KEY" \
@@ -276,10 +276,10 @@ EOF
 	# Allocate genesis accounts (cosmos formatted addresses)
 	aizeld add-genesis-account "$(aizeld keys show "$VAL1_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	aizeld add-genesis-account "$(aizeld keys show "$VAL2_KEY" -a --keyring-backend "$KEYRING" --home "$HOMEDIR")" 100000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# aizeld add-genesis-account "$USER1_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# aizeld add-genesis-account "$USER2_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# aizeld add-genesis-account "$USER3_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
-	# aizeld add-genesis-account "$USER4_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$USER1_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$USER2_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$USER3_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
+	aizeld add-genesis-account "$USER4_KEY_ADDRESS" 1000000000000000000000000000$BASE_DENOM --keyring-backend "$KEYRING" --home "$HOMEDIR"
 	aizeld gentx "$VAL1_KEY" 1000000000000000000000$BASE_DENOM --gas-prices ${BASEFEE}$BASE_DENOM --keyring-backend "$KEYRING" --chain-id "$CHAINID" --home "$HOMEDIR"
 
 	if [[ $1 == "pending" ]]; then

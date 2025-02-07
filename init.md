@@ -1,28 +1,29 @@
 ### 1. Initial node1 :
 
+#### 1.1. Generate bench32 format address from evm cold wallet address.
+
+```bash
+aizeld debug addr [evm-address]
+```
+
+apply the above generated bench32 address for the USER1, USER2, USER3, USER4 in file prod_node1.sh
+
+
+#### 1.2. Initial node1 by running script :
+
 ```bash
 ./prod_node1.sh
 ```
 
-### 2. Update node1 config data :
+### 2. Do with node2 
 
-#### 2.1 replace "localhost" with "0.0.0.0"
-
-#### 2.2 replace "127.0.0.1" with "0.0.0.0"
-
-#### 2.3 find "cors" and set it to true
-
-#### 2.4 in app.toml, set pruning="nothing", only for node1
-
-### 3. Do with node2 
-
-### 3.1 Clone node1 to node2 
+### 2.1 Clone node1 to node2 
 
 ```bash
 sudo cp -r $AIZELHOME/node1 $AIZELHOME/node2
 ```
 
-### 3.2 Customize node2 config
+### 2.2 Customize node2 config
 
 ```bash
 name "node1" => "node2"
@@ -42,7 +43,7 @@ aizeld tendermint show-node-id --home $AIZELHOME/node1
 persistent_peers = "<node1_id>@<node1_ip>:26656"
 ```
 
-### 3.3 Generate node_key and validator_key for node2
+### 2.3 Generate node_key and validator_key for node2
 
 ```bash
 # inital node in other folder
@@ -60,24 +61,24 @@ sudo cp $AIZELHOME/node3/config/priv_validator_key.json  $AIZELHOME/node2/config
 sudo rm -rf $AIZELHOME/node3
 ```
 
-### 3.4 Run `gentx` in node2 folders
+### 2.4 Run `gentx` in node2 folders
 ```bash
 ./prod_node2.sh
 ```
-### 3.5 copy the `gentx-*` folders under  `$AIZELHOME/node2/config/gentx/` folders into the original `$AIZELHOME/node1/config/gentx/`
+### 2.5 copy the `gentx-*` folders under  `$AIZELHOME/node2/config/gentx/` folders into the original `$AIZELHOME/node1/config/gentx/`
 
 ```bash
 sudo cp -r $AIZELHOME/node2/config/gentx/*  $AIZELHOME/node1/config/gentx/
 ```
 
-### 4. Back with node2 
-#### 4.1 Collect genesis tx 
+### 3. Back with node2 
+#### 3.1 Collect genesis tx 
 
 ```bash
 ./collect-gentxs.sh
 ```
 
-#### 4.2 Copy genisis file from node1 to node2
+#### 3.2 Copy genisis file from node1 to node2
 
 ```bash
 sudo rm $AIZELHOME/node2/config/genesis.json
@@ -85,10 +86,19 @@ sudo rm $AIZELHOME/node2/config/genesis.json
 sudo cp $AIZELHOME/node1/config/genesis.json $AIZELHOME/node2/config/
 ```
 
-#### 4.3 Start the nodes
+#### 3.3 Start the nodes
 
 ```bash
 ./start-nodes.sh
+```
+
+### 3.4 Get block number to test the chain
+
+```bash
+curl -X POST \
+  -H "Content-Type: application/json" \
+  --data '{"jsonrpc":"2.0","method":"eth_blockNumber","params":[],"id":1}' \
+  http://localhost:18545
 ```
 
 ## FAQ
