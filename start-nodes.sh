@@ -1,5 +1,5 @@
 #!/bin/bash
-CHAINID="${CHAIN_ID:-aizel_9002-20151225}"
+CHAINID="${CHAIN_ID:-aizel_2015-3333}"
 BASE_DENOM="aaizel"
 TRACE=""
 LOGLEVEL="info"

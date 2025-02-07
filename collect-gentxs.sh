@@ -1,6 +1,6 @@
 #!/bin/bash
 
-CHAINID="${CHAIN_ID:-aizel_9002-20151225}"
+CHAINID="${CHAIN_ID:-aizel_2015-3333}"
 BASE_DENOM="aaizel"
 MONIKER="node1"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
