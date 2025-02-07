@@ -1,11 +1,12 @@
 #!/bin/bash
+set -e
 
 CHAINID="${CHAIN_ID:-aizel_2015-3333}"
 BASE_DENOM="aaizel"
 MONIKER="node1"
 # Remember to change to other types of keyring like 'file' in-case exposing to outside world,
-# otherwise your balance will be wiped quickly
-# The keyring test does not require private key to steal tokens from you
+# otherwise your balance will be wiped quickly.
+# The keyring test does not require private key to steal tokens from you.
 KEYRING="file"
 KEYALGO="eth_secp256k1"
 LOGLEVEL="info"
@@ -29,3 +30,14 @@ aizeld collect-gentxs --home "$HOMEDIR"
 
 # Run this to ensure everything worked and that the genesis file is setup correctly
 aizeld validate-genesis --home "$HOMEDIR"
+
+# --- Additional Logic: Copy genesis file from node1 to node2 ---
+echo "Copying genesis file from node1 to node2..."
+
+# Remove node2's current genesis file
+sudo rm -f "$AIZELHOME/node2/config/genesis.json"
+
+# Copy the genesis file from node1 to node2
+sudo cp "$AIZELHOME/node1/config/genesis.json" "$AIZELHOME/node2/config/"
+
+echo "Genesis file successfully copied to node2."
