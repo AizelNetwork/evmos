@@ -3,8 +3,8 @@ package types_test
 import (
 	"testing"
 
-	evmostypes "github.com/evmos/evmos/v20/types"
-	"github.com/evmos/evmos/v20/x/erc20/types"
+	aizeltypes "github.com/AizelNetwork/evmos/v20/types"
+	"github.com/AizelNetwork/evmos/v20/x/erc20/types"
 	"github.com/stretchr/testify/suite"
 )
 
@@ -56,8 +56,8 @@ func (suite *GenesisTestSuite) TestValidateGenesis() {
 						Enabled:      true,
 					},
 					{
-						Erc20Address: types.WEVMOSContractMainnet,
-						Denom:        evmostypes.BaseDenom,
+						Erc20Address: types.WAIZELContractMainnet,
+						Denom:        aizeltypes.BaseDenom,
 						Enabled:      true,
 					},
 				},
@@ -80,8 +80,8 @@ func (suite *GenesisTestSuite) TestValidateGenesis() {
 						Enabled:      true,
 					},
 					{
-						Erc20Address: types.WEVMOSContractMainnet,
-						Denom:        evmostypes.BaseDenom,
+						Erc20Address: types.WAIZELContractMainnet,
+						Denom:        aizeltypes.BaseDenom,
 						Enabled:      true,
 					},
 				},
@@ -104,8 +104,8 @@ func (suite *GenesisTestSuite) TestValidateGenesis() {
 						Enabled:      true,
 					},
 					{
-						Erc20Address: types.WEVMOSContractMainnet,
-						Denom:        evmostypes.BaseDenom,
+						Erc20Address: types.WAIZELContractMainnet,
+						Denom:        aizeltypes.BaseDenom,
 						Enabled:      true,
 					},
 				},
@@ -128,8 +128,8 @@ func (suite *GenesisTestSuite) TestValidateGenesis() {
 						Enabled:      true,
 					},
 					{
-						Erc20Address: types.WEVMOSContractMainnet,
-						Denom:        evmostypes.BaseDenom,
+						Erc20Address: types.WAIZELContractMainnet,
+						Denom:        aizeltypes.BaseDenom,
 						Enabled:      true,
 					},
 				},
@@ -147,8 +147,8 @@ func (suite *GenesisTestSuite) TestValidateGenesis() {
 						Enabled:      true,
 					},
 					{
-						Erc20Address: types.WEVMOSContractMainnet,
-						Denom:        evmostypes.BaseDenom,
+						Erc20Address: types.WAIZELContractMainnet,
+						Denom:        aizeltypes.BaseDenom,
 						Enabled:      true,
 					},
 				},
@@ -156,7 +156,7 @@ func (suite *GenesisTestSuite) TestValidateGenesis() {
 			expPass: false,
 		},
 		{
-			name: "invalid genesis - missing wevmos token pair",
+			name: "invalid genesis - missing waizel token pair",
 			genState: &types.GenesisState{
 				Params: types.DefaultParams(),
 				TokenPairs: []types.TokenPair{

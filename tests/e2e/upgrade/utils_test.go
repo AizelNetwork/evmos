@@ -48,10 +48,10 @@ func TestCheckUpgradeProposalVersion(t *testing.T) {
 	}
 }
 
-// TestEvmosVersionsLess tests the EvmosVersions type's Less method with
+// TestAizelVersionsLess tests the AizelVersions type's Less method with
 // different version strings
-func TestEvmosVersionsLess(t *testing.T) {
-	var version EvmosVersions
+func TestAizelVersionsLess(t *testing.T) {
+	var version AizelVersions
 
 	testCases := []struct {
 		Name string
@@ -78,18 +78,18 @@ func TestEvmosVersionsLess(t *testing.T) {
 	}
 }
 
-// TestEvmosVersionsSwap tests the EvmosVersions type's Swap method
-func TestEvmosVersionsSwap(t *testing.T) {
-	var version EvmosVersions
+// TestAizelVersionsSwap tests the AizelVersions type's Swap method
+func TestAizelVersionsSwap(t *testing.T) {
+	var version AizelVersions
 	value := "v9.1.0"
 	version = []string{value, "v10.0.0"}
 	version.Swap(0, 1)
 	require.Equal(t, value, version[1], "expected: %v, got: %v", value, version[1])
 }
 
-// TestEvmosVersionsLen tests the EvmosVersions type's Len method
-func TestEvmosVersionsLen(t *testing.T) {
-	var version EvmosVersions = []string{"v9.1.0", "v10.0.0"}
+// TestAizelVersionsLen tests the AizelVersions type's Len method
+func TestAizelVersionsLen(t *testing.T) {
+	var version AizelVersions = []string{"v9.1.0", "v10.0.0"}
 	require.Equal(t, 2, version.Len(), "expected: %v, got: %v", 2, version.Len())
 }
 

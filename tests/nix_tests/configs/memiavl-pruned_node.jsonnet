@@ -1,8 +1,8 @@
 local config = import 'default.jsonnet';
 
 config {
-  'evmos_9002-1'+: {
-    cmd: 'evmosd-rocksdb',    
+  'aizel_9002-1'+: {
+    cmd: 'aizeld-rocksdb',    
     'app-config'+: {
       'app-db-backend': 'rocksdb',      
       pruning: 'everything',

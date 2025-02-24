@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package erc20
 
@@ -8,13 +8,13 @@ import (
 
 	sdk "github.com/cosmos/cosmos-sdk/types"
 
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
 
-	auth "github.com/evmos/evmos/v20/precompiles/authorization"
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
+	auth "github.com/AizelNetwork/evmos/v20/precompiles/authorization"
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
 )
 
 const (

@@ -1,4 +1,4 @@
-module github.com/evmos/evmos/v20
+module github.com/AizelNetwork/evmos/v20
 
 go 1.22.8
 
@@ -44,7 +44,7 @@ require (
 	github.com/holiman/uint256 v1.3.2
 	github.com/improbable-eng/grpc-web v0.15.0
 	github.com/linxGnu/grocksdb v1.9.8
-	github.com/onsi/ginkgo/v2 v2.22.1
+	github.com/onsi/ginkgo/v2 v2.22.2
 	github.com/onsi/gomega v1.36.2
 	github.com/ory/dockertest/v3 v3.11.0
 	github.com/pkg/errors v0.9.1
@@ -69,6 +69,8 @@ require (
 	google.golang.org/protobuf v1.36.1
 	sigs.k8s.io/yaml v1.4.0
 )
+
+require github.com/status-im/keycard-go v0.2.0 // indirect
 
 require (
 	cloud.google.com/go v0.115.0 // indirect
@@ -235,7 +237,6 @@ require (
 	github.com/sourcegraph/conc v0.3.0 // indirect
 	github.com/spf13/afero v1.11.0 // indirect
 	github.com/spf13/pflag v1.0.5 // indirect
-	github.com/status-im/keycard-go v0.2.0 // indirect
 	github.com/stretchr/objx v0.5.2 // indirect
 	github.com/subosito/gotenv v1.6.0 // indirect
 	github.com/syndtr/goleveldb v1.0.1-0.20220721030215-126854af5e6d // indirect
@@ -286,11 +287,13 @@ replace (
 	cosmossdk.io/store => github.com/evmos/cosmos-sdk/store v0.0.0-20240718141609-414cbd051fbe
 	// use cosmos fork of keyring
 	github.com/99designs/keyring => github.com/cosmos/keyring v1.2.0
-	github.com/cosmos/cosmos-sdk => github.com/evmos/cosmos-sdk v0.50.9-evmos
-	// use Evmos geth fork
-	github.com/ethereum/go-ethereum => github.com/evmos/go-ethereum v1.10.26-evmos-rc4
+	github.com/cosmos/cosmos-sdk => github.com/AizelNetwork/cosmos-sdk v0.50.9-evmos
+	// use Aizel geth fork
+	github.com/ethereum/go-ethereum => github.com/jamesavechives/go-ethereum v1.10.26-evmos-rc4
+	github.com/evmos/evmos/v20 => github.com/AizelNetwork/evmos/v20 v20.0.0
 	// Security Advisory https://github.com/advisories/GHSA-h395-qcrw-5vmq
 	github.com/gin-gonic/gin => github.com/gin-gonic/gin v1.9.1
+	github.com/gogo/protobuf => github.com/regen-network/protobuf v1.3.3-alpha.regen.1
 	// replace broken goleveldb
 	github.com/syndtr/goleveldb => github.com/syndtr/goleveldb v1.0.1-0.20210819022825-2ae1ddf74ef7
 )

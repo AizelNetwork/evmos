@@ -18,23 +18,23 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/spf13/cobra"
 
+	"github.com/AizelNetwork/evmos/v20/app"
+	"github.com/AizelNetwork/evmos/v20/crypto/hd"
+	"github.com/AizelNetwork/evmos/v20/tests/integration/ledger/mocks"
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	"github.com/AizelNetwork/evmos/v20/utils"
 	"github.com/cometbft/cometbft/crypto/tmhash"
 	"github.com/cometbft/cometbft/version"
-	"github.com/evmos/evmos/v20/app"
-	"github.com/evmos/evmos/v20/crypto/hd"
-	"github.com/evmos/evmos/v20/tests/integration/ledger/mocks"
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
-	"github.com/evmos/evmos/v20/utils"
 	"github.com/stretchr/testify/suite"
 
+	clientkeys "github.com/AizelNetwork/evmos/v20/client/keys"
+	aizelkeyring "github.com/AizelNetwork/evmos/v20/crypto/keyring"
+	feemarkettypes "github.com/AizelNetwork/evmos/v20/x/feemarket/types"
 	tmproto "github.com/cometbft/cometbft/proto/tendermint/types"
 	tmversion "github.com/cometbft/cometbft/proto/tendermint/version"
 	rpcclientmock "github.com/cometbft/cometbft/rpc/client/mock"
 	cosmosledger "github.com/cosmos/cosmos-sdk/crypto/ledger"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	clientkeys "github.com/evmos/evmos/v20/client/keys"
-	evmoskeyring "github.com/evmos/evmos/v20/crypto/keyring"
-	feemarkettypes "github.com/evmos/evmos/v20/x/feemarket/types"
 
 	//nolint:revive // dot imports are fine for Ginkgo
 	. "github.com/onsi/ginkgo/v2"
@@ -47,7 +47,7 @@ var s *LedgerTestSuite
 type LedgerTestSuite struct {
 	suite.Suite
 
-	app *app.Evmos
+	app *app.Aizel
 	ctx sdk.Context
 
 	ledger       *mocks.SECP256K1
@@ -64,7 +64,7 @@ func TestLedger(t *testing.T) {
 	suite.Run(t, s)
 
 	RegisterFailHandler(Fail)
-	RunSpecs(t, "Evmosd Suite")
+	RunSpecs(t, "Aizeld Suite")
 }
 
 func (suite *LedgerTestSuite) SetupTest() {
@@ -83,7 +83,7 @@ func (suite *LedgerTestSuite) SetupTest() {
 	suite.accAddr = sdk.AccAddress(ethAddr.Bytes())
 }
 
-func (suite *LedgerTestSuite) SetupEvmosApp() {
+func (suite *LedgerTestSuite) SetupAizelApp() {
 	consAddress := sdk.ConsAddress(utiltx.GenerateAddress().Bytes())
 
 	// init app
@@ -147,7 +147,7 @@ func (suite *LedgerTestSuite) NewKeyringAndCtxs(krHome string, input io.Reader, 
 	return kr, initClientCtx, ctx
 }
 
-func (suite *LedgerTestSuite) evmosAddKeyCmd() *cobra.Command {
+func (suite *LedgerTestSuite) aizelAddKeyCmd() *cobra.Command {
 	cmd := keys.AddKeyCommand()
 
 	algoFlag := cmd.Flag(flags.FlagKeyType)
@@ -172,12 +172,12 @@ func (suite *LedgerTestSuite) evmosAddKeyCmd() *cobra.Command {
 
 func (suite *LedgerTestSuite) MockKeyringOption() keyring.Option {
 	return func(options *keyring.Options) {
-		options.SupportedAlgos = evmoskeyring.SupportedAlgorithms
-		options.SupportedAlgosLedger = evmoskeyring.SupportedAlgorithmsLedger
+		options.SupportedAlgos = aizelkeyring.SupportedAlgorithms
+		options.SupportedAlgosLedger = aizelkeyring.SupportedAlgorithmsLedger
 		options.LedgerDerivation = func() (cosmosledger.SECP256K1, error) { return suite.ledger, nil }
-		options.LedgerCreateKey = evmoskeyring.CreatePubkey
-		options.LedgerAppName = evmoskeyring.AppName
-		options.LedgerSigSkipDERConv = evmoskeyring.SkipDERConversion
+		options.LedgerCreateKey = aizelkeyring.CreatePubkey
+		options.LedgerAppName = aizelkeyring.AppName
+		options.LedgerSigSkipDERConv = aizelkeyring.SkipDERConversion
 	}
 }
 

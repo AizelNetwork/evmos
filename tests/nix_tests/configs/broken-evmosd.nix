@@ -1,8 +1,8 @@
 { pkgs ? import ../../../nix { } }:
-let evmosd = (pkgs.callPackage ../../../. { });
+let aizeld = (pkgs.callPackage ../../../. { });
 in
-evmosd.overrideAttrs (oldAttrs: {
+aizeld.overrideAttrs (oldAttrs: {
   patches = oldAttrs.patches or [ ] ++ [
-    ./broken-evmosd.patch
+    ./broken-aizeld.patch
   ];
 })

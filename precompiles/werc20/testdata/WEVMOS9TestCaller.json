@@ -1,7 +1,7 @@
 {
   "_format": "hh-sol-artifact-1",
-  "contractName": "WEVMOS9TestCaller",
-  "sourceName": "solidity/precompiles/werc20/testdata/WEVMOS9TestCaller.sol",
+  "contractName": "WAIZEL9TestCaller",
+  "sourceName": "solidity/precompiles/werc20/testdata/WAIZEL9TestCaller.sol",
   "abi": [
     {
       "inputs": [
@@ -29,7 +29,7 @@
     },
     {
       "inputs": [],
-      "name": "WEVMOS",
+      "name": "WAIZEL",
       "outputs": [
         {
           "internalType": "address payable",

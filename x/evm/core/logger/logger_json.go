@@ -6,9 +6,9 @@ import (
 	"math/big"
 	"time"
 
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/math"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
 )
 
 type JSONLogger struct {

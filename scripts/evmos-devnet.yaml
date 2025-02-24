@@ -1,9 +1,9 @@
 dotenv: .env
-evmos_9000-1:
-  cmd: evmosd
+aizel_9000-1:
+  cmd: aizeld
   start-flags: "--trace"
   app-config:
-    minimum-gas-prices: 0aevmos
+    minimum-gas-prices: 0aaizel
     index-events:
       - ethereum_tx.ethereumTxHash
     json-rpc:
@@ -14,21 +14,21 @@ evmos_9000-1:
     api:
       enable: true    
   validators:
-    - coins: 10001000000000000000000aevmos
-      staked: 1000000000000000000aevmos
+    - coins: 10001000000000000000000aaizel
+      staked: 1000000000000000000aaizel
       mnemonic: ${VALIDATOR1_MNEMONIC}
-    - coins: 10001000000000000000000aevmos
-      staked: 1000000000000000000aevmos
+    - coins: 10001000000000000000000aaizel
+      staked: 1000000000000000000aaizel
       mnemonic: ${VALIDATOR2_MNEMONIC}
   accounts:
     - name: community
-      coins: 10000000000000000000000aevmos
+      coins: 10000000000000000000000aaizel
       mnemonic: ${COMMUNITY_MNEMONIC}
     - name: signer1
-      coins: 20000000000000000000000aevmos
+      coins: 20000000000000000000000aaizel
       mnemonic: ${SIGNER1_MNEMONIC}
     - name: signer2
-      coins: 30000000000000000000000aevmos
+      coins: 30000000000000000000000aaizel
       mnemonic: ${SIGNER2_MNEMONIC}
 
   genesis:
@@ -39,24 +39,24 @@ evmos_9000-1:
     app_state:
       crisis:
         constant_fee:
-          denom: aevmos          
+          denom: aaizel          
       staking:
         params:
-          bond_denom: aevmos      
+          bond_denom: aaizel      
       inflation:
         params:
-          mint_denom: aevmos              
+          mint_denom: aaizel              
       gov:
         voting_params:
           voting_period: "10s"
         deposit_params:
           max_deposit_period: "10s"
           min_deposit:
-            - denom: aevmos
+            - denom: aaizel
               amount: "1"
         params:
           min_deposit:
-            - denom: aevmos
+            - denom: aaizel
               amount: "1"        
       transfer:
         params:

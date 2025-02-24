@@ -15,19 +15,19 @@ import (
 	authtx "github.com/cosmos/cosmos-sdk/x/auth/tx"
 	authtypes "github.com/cosmos/cosmos-sdk/x/auth/types"
 
+	"github.com/AizelNetwork/evmos/v20/contracts"
+	testfactory "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/factory"
+	testhandler "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/grpc"
+	testkeyring "github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/keyring"
+	"github.com/AizelNetwork/evmos/v20/testutil/integration/aizel/network"
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	erc20 "github.com/AizelNetwork/evmos/v20/x/erc20/types"
+	"github.com/AizelNetwork/evmos/v20/x/evm/core/vm"
+	"github.com/AizelNetwork/evmos/v20/x/evm/statedb"
+	"github.com/AizelNetwork/evmos/v20/x/evm/types"
 	"github.com/ethereum/go-ethereum/common"
 	ethtypes "github.com/ethereum/go-ethereum/core/types"
 	"github.com/ethereum/go-ethereum/crypto"
-	"github.com/evmos/evmos/v20/contracts"
-	testfactory "github.com/evmos/evmos/v20/testutil/integration/evmos/factory"
-	testhandler "github.com/evmos/evmos/v20/testutil/integration/evmos/grpc"
-	testkeyring "github.com/evmos/evmos/v20/testutil/integration/evmos/keyring"
-	"github.com/evmos/evmos/v20/testutil/integration/evmos/network"
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
-	erc20 "github.com/evmos/evmos/v20/x/erc20/types"
-	"github.com/evmos/evmos/v20/x/evm/core/vm"
-	"github.com/evmos/evmos/v20/x/evm/statedb"
-	"github.com/evmos/evmos/v20/x/evm/types"
 	"github.com/stretchr/testify/require"
 )
 
@@ -404,8 +404,8 @@ func TestIterateContracts(t *testing.T) {
 	)
 
 	network.App.EvmKeeper.IterateContracts(network.GetContext(), func(addr common.Address, codeHash common.Hash) bool {
-		// NOTE: we only care about the 2 contracts deployed above, not the ERC20 native precompile for the aevmos denomination
-		if bytes.Equal(addr.Bytes(), common.HexToAddress(erc20.WEVMOSContractMainnet).Bytes()) {
+		// NOTE: we only care about the 2 contracts deployed above, not the ERC20 native precompile for the aaizel denomination
+		if bytes.Equal(addr.Bytes(), common.HexToAddress(erc20.WAIZELContractMainnet).Bytes()) {
 			return false
 		}
 

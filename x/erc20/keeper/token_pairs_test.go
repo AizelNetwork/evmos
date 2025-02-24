@@ -3,10 +3,10 @@ package keeper_test
 import (
 	"fmt"
 
+	utiltx "github.com/AizelNetwork/evmos/v20/testutil/tx"
+	"github.com/AizelNetwork/evmos/v20/x/erc20/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
 	"github.com/ethereum/go-ethereum/common"
-	utiltx "github.com/evmos/evmos/v20/testutil/tx"
-	"github.com/evmos/evmos/v20/x/erc20/types"
 )
 
 func (suite *KeeperTestSuite) TestGetTokenPairs() {

@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 //go:build test
 // +build test
@@ -11,24 +11,24 @@ import (
 	"strings"
 
 	"cosmossdk.io/math"
+	evmtypes "github.com/AizelNetwork/evmos/v20/x/evm/types"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	evmtypes "github.com/evmos/evmos/v20/x/evm/types"
 )
 
-// EvmosOptionsFn defines a function type for setting app options specifically for
-// the Evmos app. The function should receive the chainID and return an error if
+// AizelOptionsFn defines a function type for setting app options specifically for
+// the Aizel app. The function should receive the chainID and return an error if
 // any.
-type EvmosOptionsFn func(string) error
+type AizelOptionsFn func(string) error
 
-// NoOpEvmosOptions is a no-op function that can be used when the app does not
+// NoOpAizelOptions is a no-op function that can be used when the app does not
 // need any specific configuration.
-func NoOpEvmosOptions(_ string) error {
+func NoOpAizelOptions(_ string) error {
 	return nil
 }
 
-// EvmosAppOptions allows to setup the global configuration
-// for the Evmos chain.
-func EvmosAppOptions(chainID string) error {
+// AizelAppOptions allows to setup the global configuration
+// for the Aizel chain.
+func AizelAppOptions(chainID string) error {
 	id := strings.Split(chainID, "-")[0]
 	coinInfo, found := evmtypes.ChainsCoinInfo[id]
 	if !found {
@@ -51,7 +51,7 @@ func EvmosAppOptions(chainID string) error {
 	// reset configuration to set the new one
 	configurator.ResetTestConfig()
 	err = configurator.
-		WithExtendedEips(evmosActivators).
+		WithExtendedEips(aizelActivators).
 		WithChainConfig(ethCfg).
 		WithEVMCoinInfo(baseDenom, uint8(coinInfo.Decimals)).
 		Configure()

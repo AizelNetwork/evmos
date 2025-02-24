@@ -1,5 +1,5 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 
 package staking
 
@@ -11,6 +11,7 @@ import (
 	"math/big"
 
 	"cosmossdk.io/math"
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
 	codectypes "github.com/cosmos/cosmos-sdk/codec/types"
 	"github.com/cosmos/cosmos-sdk/crypto/keys/ed25519"
 	cryptotypes "github.com/cosmos/cosmos-sdk/crypto/types"
@@ -19,7 +20,6 @@ import (
 	stakingtypes "github.com/cosmos/cosmos-sdk/x/staking/types"
 	"github.com/ethereum/go-ethereum/accounts/abi"
 	"github.com/ethereum/go-ethereum/common"
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
 )
 
 const (
@@ -119,7 +119,7 @@ func NewMsgCreateValidator(args []interface{}, denom string) (*stakingtypes.MsgC
 		return nil, common.Address{}, fmt.Errorf(cmn.ErrInvalidValidator, args[3])
 	}
 
-	// use cli `evmosd tendermint show-validator` get pubkey
+	// use cli `aizeld tendermint show-validator` get pubkey
 	pubkeyBase64Str, ok := args[4].(string)
 	if !ok {
 		return nil, common.Address{}, fmt.Errorf(cmn.ErrInvalidType, "pubkey", "string", args[4])

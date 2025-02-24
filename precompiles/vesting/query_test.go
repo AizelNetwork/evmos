@@ -1,13 +1,13 @@
-// Copyright Tharsis Labs Ltd.(Evmos)
-// SPDX-License-Identifier:ENCL-1.0(https://github.com/evmos/evmos/blob/main/LICENSE)
+// Copyright Tharsis Labs Ltd.(Aizel)
+// SPDX-License-Identifier:ENCL-1.0(https://github.com/AizelNetwork/evmos/blob/main/LICENSE)
 package vesting_test
 
 import (
 	"fmt"
 
+	cmn "github.com/AizelNetwork/evmos/v20/precompiles/common"
+	"github.com/AizelNetwork/evmos/v20/precompiles/vesting"
 	sdk "github.com/cosmos/cosmos-sdk/types"
-	cmn "github.com/evmos/evmos/v20/precompiles/common"
-	"github.com/evmos/evmos/v20/precompiles/vesting"
 )
 
 func (s *PrecompileTestSuite) TestBalances() {

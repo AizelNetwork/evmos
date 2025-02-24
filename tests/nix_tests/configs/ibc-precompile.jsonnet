@@ -1,7 +1,7 @@
 local config = import 'ibc.jsonnet';
 
 config {
-  'evmos_9002-1'+: {
+  'aizel_9002-1'+: {
     genesis+: {
       app_state+: {
         feemarket+: {
