@@ -1,0 +1,10 @@
+{
+ "title": "test proposal",
+ "authors": [
+  "validator1"
+ ],
+ "summary": "test proposal summary",
+ "details": "upgrade evm to include eip-5656",
+ "proposal_forum_url": "https://eips.ethereum.org/eip-5656",
+ "vote_option_context": "yes"
+}
